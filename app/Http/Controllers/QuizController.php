@@ -13,7 +13,7 @@ class QuizController extends Controller
      */
     public function index()
     {
-        //
+        return view('quizzes.list');
     }
 
     /**
@@ -23,7 +23,7 @@ class QuizController extends Controller
      */
     public function create()
     {
-        //
+        return view('quizzes.create');
     }
 
     /**

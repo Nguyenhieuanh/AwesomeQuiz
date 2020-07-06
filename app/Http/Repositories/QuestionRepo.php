@@ -1,10 +1,11 @@
 <?php
-use App\Http\Repositories\CRUDInterface;
 
-use App\Http\Repositories\Eloquent\EloquentRepo;
 use App\Models\Question;
 
-class QuestionRepo extends EloquentRepo implements CRUDInterface
+use App\Http\Repositories\CRUDInterfaceRepo;
+use App\Http\Repositories\Eloquent\EloquentRepo;
+
+class QuestionRepo extends EloquentRepo implements CRUDInterfaceRepo
 {
     /**
      * get Model
@@ -15,4 +16,3 @@ class QuestionRepo extends EloquentRepo implements CRUDInterface
         return $model = Question::class;
     }
 }
-

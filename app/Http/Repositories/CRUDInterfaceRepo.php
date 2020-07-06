@@ -1,7 +1,8 @@
 <?php
+
 namespace App\Http\Repositories;
 
-interface CRUDInterface
+interface CRUDInterfaceRepo
 {
     public function getAll();
     public function findById($id);
@@ -9,4 +10,3 @@ interface CRUDInterface
     public function update($id, $data);
     public function destroy($id);
 }
-

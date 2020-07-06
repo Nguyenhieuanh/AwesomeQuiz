@@ -2,9 +2,9 @@
 
 namespace App\Http\Repositories\Eloquent;
 
-use App\Http\Repositories\CRUDInterface;
+use App\Http\Repositories\CRUDInterfaceRepo;
 
-abstract class EloquentRepo implements CRUDInterface
+abstract class EloquentRepo implements CRUDInterfaceRepo
 {
     protected $model;
 

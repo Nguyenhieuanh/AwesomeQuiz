@@ -27,7 +27,7 @@ class UpdateCategoriesRequest extends FormRequest
     {
         return [
 
-            'title' => 'required',
+            'category_name' => 'required',
         ];
     }
 }

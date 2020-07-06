@@ -18,7 +18,7 @@
                 <tr>
                     <th style="text-align:center;"><input type="checkbox" id="select-all" /></th>
                     <th>Category Title</th>
-                    <th>&nbsp;</th>
+                    <th>Actions&nbsp;</th>
                 </tr>
                 </thead>
 
@@ -36,7 +36,7 @@
                                     'method' => 'DELETE',
                                     'onsubmit' => "return confirm('Are you sure?');",
                                     'route' => ['categories.destroy', $category->id])) !!}
-                                {!! Form::submit(trans('quickadmin.delete'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                {!! Form::submit(trans('Delete'), array('class' => 'btn btn-xs btn-danger')) !!}
                                 {!! Form::close() !!}
                             </td>
                         </tr>

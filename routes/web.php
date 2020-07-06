@@ -27,6 +27,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'question'], function () {
         Route::get('/', 'QuestionController@index')->name('question.index');
+        Route::get('/create', 'QuestionController@create')->name('question.create');
     });
 
 });

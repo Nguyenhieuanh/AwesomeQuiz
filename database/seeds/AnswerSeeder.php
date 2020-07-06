@@ -27,7 +27,7 @@ class AnswerSeeder extends Seeder
             ['Dung 2', 2 , 1],
         ];
 
-        foreach ($answers as $key => $answer) {
+        foreach ($answers as $answer) {
             Answer::create([
                 'answer_content' => $answer[0],
                 'question_id' => $answer[1],

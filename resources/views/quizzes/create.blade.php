@@ -25,7 +25,9 @@
                         <label for="category">Category</label>
                         <select class="custom-select" name="category_id">
                             <option selected>Choose...</option>
-                            <option value="1">Category_1</option>
+                            @foreach ($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>

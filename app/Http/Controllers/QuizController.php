@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Repositories\CategoryRepo;
 use App\Http\Requests\QuizFormRequest;
 use App\Http\Services\QuizService;
 use App\Quiz;
@@ -11,10 +12,12 @@ use Illuminate\Support\Facades\Validator;
 class QuizController extends Controller
 {
     protected $quizService;
+    protected $categoryService;
 
-    public function __construct(QuizService $quizService)
+    public function __construct(QuizService $quizService, CategoryRepo $categoryRepo)
     {
         $this->quizService = $quizService;
+        $this->categoryService = $categoryRepo;
         $this->middleware('auth');
     }
     /**
@@ -35,8 +38,8 @@ class QuizController extends Controller
      */
     public function create()
     {
-
-        return view('quizzes.create');
+        $categories = $this->categoryService->getAll();
+        return view('quizzes.create', compact('categories'));
     }
 
     /**

@@ -18,6 +18,26 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- Prevent the demo from appearing in search engines (REMOVE THIS) -->
+    <meta name="robots" content="noindex">
+
+    <!-- Simplebar -->
+    <link type="text/css" href="{{asset('vendor/simplebar.css')}}" rel="stylesheet">
+
+    <!-- Material Design Icons  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Roboto Web Font -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet">
+
+    <!-- MDK -->
+    <link type="text/css" href="{{asset('vendor/material-design-kit.css')}}" rel="stylesheet">
+
+    <!-- Sidebar Collapse -->
+    <link type="text/css" href="{{asset('vendor/sidebar-collapse.min.css')}}" rel="stylesheet">
+
+    <!-- App CSS -->
+    <link type="text/css" href="{{asset('sass/style.css')}}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -76,5 +96,25 @@
             @yield('content')
         </main>
     </div>
+    <!-- jQuery -->
+    <script src="{{asset('vendor/jquery.min.js')}}"></script>
+
+    <!-- Bootstrap -->
+    <script src="{{asset('vendor/popper.min.js')}}"></script>
+    <script src="{{asset('vendor/bootstrap.min.js')}}"></script>
+
+    <!-- Simplebar -->
+    <!-- Used for adding a custom scrollbar to the drawer -->
+    <script src="{{asset('vendor/simplebar.js')}}"></script>
+
+    <!-- MDK -->
+    <script src="{{asset('vendor/dom-factory.js')}}"></script>
+    <script src="{{asset('vendor/material-design-kit.js')}}"></script>
+
+    <!-- Sidebar Collapse -->
+    <script src="{{asset('vendor/sidebar-collapse.js')}}"></script>
+
+    <!-- App JS -->
+    <script src="{{asset('js/main.js')}}"></script>
 </body>
 </html>

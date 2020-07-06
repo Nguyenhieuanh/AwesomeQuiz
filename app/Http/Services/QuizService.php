@@ -42,11 +42,10 @@ class QuizService implements CRUDInterfaceService
         $oldQuiz = $this->quizRepo->findById($id);
 
         if (!$oldQuiz) {
-            if (!$oldQuestion) {
-
+            if (!$oldQuiz) {
                 return 404;
             } else {
-                return  $this->questionRepo->update($request, $oldQuestion);
+                return  $this->quizRepo->update($request, $oldQuiz);
             }
         }
     }

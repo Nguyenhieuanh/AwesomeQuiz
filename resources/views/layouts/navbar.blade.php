@@ -68,7 +68,7 @@
 
 <div class="mdk-drawer-layout js-mdk-drawer-layout flex" data-fullbleed data-push data-has-scrolling-region>
     <div class="mdk-drawer-layout__content mdk-drawer-layout__content--scrollable">
-        @yield('content')
+        @yield('content_home')
     </div>
 
 

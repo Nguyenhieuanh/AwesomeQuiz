@@ -92,4 +92,9 @@ class QuestionService implements CRUDInterfaceService
         ];
         return $data;
     }
+
+    public function getQuestionsByCategoryId($category_id)
+    {
+        return $this->questionRepo->getQuestionsByCategoryId($category_id);
+    }
 }

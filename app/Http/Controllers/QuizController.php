@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Repositories\CategoryRepo;
 use App\Http\Requests\QuizFormRequest;
 use App\Http\Services\CategoryService;
+use App\Http\Services\QuestionService;
+use App\Http\Services\QuizQuestionService;
 use App\Http\Services\QuizService;
 use App\Quiz;
 use Illuminate\Http\Request;
@@ -14,11 +16,19 @@ class QuizController extends Controller
 {
     protected $quizService;
     protected $categoryService;
+    protected $quizQuestionService;
+    protected $questionService;
 
-    public function __construct(QuizService $quizService, CategoryService $categoryService)
-    {
+    public function __construct(
+        QuizService $quizService,
+        CategoryService $categoryService,
+        QuizQuestionService $quizQuestionService,
+        QuestionService $questionService
+    ) {
         $this->quizService = $quizService;
         $this->categoryService = $categoryService;
+        $this->quizQuestionService = $quizQuestionService;
+        $this->questionService = $questionService;
         $this->middleware('auth');
     }
     /**
@@ -51,7 +61,19 @@ class QuizController extends Controller
      */
     public function store(QuizFormRequest $request)
     {
-        $this->quizService->create($request->all());
+        $quiz = $this->quizService->create($request->all());
+        $questions = $this->questionService->getQuestionsByCategoryId($quiz->category_id);
+        $array = [];
+        foreach ($questions as $value) {
+            $array[] = $value->id;
+        }
+        for ($i = 0; $i < $request->question_count; $i++) {
+            $data = [
+                'quiz_id' => $quiz->id,
+                'question_id' => $questions[array_rand($array)]->id
+            ];
+            $this->quizQuestionService->create($data);
+        }
 
         return redirect()->route('quiz.list');
     }

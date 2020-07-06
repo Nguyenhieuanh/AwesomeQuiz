@@ -16,4 +16,9 @@ class QuestionRepo extends EloquentRepo implements CRUDInterfaceRepo
     {
         return $model = Question::class;
     }
+
+    public function getQuestionsByCategoryId($category_id)
+    {
+        return Question::where('category_id',$category_id)->get();
+    }
 }

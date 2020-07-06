@@ -24,7 +24,10 @@ class QuizFormRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required',
+            'duration' => 'required',
+            'question_count' => 'required',
+            'category_id' => 'required'
         ];
     }
 }

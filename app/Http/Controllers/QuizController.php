@@ -2,10 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\QuizFormRequest;
+use App\Quiz;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class QuizController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -32,9 +40,16 @@ class QuizController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(QuizFormRequest $request)
     {
-        //
+        Quiz::create([
+            'name' => $request['name'],
+            'duration' => $request['duration'],
+            'category_id' => $request['category_id'],
+            'question_count' => $request['question_count']
+        ]);
+
+        return redirect()->route('quiz.list');
     }
 
     /**

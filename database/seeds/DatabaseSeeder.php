@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         Schema::disableForeignKeyConstraints();
         factory(Category::class, 10)->create();
         factory(Question::class, 10)->create();
+        $this->call(AnswerSeeder::class);
 
         Schema::enableForeignKeyConstraints();
     }

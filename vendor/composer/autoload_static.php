@@ -485,6 +485,7 @@ class ComposerStaticInitfb62e967a27a64163457c7a054ff181a
     );
 
     public static $classMap = array (
+        'AnswerSeeder' => __DIR__ . '/../..' . '/database/seeds/AnswerSeeder.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',

@@ -14,7 +14,9 @@ class CreateQuizQuestions extends Migration
     public function up()
     {
         Schema::create('quiz_questions', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->unsignedInteger('quiz_id');
+            $table->unsignedInteger('question_id');
             $table->timestamps();
         });
     }

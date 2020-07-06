@@ -86,7 +86,9 @@ class QuizController extends Controller
      */
     public function show($id)
     {
-        return view('quizzes.detail');
+        $quiz_questions = $this->quizQuestionService->getQuestionsByQuizId($id);
+        $quiz = $this->quizService->findById($id);
+        return view('quizzes.detail', compact('quiz', 'quiz_questions'));
     }
 
     /**

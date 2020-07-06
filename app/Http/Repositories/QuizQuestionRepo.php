@@ -13,5 +13,10 @@ class QuizQuestionRepo extends EloquentRepo implements CRUDInterfaceRepo
     {
         return $model = QuizQuestion::class;
     }
-    
+
+    public function getQuestionsByQuizId($id)
+    {
+        return QuizQuestion::where('quiz_id', $id)->get();
+    }
+
 }

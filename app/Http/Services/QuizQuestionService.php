@@ -60,4 +60,10 @@ class QuizQuestionService implements CRUDInterfaceService
 
         return 404;
     }
+
+    public function getQuestionsByQuizId($id)
+    {
+        return $this->quizQuesRepo->getQuestionsByQuizId($id);
+
+    }
 }

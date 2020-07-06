@@ -21,9 +21,9 @@ class QuestionController extends Controller
         $questions = $this->questionService->getAll();
         return view('question.index', compact('questions'));
     }
-    
-    public function create() 
+
+    public function create()
     {
-        
+        return view('question.create');
     }
 }

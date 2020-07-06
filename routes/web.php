@@ -38,3 +38,13 @@ Route::group(['prefix' => 'question'], function () {
     Route::get('/', 'QuestionController@index')->name('question.index');
     Route::get('/create', 'QuestionController@create')->name('question.create');
 });
+
+
+Route::group(['prefix' => 'quiz'], function () {
+    Route::get('/', 'QuizController@index')->name('quiz.list');
+    Route::get('/create', 'QuizController@create')->name('quiz.create');
+    Route::post('/store', 'QuizController@store')->name('quiz.store');
+    Route::get('/{id}/edit', 'QuizController@edit')->name('quiz.edit');
+    Route::post('/{id}/update', 'QuizController@update')->name('quiz.update');
+    Route::post('/{id}/delete', 'QuizController@delete')->name('quiz.delete');
+});

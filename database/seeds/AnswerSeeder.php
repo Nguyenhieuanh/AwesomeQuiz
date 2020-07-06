@@ -34,6 +34,6 @@ class AnswerSeeder extends Seeder
                 'correct' => $answer[2],
             ]);
         }
-        Schema::enableForeignKeyConstraints();
+        // Schema::enableForeignKeyConstraints();
     }
 }

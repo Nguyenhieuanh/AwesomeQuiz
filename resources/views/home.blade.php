@@ -1,7 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.navbar')
 
-@section('content')
-
+@section('content_home')
     <!-- Content -->
     <div class="container">
         <div class="p-t-2 p-b-2 center">
@@ -27,7 +26,7 @@
                         <h4 class="card-title"><a href="student-dashboard.html">Quiz player</a></h4>
                     </div>
                     <a href="student-dashboard.html" class="preview">
-                        <img src="images/student.png" alt="Student App" class="img-fluid">
+                        <img src="images/student.png" alt="QuizPlayer App" class="img-fluid">
                     </a>
                     <div class="card-block center">
                         <a href="student-dashboard.html" class="btn btn-primary-outline btn-rounded"><i class="material-icons">person</i> This is for QuizPlayer</a>
@@ -40,7 +39,7 @@
                         <h4 class="card-title"><a href="instructor-dashboard.html">Quiz maker</a></h4>
                     </div>
                     <a href="instructor-dashboard.html"  class="preview">
-                        <img src="images/instructor.png" alt="Instructor App" class="img-fluid">
+                        <img src="images/instructor.png" alt="QuizMaker App" class="img-fluid">
                     </a>
                     <div class="card-block center">
                         <a href="instructor-dashboard.html" class="btn btn-primary-outline btn-rounded"><i class="material-icons">school</i> This is for QuizMaker</a>

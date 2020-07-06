@@ -13,7 +13,7 @@
         {{ $q_question->question->question_content }}
         <br>
         @foreach ($q_question->question->answers as $key => $answer)
-        {{ ++$key . ')'. $answer->answer_content }}
+        {{ ++$key . ') '. $answer->answer_content }}
         <br>
         @endforeach
         <br>

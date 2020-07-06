@@ -3,15 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\QuizFormRequest;
+use App\Http\Services\QuizService;
 use App\Quiz;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class QuizController extends Controller
 {
+    protected $quizService;
 
-    public function __construct()
+    public function __construct(QuizService $quizService)
     {
+        $this->quizService = $quizService;
         $this->middleware('auth');
     }
     /**
@@ -21,7 +24,8 @@ class QuizController extends Controller
      */
     public function index()
     {
-        return view('quizzes.list');
+        $quizzes = $this->quizService->getAll();
+        return view('quizzes.list', compact('quizzes'));
     }
 
     /**
@@ -31,6 +35,7 @@ class QuizController extends Controller
      */
     public function create()
     {
+
         return view('quizzes.create');
     }
 
@@ -42,12 +47,7 @@ class QuizController extends Controller
      */
     public function store(QuizFormRequest $request)
     {
-        Quiz::create([
-            'name' => $request['name'],
-            'duration' => $request['duration'],
-            'category_id' => $request['category_id'],
-            'question_count' => $request['question_count']
-        ]);
+        $this->quizService->create($request->all());
 
         return redirect()->route('quiz.list');
     }

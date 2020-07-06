@@ -177,6 +177,12 @@
                             </a>
                         </li>
                         <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button" href="{{route('question.index')}}">
+                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">help</i> Question
+                                Manager
+                            </a>
+                        </li>
+                        <li class="sidebar-menu-item">
                             <a class="sidebar-menu-button" href="instructor-profile.html">
                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">language</i> Public
                                 Profile

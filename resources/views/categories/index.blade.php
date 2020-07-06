@@ -41,6 +41,7 @@
                             </td>
                         </tr>
                     @endforeach
+                    {{$categories->links()}}
                 @else
                     <tr>
                         <td colspan="3">Nothing to show here</td>

@@ -22,3 +22,13 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+
+Route::group(['prefix' => 'quiz'], function () {
+    Route::get('/', 'QuizController@index')->name('quiz.list');
+    Route::get('/create', 'QuizController@create')->name('quiz.create');
+    Route::post('/store', 'QuizController@store')->name('quiz.store');
+    Route::get('/{id}/edit', 'QuizController@edit')->name('quiz.edit');
+    Route::post('/{id}/update', 'QuizController@update')->name('quiz.update');
+    Route::post('/{id}/delete', 'QuizController@delete')->name('quiz.delete');
+});

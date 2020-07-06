@@ -2,7 +2,9 @@
 
 namespace App\Http\Repositories\Eloquent;
 
-abstract class EloquentRepository
+use App\Http\Repositories\CRUDInterface;
+
+abstract class EloquentRepository implements CRUDInterface
 {
     protected $model;
 
@@ -27,8 +29,7 @@ abstract class EloquentRepository
 
     public function getAll()
     {
-        $result = $this->model->all();
-        return $result;
+        return $this->model->all();
     }
 
     public function findById($id)
@@ -47,14 +48,25 @@ abstract class EloquentRepository
         return $object;
     }
 
-    public function update($data, $object)
+    public function update($id, $data)
     {
-        $object->update($data);
-        return $object;
+        $result = $this->findById($id);
+        if ($result) {
+            $result->update($data);
+            return $result;
+        }
+
+        return false;
     }
 
-    public function destroy($object)
+    public function destroy($id)
     {
-        $object->delete();
+        $result = $this->findById($id);
+        if ($result) {
+            $result->delete();
+            return true;
+        }
+
+        return false;
     }
 }

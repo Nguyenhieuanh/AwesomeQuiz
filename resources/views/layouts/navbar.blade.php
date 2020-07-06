@@ -221,69 +221,6 @@
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
-                    <!-- Components menu -->
-                    <div class="sidebar-heading">UI Components</div>
-                    <ul class="sidebar-menu">
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse"
-                                href="#ui-components">
-                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">tune</i>
-                                UI Components
-                                <span class="ml-auto sidebar-menu-toggle-icon"></span>
-                            </a>
-                            <ul class="sidebar-submenu sm-condensed collapse" id="ui-components">
-                                <li class="sidebar-menu-item">
-                                    <a class="sidebar-menu-button" href="ui-buttons.html">
-                                        Buttons</a>
-                                </li>
-                                <li class="sidebar-menu-item">
-                                    <a class="sidebar-menu-button" href="ui-cards.html">
-                                        Cards</a>
-                                </li>
-                                <li class="sidebar-menu-item">
-                                    <a class="sidebar-menu-button" href="ui-tabs.html">
-                                        Tabs</a>
-                                </li>
-                                <li class="sidebar-menu-item">
-                                    <a class="sidebar-menu-button" href="ui-tree.html">
-                                        Tree</a>
-                                </li>
-                                <li class="sidebar-menu-item">
-                                    <a class="sidebar-menu-button" href="ui-nestable.html">
-                                        Nestable</a>
-                                </li>
-                                <li class="sidebar-menu-item">
-                                    <a class="sidebar-menu-button" href="ui-notifications.html">
-                                        Notifications</a>
-                                </li>
-                                <li class="sidebar-menu-item">
-                                    <a class="sidebar-menu-button" href="ui-progress.html">
-                                        Progress Bars</a>
-                                </li>
-                                <li class="sidebar-menu-item">
-                                    <a class="sidebar-menu-button" href="ui-forms.html">
-                                        Forms</a>
-                                </li>
-                                <li class="sidebar-menu-item">
-                                    <a class="sidebar-menu-button" href="ui-tables.html">
-                                        Tables</a>
-                                </li>
-                                <li class="sidebar-menu-item">
-                                    <a class="sidebar-menu-button" href="ui-charts.html">
-                                        Charts</a>
-                                </li>
-                                <li class="sidebar-menu-item">
-                                    <a class="sidebar-menu-button" href="ui-calendar.html">
-                                        Calendar</a>
-                                </li>
-                                <li class="sidebar-menu-item">
-                                    <a class="sidebar-menu-button" href="ui-maps-vector.html">
-                                        Maps Vector</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <!-- // END Components Menu -->
                 </div>
             </div>
         </div>

@@ -16,4 +16,9 @@ class Question extends Model
     {
         return $this->hasMany('App\Models\Answer');
     }
+
+    public function categories()
+    {
+        return $this->belongsTo('App\Models\Category');
+    }
 }

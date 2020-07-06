@@ -4,7 +4,7 @@ namespace App\Http\Repositories\Eloquent;
 
 use App\Http\Repositories\CRUDInterface;
 
-abstract class EloquentRepository implements CRUDInterface
+abstract class EloquentRepo implements CRUDInterface
 {
     protected $model;
 

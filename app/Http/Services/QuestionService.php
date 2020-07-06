@@ -3,7 +3,7 @@
 namespace App\Http\Services;
 
 
-use QuestionRepo;
+use App\Http\Repositories\QuestionRepo;
 use App\Http\Services\CRUDInterfaceService;
 
 

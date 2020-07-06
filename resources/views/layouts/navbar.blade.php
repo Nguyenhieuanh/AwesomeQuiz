@@ -53,8 +53,9 @@
                 <a class="dropdown-item" href="student-profile.html">
                     <i class="material-icons">person</i> Thông tin cá nhân
                 </a>
-                <a class="dropdown-item" href="guest-login.html">
-                    <i class="material-icons">lock</i> Thoát
+                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
+                    <i class="material-icons">lock</i> Logout
                 </a>
             </div>
         </li>
@@ -94,22 +95,6 @@
                         </li>
                         @endif
                     </ul>
-                    <div class="sidebar-heading">Layout</div>
-                    <ul class="sidebar-menu">
-                        <li class="sidebar-menu-item active">
-                            <a class="sidebar-menu-button" href="student-dashboard.html">
-                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
-                                    dashboard</i> Fluid Layout
-                            </a>
-                        </li>
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button" href="fixed-student-dashboard.html">
-                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
-                                    dashboard</i> Fixed Layout
-                            </a>
-                        </li>
-                    </ul>
-
 
                     @if (Auth::user()->role == 0)
                     {{-- Student --}}
@@ -173,9 +158,10 @@
                             </a>
                         </li>
                         <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button" href="guest-login.html">
+                            <a class="sidebar-menu-button" href="{{ route('logout') }}" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
-                                    lock_open</i> Thoát
+                                    lock_open</i> Logout
                             </a>
                         </li>
                     </ul>
@@ -225,12 +211,16 @@
                             </a>
                         </li>
                         <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button" href="guest-login.html">
+                            <a class="sidebar-menu-button" href="{{ route('logout') }}" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">lock_open</i> Logout
                             </a>
                         </li>
                     </ul>
                     @endif
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                     <!-- Components menu -->
                     <div class="sidebar-heading">UI Components</div>
                     <ul class="sidebar-menu">

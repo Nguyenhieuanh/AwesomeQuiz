@@ -12,7 +12,6 @@ class Quiz extends Model
 
     public function quizQuestions()
     {
-        $this->hasMany('App\Models\QuizQuestion');
+        return $this->hasMany('App\Models\QuizQuestion');
     }
-
 }

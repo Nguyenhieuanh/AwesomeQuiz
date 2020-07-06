@@ -24,6 +24,6 @@ class Question extends Model
 
     public function quizQuestion()
     {
-        $this->belongsTo('App\Models\QuizQuestion');
+        return $this->hasMany('App\Models\QuizQuestion');
     }
 }

@@ -12,11 +12,11 @@ class QuizQuestion extends Model
 
     public function quiz()
     {
-        $this->belongsTo('App\Quiz');
+        return $this->belongsTo('App\Quiz');
     }
 
     public function question ()
     {
-        $this->hasOne('App\Models\Question');
+        return $this->belongsTo('App\Models\Question');
     }
 }

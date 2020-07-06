@@ -23,12 +23,17 @@
 
                     <div class="col-md-6 mb-3">
                         <label for="category">Category</label>
-                        <select class="custom-select" name="category_id">
-                            <option selected>Choose...</option>
+                        <select class="custom-select @error('category_id') is-invalid @enderror" name="category_id">
+                            <option value="" selected>Choose...</option>
                             @foreach ($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->category_name }}</option>
                             @endforeach
                         </select>
+                        @error('category_id')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
                     </div>
                 </div>
                 <div class="form-row">
@@ -45,7 +50,7 @@
                     <div class="col-md-6 mb-3">
                         <label for="duration">Duration</label>
                         <select class="custom-select @error('duration') is-invalid @enderror" name="duration">
-                            <option selected>Choose...</option>
+                            <option value="" selected>Choose...</option>
                             <option value="1">45 minutes</option>
                             <option value="2">90 minutes</option>
                             <option value="3">120 minutes</option>

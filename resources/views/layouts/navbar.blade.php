@@ -68,7 +68,7 @@
 
 <div class="mdk-drawer-layout js-mdk-drawer-layout flex" data-fullbleed data-push data-has-scrolling-region>
     <div class="mdk-drawer-layout__content mdk-drawer-layout__content--scrollable">
-        @yield('content')
+        @yield('content_home')
     </div>
 
 
@@ -78,18 +78,21 @@
                 <div class="sidebar-p-y" data-simplebar data-simplebar-force-enabled="true">
                     <div class="sidebar-heading">APPLICATIONS</div>
                     <ul class="sidebar-menu">
+                        @if (Auth::user()->role == 0)
                         <li class="sidebar-menu-item active">
                             <a class="sidebar-menu-button" href="student-dashboard.html">
                                 <i class="red sidebar-menu-icon sidebar-menu-icon--left material-icons">
                                     account_box</i> Học sinh
                             </a>
                         </li>
+                        @else
                         <li class="sidebar-menu-item">
                             <a class="sidebar-menu-button" href="instructor-dashboard.html">
                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
                                     school</i> Instructor
                             </a>
                         </li>
+                        @endif
                     </ul>
                     <div class="sidebar-heading">Layout</div>
                     <ul class="sidebar-menu">
@@ -107,6 +110,8 @@
                         </li>
                     </ul>
 
+
+                    @if (Auth::user()->role == 0)
                     {{-- Student --}}
                     <div class="sidebar-heading">Student</div>
                     <ul class="sidebar-menu">
@@ -174,7 +179,7 @@
                             </a>
                         </li>
                     </ul>
-                    
+                    @else
                     {{-- instructor --}}
                     <div class="sidebar-heading">Instructor</div>
                     <ul class="sidebar-menu">
@@ -225,6 +230,7 @@
                             </a>
                         </li>
                     </ul>
+                    @endif
                     <!-- Components menu -->
                     <div class="sidebar-heading">UI Components</div>
                     <ul class="sidebar-menu">

@@ -23,7 +23,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['prefix' => 'admin'], function () {
-    Route::get('/app', 'QuestionController@index')->name('question.index');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::group(['prefix' => 'question'], function () {
+        Route::get('/', 'QuestionController@index')->name('question.index');
+    });
+
 });
 

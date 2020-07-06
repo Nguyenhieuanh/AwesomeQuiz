@@ -106,6 +106,8 @@
                             </a>
                         </li>
                     </ul>
+
+                    {{-- Student --}}
                     <div class="sidebar-heading">Student</div>
                     <ul class="sidebar-menu">
                         <li class="sidebar-menu-item">
@@ -169,6 +171,57 @@
                             <a class="sidebar-menu-button" href="guest-login.html">
                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
                                     lock_open</i> Thoát
+                            </a>
+                        </li>
+                    </ul>
+                    
+                    {{-- instructor --}}
+                    <div class="sidebar-heading">Instructor</div>
+                    <ul class="sidebar-menu">
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button" href="instructor-courses.html">
+                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">import_contacts</i>
+                                Course Manager
+                            </a>
+                        </li>
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button" href="instructor-quizzes.html">
+                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">help</i> Quiz
+                                Manager
+                            </a>
+                        </li>
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button" href="instructor-profile.html">
+                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">language</i> Public
+                                Profile
+                            </a>
+                        </li>
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button" href="instructor-account-edit.html">
+                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">account_box</i>
+                                Account Settings
+                            </a>
+                        </li>
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button" href="instructor-messages.html">
+                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">comment</i> Messages
+                            </a>
+                        </li>
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button" href="instructor-earnings.html">
+                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">trending_up</i>
+                                Earnings
+                            </a>
+                        </li>
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button" href="instructor-statement.html">
+                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">receipt</i>
+                                Statement
+                            </a>
+                        </li>
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button" href="guest-login.html">
+                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">lock_open</i> Logout
                             </a>
                         </li>
                     </ul>

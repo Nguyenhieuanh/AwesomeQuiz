@@ -171,7 +171,7 @@
                             </a>
                         </li>
                         <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button" href="instructor-quizzes.html">
+                            <a class="sidebar-menu-button" href="{{ route('quiz.list') }}">
                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">help</i> Quiz
                                 Manager
                             </a>

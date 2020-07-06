@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Repositories\CategoryRepo;
 use App\Http\Requests\QuizFormRequest;
+use App\Http\Services\CategoryService;
 use App\Http\Services\QuizService;
 use App\Quiz;
 use Illuminate\Http\Request;
@@ -14,10 +15,10 @@ class QuizController extends Controller
     protected $quizService;
     protected $categoryService;
 
-    public function __construct(QuizService $quizService, CategoryRepo $categoryRepo)
+    public function __construct(QuizService $quizService, CategoryService $categoryService)
     {
         $this->quizService = $quizService;
-        $this->categoryService = $categoryRepo;
+        $this->categoryService = $categoryService;
         $this->middleware('auth');
     }
     /**

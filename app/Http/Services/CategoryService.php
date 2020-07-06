@@ -4,7 +4,7 @@ namespace App\Http\Services;
 
 use App\Http\Repositories\CategoryRepo;
 
-class QuizService implements CRUDInterfaceService
+class CategoryService implements CRUDInterfaceService
 {
     protected $categoryRepo;
 

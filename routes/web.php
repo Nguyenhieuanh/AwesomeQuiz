@@ -28,5 +28,5 @@ Route::post('/category/store','CategoryController@store')->name('categories.stor
 Route::get('/category/edit/{id}','CategoryController@edit')->name('categories.edit');
 Route::post('/category/update/{id}','CategoryController@edit')->name('categories.update');
 Route::get('/category/show/{id}','CategoryController@show')->name('categories.show');
-Route::get('/category/destroy{id}','CategoryController@destroy')->name('categories.destroy');
+Route::delete('/category/destroy/{id}','CategoryController@destroy')->name('categories.destroy');
 Route::get('/category/mass_destroy','CategoryController@massDestroy')->name('categories.mass_destroy');

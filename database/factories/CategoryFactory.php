@@ -7,6 +7,6 @@ use Faker\Generator as Faker;
 
 $factory->define(Category::class, function (Faker $faker) {
     return [
-        'category_name' => $faker->state(),
+        'category_name' => $faker->states(),
     ];
 });

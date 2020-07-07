@@ -43,6 +43,7 @@ Route::group(['middleware' => 'role', 'prefix' => 'question'], function () {
     Route::get('/update/{id}', 'QuestionController@update')->name('question.update');
     Route::get('/destroy', 'QuestionController@destroy')->name('question.destroy');
     Route::get('/show/{id}', 'QuestionController@show')->name('question.show');
+    Route::post('/store', 'QuestionController@store')->name('question.store');
 });
 
 

@@ -6,6 +6,7 @@
             <h4>{{ $quiz->name }}</h4>
         </div>
         <div class="card-body">
+            {{ dd($quiz_questions) }}
             @foreach ($quiz_questions as $key => $q_question)
                 <strong>Question {{ ++$key }}.</strong>
                 <br>

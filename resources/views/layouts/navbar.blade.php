@@ -170,15 +170,16 @@
                                 Manager
                             </a>
                         </li>
+
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button" href="{{route('user.list')}}">
+                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">help</i> QuizPlayer Manager
+                            </a>
+                        </li>
                         <li class="sidebar-menu-item">
                             <a class="sidebar-menu-button" href="#">
                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">language</i> Public
                                 Profile
-                            </a>
-                        </li>
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button" href="{{route('user.list')}}">
-                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">help</i> QuizPlayer Manager
                             </a>
                         </li>
                         <li class="sidebar-menu-item">

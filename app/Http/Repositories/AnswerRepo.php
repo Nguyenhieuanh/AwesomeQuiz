@@ -13,4 +13,9 @@ class AnswerRepo extends EloquentRepo implements CRUDInterfaceRepo
     {
         return Answer::class;
     }
+
+    public function getAnswerByQuestionId($question_id)
+    {
+        return Answer::where('question_id',$question_id)->get();
+    }
 }

@@ -24,7 +24,7 @@
                         @foreach ($quiz_questions as $key => $q_question)
                         <tr>
                             <td>
-                                <input type="checkbox" name="question_id[ ]" value="{{ $q_question->id }}">
+                                <input type="checkbox" name="question_id[ ]" value="{{ $q_question->id }}">  {{ ++$key }}
                             </td>
                             <td>
                                 <a data-toggle="modal"
@@ -110,11 +110,11 @@
             </div>
             <div class="modal-body">
                 <p><strong>{{ $q_question->question->question_content }}</strong></p>
+                @foreach ($q_question->question->answers as $key => $answer)
+                {{ ++$key . ') '. $answer->answer_content }}
+                <br>
+                @endforeach
             </div>
-            @foreach ($q_question->question->answers as $key => $answer)
-            {{ ++$key . ') '. $answer->answer_content }}
-            <br>
-            @endforeach
             <div class="modal-footer">
             </div>
         </div>

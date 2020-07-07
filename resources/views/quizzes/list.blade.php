@@ -13,7 +13,7 @@
             </div>
             <div class="card-body">
                 <p>
-                    Number of questions: {{ $quiz->questio_count }}
+                    Number of questions: {{ $quiz->question_count }}
                 </p>
                 <p>
                     Duration: {{ $quiz->duration }}

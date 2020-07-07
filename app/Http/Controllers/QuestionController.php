@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdateQuestionsRequest;
 use App\Http\Requests\QuestionFormRequest;
 use App\Http\Services\AnswerService;
 use App\Http\Services\CategoryService;
 use App\Http\Services\QuestionService;
 use App\Models\Question;
 use Illuminate\Http\Request;
-use App\Http\Requests\UpdateQuestionsRequest;
 
 class QuestionController extends Controller
 {

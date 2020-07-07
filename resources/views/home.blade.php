@@ -48,7 +48,7 @@
             </div>
         </div>
         <div class="card">
-            <div class="card-header">{{ __('Recent added Quizs') }}</div>
+            <div class="card-header"><h3>{{ __('Recent added Quizs') }}</h3></div>
 
             @foreach ($quizzes as $quiz)
                 <div class="card">
@@ -69,28 +69,20 @@
             @endforeach
         </div>
         <div class="card">
-            <div class="card-header">{{ __('Recent added Questions') }}</div>
+            <div class="card-header"><h3>{{ __('Recent added Questions') }}</h3></div>
 
-            @foreach ($quizzes as $quiz)
+            @foreach ($questions as $question)
                 <div class="card">
                     <div class="card-header">
-                        <h3>
-                            <a href="{{ route('quiz.show', ['id' => $quiz->id]) }}">{{ $quiz->name }}</a>
-                        </h3>
-                    </div>
-                    <div class="card-body">
-                        <p>
-                            Number of questions: {{ $quiz->question_count }}
-                        </p>
-                        <p>
-                            Duration: {{ $quiz->duration }}
-                        </p>
+
+                            <a href="{{ route('question.show', ['id' => $question->id]) }}">{{ $question->question_content }}</a>
+
                     </div>
                 </div>
             @endforeach
         </div>
         <div class="card">
-            <div class="card-header">{{ __('Recent added Category') }}</div>
+            <div class="card-header"><h3>{{ __('Recent added Category') }}</h3></div>
 
             <table class="table table-bordered table-striped {{ count($categories) > 0 ? 'datatable' : '' }} dt-select">
                 <thead>

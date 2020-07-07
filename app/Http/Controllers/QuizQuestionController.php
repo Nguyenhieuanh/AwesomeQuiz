@@ -14,9 +14,9 @@ class QuizQuestionController extends Controller
         $this->quizQuestionService = $quizQuestionService;
     }
 
-    public function create($data, $count)
+    public function create(Request $request)
     {
-        //
+        $this->quizQuestionService->create($request);
     }
 
     public function destroy($id)

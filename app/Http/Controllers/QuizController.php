@@ -60,21 +60,7 @@ class QuizController extends Controller
     public function store(QuizFormRequest $request)
     {
         $quiz = $this->quizService->create($request->all());
-        $questions = $this->questionService->getQuestionsByCategoryId($quiz->category_id);
-        $question_id = [];
-        foreach ($questions as $value) {
-            $question_id[] = $value->id;
-        }
-        shuffle($question_id);
-        $count = ($request->question_count > count($question_id)) ? count($question_id) : $request->question_count;
-
-        for ($i = 0; $i < $count; $i++) {
-            $data = [
-                'quiz_id' => $quiz->id,
-                'question_id' => $question_id[$i]
-            ];
-            $this->quizQuestionService->create($data);
-        }
+        $this->quizQuestionService->generate($quiz, $request->question_count);
 
         return redirect()->route('quiz.list');
     }

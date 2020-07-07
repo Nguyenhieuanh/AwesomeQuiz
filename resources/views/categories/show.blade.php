@@ -15,13 +15,14 @@
                         <tr>
                             <th>ID no.</th>
                             <th>Category name</th>
-                            <th>Description</th></tr>
+                            <th>Description</th>
                             <th>Actions</th></tr>
                             <tr>
                                 <td>{{ $category->id }}</td>
                                 <td>{{ $category->category_name }}</td>
                                 <td>{{ $category->category_description }}</td>
-                                <td>
+
+                                <td>@if (Auth::user()->role == 1)
                                     <a href="{{ route('categories.edit',[$category->id]) }}" class="btn btn-xs btn-info">Edit</a>
                                     {!! Form::open(array(
                                         'style' => 'display: inline-block;',
@@ -29,6 +30,7 @@
                                         'onsubmit' => "return confirm('Are you sure?');",
                                         'route' => ['categories.destroy', $category->id])) !!}
                                     {!! Form::submit(trans('Delete'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                    @endif
                                     {!! Form::close() !!}
                                 </td>
                         </tr>

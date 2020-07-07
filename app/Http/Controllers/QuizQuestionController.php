@@ -46,7 +46,7 @@ class QuizQuestionController extends Controller
 
     public function multiDestroy(Request $request)
     {
-        $id = $request->id;
+        $id = $request->question_id;
 
         for ($i=0; $i < count($id); $i++) {
             $this->quizQuestionService->destroy($id[$i]);

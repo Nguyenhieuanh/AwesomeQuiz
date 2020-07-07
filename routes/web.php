@@ -62,6 +62,7 @@ Route::group(['middleware' => 'role', 'prefix' => 'quiz'], function () {
 Route::group(['middleware' => 'role', 'prefix' => 'quiz-question'], function () {
     Route::post('/store', 'QuizQuestionController@store')->name('quizQuestion.store');
     Route::get('/{id}/delete', 'QuizQuestionController@destroy')->name('quizQuestion.destroy');
+    Route::post('/multiDelete', 'QuizQuestionController@multiDestroy')->name('quizQuestion.multiDestroy');
 });
 
 Route::group(['middleware' => 'role', 'prefix' => 'user'], function () {

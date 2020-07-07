@@ -12,12 +12,20 @@
                 <div class="form-group">
                     <label for="question_content">Question</label>
                     <textarea class="form-control @error('question_content') is-invalid @enderror" id="question_content"
-                        name="question_content" rows="3"></textarea>
+                        name="question_content" rows="2"></textarea>
                     @error('question_content')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{$message}}</strong>
                     </span>
                     @enderror
+                </div>
+                <div class="form-group">
+                    <label for="difficulty">Difficulty</label>
+                    <select class="form-control" id="difficulty" name="difficulty">
+                        <option value="1">Easy</option>
+                        <option value="2">Medium</option>
+                        <option value="3">Hard</option>
+                    </select>
                 </div>
 
                 <div class="form-group">

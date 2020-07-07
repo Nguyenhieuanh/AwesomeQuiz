@@ -102,7 +102,8 @@ class QuizController extends Controller
     {
         $quiz_questions = $this->quizQuestionService->getQuestionsByQuizId($id);
         $quiz = $this->quizService->findById($id);
-        return view('quizzes.edit', compact('quiz', 'quiz_questions'));    }
+        return view('quizzes.edit', compact('quiz', 'quiz_questions'));
+    }
 
     /**
      * Update the specified resource in storage.

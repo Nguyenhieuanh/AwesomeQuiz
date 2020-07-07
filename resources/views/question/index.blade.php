@@ -29,9 +29,9 @@
                     <td></td>
                     <td>{{ $question->id }}</td>
                     <td><a href="{{route('question.show',$question->id)}}">{!! $question->question_content !!}</a></td>
-                    <td>@if ($question->difficulty == 1)<p style="color: #37c23e">Easy</p>
-                    @elseif ($question->difficulty == 2)<p style="color: #ff9700">Medium</p>
-                    @else <p style="color: #890505">Hard</p>
+                    <td>@if ($question->difficulty == 1)<p class="text-success" >Easy</p>
+                    @elseif ($question->difficulty == 2)<p class="text-warning">Medium</p>
+                    @else <p class="text-danger">Hard</p>
                     @endif</td>
                     <td>
                          <a href="{{ route('question.show',[$question->id]) }}"

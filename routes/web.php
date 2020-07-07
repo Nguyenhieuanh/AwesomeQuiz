@@ -24,7 +24,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'category'], function () {
-    Route::group(['middleware' => 'role'],function (){
+    Route::group(['middleware' => 'role'], function () {
         Route::get('/create', 'CategoryController@create')->name('categories.create');
         Route::post('/store', 'CategoryController@store')->name('categories.store');
         Route::get('/edit/{id}', 'CategoryController@edit')->name('categories.edit');
@@ -55,4 +55,9 @@ Route::group(['middleware' => 'role', 'prefix' => 'quiz'], function () {
     Route::get('/{id}/edit', 'QuizController@edit')->name('quiz.edit');
     Route::post('/{id}/update', 'QuizController@update')->name('quiz.update');
     Route::post('/{id}/delete', 'QuizController@delete')->name('quiz.delete');
+});
+
+
+Route::group(['middleware' => 'role', 'prefix' => 'quiz-question'], function () {
+    Route::get('/{id}/delete', 'QuizQuestionController@destroy')->name('quizQuestion.destroy');
 });

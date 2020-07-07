@@ -4,21 +4,26 @@
     <div class="col-12 p-3">
         <div class="card">
             <div class="card-header">
-                <h4>{{$question->question_content}}</h4>
+                <h4>Question details</h4>
             </div>
             <div class="card-body">
-                <table class="table table-striped">
+                <h5 class="card-title">Question #{{$question->id}} content:</h5>
+            <p class="card-text">{{$question->question_content}}</p>
+                <table class="table table-striped table-bordered table-hover">
                     <thead>
-                    <tr>
+                    <tr class="table-primary">
                         <th>#</th>
-                        <th>Content</th>
+                        <th>Answer</th>
                         <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($question->answers as $key => $answer)
-                    <tr>
+                    <tr @if ($answer->correct == 1)
+                        class="table-success"
+                    @endif>
                         <td>{{ ++$key }}</td>
+
                         <td>{{ $answer->answer_content }}</td>
                         <td></td>
                     </tr>

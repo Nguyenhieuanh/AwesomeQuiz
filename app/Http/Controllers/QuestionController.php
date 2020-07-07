@@ -30,7 +30,7 @@ class QuestionController extends Controller
 
     public function index()
     {
-        $questions = $this->questionService->getAll();
+        $questions = Question::paginate(10);
         return view('question.index', compact('questions'));
     }
 

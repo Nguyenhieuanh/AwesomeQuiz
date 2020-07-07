@@ -10,6 +10,7 @@
 <div class="panel panel-default">
 
     <div class="panel-body">
+
         <table class="table table-bordered table-striped {{ count($questions) > 0 ? 'datatable' : '' }} dt-select">
             <thead>
                 <tr>
@@ -47,6 +48,7 @@
                     </td>
                 </tr>
                 @endforeach
+                {{$questions->links()}}
                 @else
                 <tr>
                     <td colspan="7">'no_entries_in_table'</td>

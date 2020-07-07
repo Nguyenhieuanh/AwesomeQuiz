@@ -14,6 +14,6 @@ class QuestionSeeder extends Seeder
     public function run()
     {
         Schema::disableForeignKeyConstraints();
-        factory(Question::class, 10)->create();
+        factory(Question::class, 200)->create();
     }
 }

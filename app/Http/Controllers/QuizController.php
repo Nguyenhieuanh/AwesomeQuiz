@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Quiz;
+use Illuminate\Http\Request;
+use App\Http\Services\QuizService;
 use App\Http\Requests\QuizFormRequest;
 use App\Http\Services\CategoryService;
 use App\Http\Services\QuestionService;
 use App\Http\Services\QuizQuestionService;
-use App\Http\Services\QuizService;
-use Illuminate\Http\Request;
 
 class QuizController extends Controller
 {
@@ -35,7 +36,7 @@ class QuizController extends Controller
      */
     public function index()
     {
-        $quizzes = $this->quizService->getAll();
+        $quizzes = Quiz::paginate(6);
         return view('quizzes.list', compact('quizzes'));
     }
 

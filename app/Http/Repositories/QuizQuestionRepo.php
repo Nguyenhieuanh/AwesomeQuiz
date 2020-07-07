@@ -11,7 +11,7 @@ class QuizQuestionRepo extends EloquentRepo implements CRUDInterfaceRepo
 {
     public function getModel()
     {
-        return $model = QuizQuestion::class;
+        return QuizQuestion::class;
     }
 
     public function getQuestionsByQuizId($id)

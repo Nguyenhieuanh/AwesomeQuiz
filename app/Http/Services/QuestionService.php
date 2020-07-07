@@ -60,7 +60,7 @@ class QuestionService implements CRUDInterfaceService
 
 
         if ($question) {
-            $this->questionRepo->destroy($question);
+            $this->questionRepo->destroy($id);
             $message = "Delete success!";
         } else {
             abort(404, 'User Not Found');

@@ -34,6 +34,7 @@ class ComposerStaticInitfb62e967a27a64163457c7a054ff181a
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
         'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
+        '6b34c85f7b1ad6faa15aa12109e030f2' => __DIR__ . '/..' . '/realrashid/sweet-alert/src/functions.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -89,6 +90,7 @@ class ComposerStaticInitfb62e967a27a64163457c7a054ff181a
         ),
         'R' => 
         array (
+            'RealRashid\\SweetAlert\\' => 22,
             'Ramsey\\Uuid\\' => 12,
             'Ramsey\\Collection\\' => 18,
         ),
@@ -303,6 +305,10 @@ class ComposerStaticInitfb62e967a27a64163457c7a054ff181a
         array (
             0 => __DIR__ . '/..' . '/symfony/console',
         ),
+        'RealRashid\\SweetAlert\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/realrashid/sweet-alert/src',
+        ),
         'Ramsey\\Uuid\\' => 
         array (
             0 => __DIR__ . '/..' . '/ramsey/uuid/src',
@@ -495,6 +501,7 @@ class ComposerStaticInitfb62e967a27a64163457c7a054ff181a
         'App\\Category' => __DIR__ . '/../..' . '/app/Category.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Http\\Controllers\\AnswerController' => __DIR__ . '/../..' . '/app/Http/Controllers/AnswerController.php',
         'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
@@ -507,6 +514,7 @@ class ComposerStaticInitfb62e967a27a64163457c7a054ff181a
         'App\\Http\\Controllers\\QuestionController' => __DIR__ . '/../..' . '/app/Http/Controllers/QuestionController.php',
         'App\\Http\\Controllers\\QuizController' => __DIR__ . '/../..' . '/app/Http/Controllers/QuizController.php',
         'App\\Http\\Controllers\\QuizQuestionController' => __DIR__ . '/../..' . '/app/Http/Controllers/QuizQuestionController.php',
+        'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\CheckForMaintenanceMode' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckForMaintenanceMode.php',
@@ -517,15 +525,19 @@ class ComposerStaticInitfb62e967a27a64163457c7a054ff181a
         'App\\Http\\Middleware\\TrustHosts' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustHosts.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Http\\Repositories\\AnswerRepo' => __DIR__ . '/../..' . '/app/Http/Repositories/AnswerRepo.php',
         'App\\Http\\Repositories\\CRUDInterfaceRepo' => __DIR__ . '/../..' . '/app/Http/Repositories/CRUDInterfaceRepo.php',
         'App\\Http\\Repositories\\CategoryRepo' => __DIR__ . '/../..' . '/app/Http/Repositories/CategoryRepo.php',
         'App\\Http\\Repositories\\Eloquent\\EloquentRepo' => __DIR__ . '/../..' . '/app/Http/Repositories/Eloquent/EloquentRepo.php',
         'App\\Http\\Repositories\\QuestionRepo' => __DIR__ . '/../..' . '/app/Http/Repositories/QuestionRepo.php',
         'App\\Http\\Repositories\\QuizQuestionRepo' => __DIR__ . '/../..' . '/app/Http/Repositories/QuizQuestionRepo.php',
         'App\\Http\\Repositories\\QuizRepo' => __DIR__ . '/../..' . '/app/Http/Repositories/QuizRepo.php',
+        'App\\Http\\Requests\\QuestionFormRequest' => __DIR__ . '/../..' . '/app/Http/Requests/QuestionFormRequest.php',
         'App\\Http\\Requests\\QuizFormRequest' => __DIR__ . '/../..' . '/app/Http/Requests/QuizFormRequest.php',
         'App\\Http\\Requests\\StoreCategoriesRequest' => __DIR__ . '/../..' . '/app/Http/Requests/StoreCategoriesRequest.php',
         'App\\Http\\Requests\\UpdateCategoriesRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateCategoriesRequest.php',
+        'App\\Http\\Requests\\UpdateQuestionsRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateQuestionsRequest.php',
+        'App\\Http\\Services\\AnswerService' => __DIR__ . '/../..' . '/app/Http/Services/AnswerService.php',
         'App\\Http\\Services\\CRUDInterfaceService' => __DIR__ . '/../..' . '/app/Http/Services/CRUDInterfaceService.php',
         'App\\Http\\Services\\CategoryService' => __DIR__ . '/../..' . '/app/Http/Services/CategoryService.php',
         'App\\Http\\Services\\QuestionService' => __DIR__ . '/../..' . '/app/Http/Services/QuestionService.php',
@@ -4002,6 +4014,13 @@ class ComposerStaticInitfb62e967a27a64163457c7a054ff181a
         'Ramsey\\Uuid\\UuidInterface' => __DIR__ . '/..' . '/ramsey/uuid/src/UuidInterface.php',
         'Ramsey\\Uuid\\Validator\\GenericValidator' => __DIR__ . '/..' . '/ramsey/uuid/src/Validator/GenericValidator.php',
         'Ramsey\\Uuid\\Validator\\ValidatorInterface' => __DIR__ . '/..' . '/ramsey/uuid/src/Validator/ValidatorInterface.php',
+        'RealRashid\\SweetAlert\\Console\\PublishCommand' => __DIR__ . '/..' . '/realrashid/sweet-alert/src/Console/PublishCommand.php',
+        'RealRashid\\SweetAlert\\Facades\\Alert' => __DIR__ . '/..' . '/realrashid/sweet-alert/src/Facades/Alert.php',
+        'RealRashid\\SweetAlert\\Storage\\AlertSessionStore' => __DIR__ . '/..' . '/realrashid/sweet-alert/src/Storage/AlertSessionStore.php',
+        'RealRashid\\SweetAlert\\Storage\\SessionStore' => __DIR__ . '/..' . '/realrashid/sweet-alert/src/Storage/SessionStore.php',
+        'RealRashid\\SweetAlert\\SweetAlertServiceProvider' => __DIR__ . '/..' . '/realrashid/sweet-alert/src/SweetAlertServiceProvider.php',
+        'RealRashid\\SweetAlert\\ToSweetAlert' => __DIR__ . '/..' . '/realrashid/sweet-alert/src/ToSweetAlert.php',
+        'RealRashid\\SweetAlert\\Toaster' => __DIR__ . '/..' . '/realrashid/sweet-alert/src/Toaster.php',
         'SebastianBergmann\\CodeCoverage\\CodeCoverage' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/CodeCoverage.php',
         'SebastianBergmann\\CodeCoverage\\CoveredCodeNotExecutedException' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/Exception/CoveredCodeNotExecutedException.php',
         'SebastianBergmann\\CodeCoverage\\Driver\\Driver' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/Driver/Driver.php',
@@ -4839,6 +4858,7 @@ class ComposerStaticInitfb62e967a27a64163457c7a054ff181a
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Property\\Property' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Property/Property.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Processor' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Processor.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Rule' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Rule.php',
+        'UserSeeder' => __DIR__ . '/../..' . '/database/seeds/UserSeeder.php',
         'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
         'Webmozart\\Assert\\Mixin' => __DIR__ . '/..' . '/webmozart/assert/src/Mixin.php',

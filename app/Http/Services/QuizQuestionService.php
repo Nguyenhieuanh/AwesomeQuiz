@@ -7,10 +7,12 @@ use App\Http\Repositories\QuizQuestionRepo;
 class QuizQuestionService implements CRUDInterfaceService
 {
     protected $quizQuesRepo;
+    protected $questionService;
 
-    public function __construct(QuizQuestionRepo $quizQuesRepo)
+    public function __construct(QuizQuestionRepo $quizQuesRepo, QuestionService $questionService)
     {
         $this->quizQuesRepo = $quizQuesRepo;
+        $this->questionService = $questionService;
     }
     public function getAll()
     {
@@ -33,7 +35,6 @@ class QuizQuestionService implements CRUDInterfaceService
     public function create($request)
     {
         $question = $this->quizQuesRepo->create($request);
-
         return $question;
     }
 
@@ -55,15 +56,36 @@ class QuizQuestionService implements CRUDInterfaceService
         $question = $this->quizQuesRepo->findById($id);
 
         if ($question) {
-            return $this->quizQuesRepo->destroy($question);
+            return $this->quizQuesRepo->destroy($id);
         }
 
-        return 404;
+        abort(404);
     }
 
     public function getQuestionsByQuizId($id)
     {
         return $this->quizQuesRepo->getQuestionsByQuizId($id);
+    }
 
+    public function generate($quiz, $count)
+    {
+        $questions = $this->questionService->getQuestionsByCategoryId($quiz->category_id);
+        $question_id = [];
+        foreach ($questions as $value) {
+            $question_id[] = $value->id;
+        }
+        shuffle($question_id);
+        for (
+            $i = 0;
+            $i < (($count > count($question_id)) ? count($question_id) : $count);
+            $i++
+        ) {
+            $data = [
+                'quiz_id' => $quiz->id,
+                'question_id' => $question_id[$i]
+            ];
+            $this->quizQuesRepo->create($data);
+        }
+        return ($count > count($question_id)) ? false : true;
     }
 }

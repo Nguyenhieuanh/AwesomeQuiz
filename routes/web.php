@@ -24,7 +24,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'category'], function () {
-    Route::group(['middleware' => 'role'],function (){
+    Route::group(['middleware' => 'role'], function () {
         Route::get('/create', 'CategoryController@create')->name('categories.create');
         Route::post('/store', 'CategoryController@store')->name('categories.store');
         Route::get('/edit/{id}', 'CategoryController@edit')->name('categories.edit');
@@ -48,16 +48,26 @@ Route::group(['middleware' => 'role', 'prefix' => 'question'], function () {
 });
 
 
-Route::group(['middleware' => 'role', 'prefix' => 'quiz'], function () {
+Route::group(['prefix' => 'quiz'], function () {
+    Route::group(['middleware' => 'role'], function () {
+        Route::get('/{id}/edit', 'QuizController@edit')->name('quiz.edit');
+        Route::post('/{id}/update', 'QuizController@update')->name('quiz.update');
+        Route::post('/{id}/delete', 'QuizController@delete')->name('quiz.delete');
+        Route::get('/create', 'QuizController@create')->name('quiz.create');
+        Route::post('/store', 'QuizController@store')->name('quiz.store');
+    });
     Route::get('/', 'QuizController@index')->name('quiz.list');
-    Route::get('/create', 'QuizController@create')->name('quiz.create');
-    Route::post('/store', 'QuizController@store')->name('quiz.store');
     Route::get('/{id}/detail', 'QuizController@show')->name('quiz.show');
-    Route::get('/{id}/edit', 'QuizController@edit')->name('quiz.edit');
-    Route::post('/{id}/update', 'QuizController@update')->name('quiz.update');
-    Route::post('/{id}/delete', 'QuizController@delete')->name('quiz.delete');
 });
+
+
+Route::group(['middleware' => 'role', 'prefix' => 'quiz-question'], function () {
+    Route::post('/store', 'QuizQuestionController@store')->name('quizQuestion.store');
+    Route::get('/{id}/delete', 'QuizQuestionController@destroy')->name('quizQuestion.destroy');
+    Route::post('/multiDelete', 'QuizQuestionController@multiDestroy')->name('quizQuestion.multiDestroy');
+});
+
 Route::group(['middleware' => 'role', 'prefix' => 'user'], function () {
-    Route::get('/','UserController@index')->name('user.list');
+    Route::get('/', 'UserController@index')->name('user.list');
     Route::post('/delete', 'UserController@destroy')->name('user.destroy');
 });

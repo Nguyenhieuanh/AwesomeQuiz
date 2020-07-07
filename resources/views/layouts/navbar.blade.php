@@ -71,8 +71,6 @@
     <div class="mdk-drawer-layout__content mdk-drawer-layout__content--scrollable">
         @yield('content_home')
     </div>
-
-
     <div class="mdk-drawer js-mdk-drawer" id="default-drawer">
         <div class="mdk-drawer__content ">
             <div class="sidebar sidebar-left sidebar-light sidebar-transparent-sm-up o-hidden">
@@ -113,7 +111,7 @@
                             </a>
                         </li>
                         <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button" href="#">
+                            <a class="sidebar-menu-button" href="{{ route('quiz.list') }}">
                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
                                     import_contacts</i> Xem đề
                             </a>
@@ -170,15 +168,16 @@
                                 Manager
                             </a>
                         </li>
+
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button" href="{{route('user.list')}}">
+                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">help</i> QuizPlayer Manager
+                            </a>
+                        </li>
                         <li class="sidebar-menu-item">
                             <a class="sidebar-menu-button" href="#">
                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">language</i> Public
                                 Profile
-                            </a>
-                        </li>
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button" href="{{route('user.list')}}">
-                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">help</i> QuizPlayer Manager
                             </a>
                         </li>
                         <li class="sidebar-menu-item">

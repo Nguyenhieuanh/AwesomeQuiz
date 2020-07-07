@@ -16,6 +16,13 @@ class QuizQuestionController extends Controller
 
     public function create($data, $count)
     {
-        // for ($i; )
+        //
+    }
+
+    public function destroy($id)
+    {
+        $this->quizQuestionService->destroy($id);
+
+        return redirect()->back();
     }
 }

@@ -47,10 +47,10 @@
             <a class="nav-link active dropdown-toggle" data-toggle="dropdown" href="#" role="button"><img
                     src="assets/images/people/50/guy-6.jpg" alt="Avatar" class="rounded-circle" width="40"></a>
             <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item" href="student-account-edit.html">
+                <a class="dropdown-item" href="#">
                     <i class="material-icons">edit</i> Thay đổi tài khoản
                 </a>
-                <a class="dropdown-item" href="student-profile.html">
+                <a class="dropdown-item" href="#">
                     <i class="material-icons">person</i> Thông tin cá nhân
                 </a>
                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -81,14 +81,14 @@
                     <ul class="sidebar-menu">
                         @if (Auth::user()->role == 0)
                         <li class="sidebar-menu-item active">
-                            <a class="sidebar-menu-button" href="student-dashboard.html">
+                            <a class="sidebar-menu-button" href="#">
                                 <i class="red sidebar-menu-icon sidebar-menu-icon--left material-icons">
                                     account_box</i> Học sinh
                             </a>
                         </li>
                         @else
                         <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button" href="instructor-dashboard.html">
+                            <a class="sidebar-menu-button" href="#">
                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
                                     school</i> Instructor
                             </a>
@@ -101,7 +101,7 @@
                     <div class="sidebar-heading">Student</div>
                     <ul class="sidebar-menu">
                         <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button" href="student-browse-courses.html">
+                            <a class="sidebar-menu-button" href="#">
                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
                                     search</i> Đề kiểm tra
                             </a>
@@ -113,43 +113,31 @@
                             </a>
                         </li>
                         <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button" href="student-view-course.html">
+                            <a class="sidebar-menu-button" href="#">
                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
                                     import_contacts</i> Xem đề
                             </a>
                         </li>
                         <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button" href="student-take-course.html">
+                            <a class="sidebar-menu-button" href="#">
                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
                                     class</i> Danh sách học sinh
                                 <span class="sidebar-menu-badge badge badge-default ml-auto">PRO</span>
                             </a>
                         </li>
                         <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button" href="student-quiz-results.html">
+                            <a class="sidebar-menu-button" href="#">
                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
                                     poll</i> Câu hỏi
                             </a>
                         </li>
                         <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button" href="student-account-edit.html">
-                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
-                                    account_box</i> Tài khoản
-                            </a>
-                        </li>
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button" href="student-my-courses.html">
+                            <a class="sidebar-menu-button" href="#">
                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
                                     school</i> Đề đã làm
                             </a>
                         </li>
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button" href="student-messages.html">
-                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
-                                    comment</i> Tin nhắn
-                                <span class="sidebar-menu-badge badge badge-default ml-auto">2</span>
-                            </a>
-                        </li>
+
 
                         <li class="sidebar-menu-item">
                             <a class="sidebar-menu-button" href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -163,12 +151,7 @@
                     {{-- instructor --}}
                     <div class="sidebar-heading">Instructor</div>
                     <ul class="sidebar-menu">
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button" href="instructor-courses.html">
-                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">import_contacts</i>
-                                Course Manager
-                            </a>
-                        </li>
+
                         <li class="sidebar-menu-item">
                             <a class="sidebar-menu-button" href="{{route('categories.index')}}">
                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
@@ -187,33 +170,16 @@
                                 Manager
                             </a>
                         </li>
+
                         <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button" href="instructor-profile.html">
+                            <a class="sidebar-menu-button" href="{{route('user.list')}}">
+                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">help</i> QuizPlayer Manager
+                            </a>
+                        </li>
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button" href="#">
                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">language</i> Public
                                 Profile
-                            </a>
-                        </li>
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button" href="instructor-account-edit.html">
-                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">account_box</i>
-                                Account Settings
-                            </a>
-                        </li>
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button" href="instructor-messages.html">
-                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">comment</i> Messages
-                            </a>
-                        </li>
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button" href="instructor-earnings.html">
-                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">trending_up</i>
-                                Earnings
-                            </a>
-                        </li>
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button" href="instructor-statement.html">
-                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">receipt</i>
-                                Statement
                             </a>
                         </li>
                         <li class="sidebar-menu-item">

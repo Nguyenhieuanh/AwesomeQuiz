@@ -6,12 +6,13 @@ use App\Http\Requests\StoreCategoriesRequest;
 use App\Http\Requests\UpdateCategoriesRequest;
 use Illuminate\Http\Request;
 use App\Category;
+
 class CategoryController extends Controller
 {
-public function __construct()
-{
-    $this->middleware('auth');
-}
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function index()
     {
@@ -35,7 +36,6 @@ public function __construct()
     }
 
 
-
     public function edit($id)
     {
         $category = Category::findOrFail($id);
@@ -53,14 +53,12 @@ public function __construct()
     }
 
 
-
     public function show($id)
     {
         $category = Category::findOrFail($id);
 
         return view('categories.show', compact('category'));
     }
-
 
 
     public function destroy($id)

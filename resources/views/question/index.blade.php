@@ -10,6 +10,7 @@
 <div class="panel panel-default">
 
     <div class="panel-body">
+
         <table class="table table-bordered table-striped {{ count($questions) > 0 ? 'datatable' : '' }} dt-select">
             <thead>
                 <tr>
@@ -28,9 +29,9 @@
                     <td></td>
                     <td>{{ $question->id }}</td>
                     <td><a href="{{route('question.show',$question->id)}}">{!! $question->question_content !!}</a></td>
-                    <td>@if ($question->difficulty == 1){{__('Easy')}}
-                    @elseif ($question->difficulty == 2){{__('Medium')}}
-                    @else {{__('Hard')}}
+                    <td>@if ($question->difficulty == 1)<p class="text-success" >Easy</p>
+                    @elseif ($question->difficulty == 2)<p class="text-warning">Medium</p>
+                    @else <p class="text-danger">Hard</p>
                     @endif</td>
                     <td>
                          <a href="{{ route('question.show',[$question->id]) }}"
@@ -47,6 +48,7 @@
                     </td>
                 </tr>
                 @endforeach
+                {{$questions->links()}}
                 @else
                 <tr>
                     <td colspan="7">'no_entries_in_table'</td>

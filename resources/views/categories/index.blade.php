@@ -27,7 +27,7 @@
                     @foreach ($categories as $category)
                         <tr data-entry-id="{{ $category->id }}">
                             <td></td>
-                            <td>{{ $category->category_name }}</td>
+                            <td><a href="{{route('categories.show',[$category->id])}}" >{{ $category->category_name }}</a></td>
                             <td>
                                 <a href="{{ route('categories.show',[$category->id]) }}" class="btn btn-xs btn-primary">Detail</a>
                                 @if (Auth::user()->role == 1)

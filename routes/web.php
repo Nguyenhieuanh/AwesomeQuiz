@@ -39,6 +39,7 @@ Route::group(['prefix' => 'category'], function () {
 Route::group(['middleware' => 'role', 'prefix' => 'question'], function () {
     Route::get('/', 'QuestionController@index')->name('question.index');
     Route::get('/create', 'QuestionController@create')->name('question.create');
+    Route::post('/store', 'QuestionController@store')->name('question.store');
     Route::get('/edit/{id}', 'QuestionController@edit')->name('question.edit');
     Route::get('/update/{id}', 'QuestionController@update')->name('question.update');
     Route::get('/destroy', 'QuestionController@destroy')->name('question.destroy');
@@ -60,4 +61,9 @@ Route::group(['middleware' => 'role', 'prefix' => 'quiz'], function () {
 
 Route::group(['middleware' => 'role', 'prefix' => 'quiz-question'], function () {
     Route::get('/{id}/delete', 'QuizQuestionController@destroy')->name('quizQuestion.destroy');
+});
+
+Route::group(['middleware' => 'role', 'prefix' => 'user'], function () {
+    Route::get('/', 'UserController@index')->name('user.list');
+    Route::post('/delete', 'UserController@destroy')->name('user.destroy');
 });

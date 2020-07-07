@@ -35,7 +35,6 @@ class QuizQuestionService implements CRUDInterfaceService
     public function create($request)
     {
         $question = $this->quizQuesRepo->create($request);
-
         return $question;
     }
 
@@ -86,7 +85,7 @@ class QuizQuestionService implements CRUDInterfaceService
                 'quiz_id' => $quiz->id,
                 'question_id' => $question_id[$i]
             ];
-            $this->create($data);
+            $this->quizQuesRepo->create($data);
         }
     }
 }

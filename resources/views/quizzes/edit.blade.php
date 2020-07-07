@@ -43,7 +43,7 @@
 <!-- Modal -->
 <div class="modal fade" id="addQuestion" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="staticBackdropLabel">Add question</h5>
@@ -58,7 +58,7 @@
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
-                                <input type="checkbox" name="question_id" value="{{ $question->id }}" aria-label="Checkbox for following text input">
+                                <input type="checkbox" name="question_id[]" value="{{ $question->id }}" aria-label="Checkbox for following text input">
                             </div>
                         </div>
                         <textarea class="form-control" aria-label="Text input with checkbox" cols="5" readonly>
@@ -70,8 +70,6 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Understood</button>
             </div>
         </div>
     </div>

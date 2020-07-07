@@ -60,6 +60,7 @@ Route::group(['middleware' => 'role', 'prefix' => 'quiz'], function () {
 
 
 Route::group(['middleware' => 'role', 'prefix' => 'quiz-question'], function () {
+    Route::post('/store', 'QuizQuestionController@store')->name('quizQuestion.store');
     Route::get('/{id}/delete', 'QuizQuestionController@destroy')->name('quizQuestion.destroy');
 });
 

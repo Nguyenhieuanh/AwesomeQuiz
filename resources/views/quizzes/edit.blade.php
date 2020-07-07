@@ -52,13 +52,14 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="#" method="POST">
+                <form action="{{ route('quizQuestion.store') }}" method="POST">
+                    @csrf
                     <input type="hidden" name="quiz_id" value="{{ $quiz->id }}">
                     @foreach ($question as $question)
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
-                                <input type="checkbox" name="question_id[]" value="{{ $question->id }}" aria-label="Checkbox for following text input">
+                                <input type="checkbox" name="question_id[ ]" value="{{ $question->id }}" aria-label="Checkbox for following text input">
                             </div>
                         </div>
                         <textarea class="form-control" aria-label="Text input with checkbox" cols="5" readonly>

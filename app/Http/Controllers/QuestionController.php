@@ -26,4 +26,10 @@ class QuestionController extends Controller
     {
         return view('question.create');
     }
+
+    public function show($id)
+    {
+        $question = $this->questionService->findById($id);
+        return view('question.detail', compact('question'));
+    }
 }

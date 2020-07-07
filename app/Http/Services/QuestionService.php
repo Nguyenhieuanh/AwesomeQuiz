@@ -27,16 +27,11 @@ class QuestionService implements CRUDInterfaceService
     {
         $question = $this->questionRepo->findById($id);
 
-        $statusCode = 200;
-        if (!$question)
-            $statusCode = 404;
+        if (!$question) {
+            abort(404);
+        }
 
-        $data = [
-            'statusCode' => $statusCode,
-            'questions' => $question
-        ];
-
-        return $data;
+        return $question;
     }
 
     public function create($request)

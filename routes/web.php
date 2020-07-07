@@ -23,15 +23,17 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['middleware' => 'role', 'prefix' => 'category'], function () {
+Route::group(['prefix' => 'category'], function () {
+    Route::group(['middleware' => 'role'],function (){
+        Route::get('/create', 'CategoryController@create')->name('categories.create');
+        Route::post('/store', 'CategoryController@store')->name('categories.store');
+        Route::get('/edit/{id}', 'CategoryController@edit')->name('categories.edit');
+        Route::post('/update/{id}', 'CategoryController@update')->name('categories.update');
+        Route::delete('/destroy/{id}', 'CategoryController@destroy')->name('categories.destroy');
+        Route::get('/mass_destroy', 'CategoryController@massDestroy')->name('categories.mass_destroy');
+    });
     Route::get('/', 'CategoryController@index')->name('categories.index');
-    Route::get('/create', 'CategoryController@create')->name('categories.create');
-    Route::post('/store', 'CategoryController@store')->name('categories.store');
-    Route::get('/edit/{id}', 'CategoryController@edit')->name('categories.edit');
-    Route::post('/update/{id}', 'CategoryController@update')->name('categories.update');
     Route::get('/show/{id}', 'CategoryController@show')->name('categories.show');
-    Route::delete('/destroy/{id}', 'CategoryController@destroy')->name('categories.destroy');
-    Route::get('/mass_destroy', 'CategoryController@massDestroy')->name('categories.mass_destroy');
 });
 
 Route::group(['middleware' => 'role', 'prefix' => 'question'], function () {

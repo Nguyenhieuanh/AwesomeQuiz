@@ -3,8 +3,8 @@
 @section('content_home')
     <h3 class="page-title">Category</h3>
 
-    <p>
-        <a href="{{ route('categories.create') }}" class="btn btn-success">Create new category</a>
+    <p>@if (Auth::user()->role == 1)
+        <a href="{{ route('categories.create') }}" class="btn btn-success">Create new category</a>@endif
     </p>
 
     <div class="panel panel-default">
@@ -30,6 +30,7 @@
                             <td>{{ $category->category_name }}</td>
                             <td>
                                 <a href="{{ route('categories.show',[$category->id]) }}" class="btn btn-xs btn-primary">Detail</a>
+                                @if (Auth::user()->role == 1)
                                 <a href="{{ route('categories.edit',[$category->id]) }}" class="btn btn-xs btn-info">Edit</a>
                                 {!! Form::open(array(
                                     'style' => 'display: inline-block;',
@@ -37,6 +38,7 @@
                                     'onsubmit' => "return confirm('Are you sure?');",
                                     'route' => ['categories.destroy', $category->id])) !!}
                                 {!! Form::submit(trans('Delete'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                @endif
                                 {!! Form::close() !!}
                             </td>
                         </tr>

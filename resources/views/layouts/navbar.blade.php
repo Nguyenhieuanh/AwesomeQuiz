@@ -101,11 +101,18 @@
                     <div class="sidebar-heading">Student</div>
                     <ul class="sidebar-menu">
                         <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button" href="{{route('categories.index')}}">
+                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                    import_contacts</i> Category
+                            </a>
+                        </li>
+                        <li class="sidebar-menu-item">
                             <a class="sidebar-menu-button" href="student-browse-courses.html">
                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
                                     search</i> Đề kiểm tra
                             </a>
                         </li>
+
                         <li class="sidebar-menu-item">
                             <a class="sidebar-menu-button" href="student-view-course.html">
                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
@@ -117,12 +124,6 @@
                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
                                     class</i> Danh sách học sinh
                                 <span class="sidebar-menu-badge badge badge-default ml-auto">PRO</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button" href="student-take-quiz.html">
-                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
-                                    dvr</i> Nhóm học sinh
                             </a>
                         </li>
                         <li class="sidebar-menu-item">
@@ -150,13 +151,7 @@
                                 <span class="sidebar-menu-badge badge badge-default ml-auto">2</span>
                             </a>
                         </li>
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button" href="student-billing.html">
-                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
-                                    monetization_on</i> Đơn hàng
-                                <span class="sidebar-menu-badge badge badge-default ml-auto">$25</span>
-                            </a>
-                        </li>
+
                         <li class="sidebar-menu-item">
                             <a class="sidebar-menu-button" href="{{ route('logout') }}" onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
@@ -176,7 +171,7 @@
                             </a>
                         </li>
                         <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button" href="instructor-quizzes.html">
+                            <a class="sidebar-menu-button" href="{{ route('quiz.list') }}">
                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">help</i> Quiz
                                 Manager
                             </a>

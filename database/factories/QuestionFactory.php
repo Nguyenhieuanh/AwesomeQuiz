@@ -7,7 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Question::class, function (Faker $faker) {
     return [
-        'question_content' => $faker->sentence($nbWords = 6, $variableNbWords = true),
-        'category_id' => $faker->numberBetween($min = 1, $max = 10),
+        'question_content' => $faker->sentence,
+        'category_id' => $faker->numberBetween(1, 10),
     ];
 });

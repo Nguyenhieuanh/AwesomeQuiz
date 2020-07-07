@@ -21,4 +21,9 @@ class Question extends Model
     {
         return $this->belongsTo('App\Models\Category');
     }
+
+    public function quizQuestion()
+    {
+        return $this->hasMany('App\Models\QuizQuestion');
+    }
 }

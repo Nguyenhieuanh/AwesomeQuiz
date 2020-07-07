@@ -14,7 +14,7 @@ class Category extends Model
 
     public function questions()
     {
-        return $this->hasMany('App\Models\question');
+        return $this->hasMany('App\Models\Question');
     }
 
 }

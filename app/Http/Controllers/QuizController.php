@@ -60,7 +60,13 @@ class QuizController extends Controller
     public function store(QuizFormRequest $request)
     {
         $quiz = $this->quizService->create($request->all());
-        $this->quizQuestionService->generate($quiz, $request->question_count);
+        $msg = $this->quizQuestionService->generate($quiz, $request->question_count);
+
+        if ($msg) {
+            alert()->success('Quiz Created', 'Successfully')->autoClose(1600);
+        } else {
+            alert()->warning('Not enough questions!', 'Quiz created but have not enough questions, you can add more question in edit quiz')->persistent(true, true);
+        }
 
         return redirect()->route('quiz.list');
     }

@@ -75,7 +75,6 @@ class QuizQuestionService implements CRUDInterfaceService
             $question_id[] = $value->id;
         }
         shuffle($question_id);
-
         for (
             $i = 0;
             $i < (($count > count($question_id)) ? count($question_id) : $count);
@@ -87,5 +86,6 @@ class QuizQuestionService implements CRUDInterfaceService
             ];
             $this->quizQuesRepo->create($data);
         }
+        return ($count > count($question_id)) ? false : true;
     }
 }

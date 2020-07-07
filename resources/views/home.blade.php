@@ -48,6 +48,16 @@
             </div>
         </div>
         <div class="card">
+            <div class="card-header"><h3>{{ __('Recent QuizPlayer') }}</h3></div>
+            @foreach ($userController as $user)
+                <div class="card">
+                    <div class="card-header">
+                            <a href="{{ route('user.list', ['id' => $user->id]) }}">{{ $user->name }}</a>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        <div class="card">
             <div class="card-header"><h3>{{ __('Recent added Quizs') }}</h3></div>
 
             @foreach ($quizzes as $quiz)

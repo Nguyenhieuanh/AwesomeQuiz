@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdateQuestionsRequest;
 use App\Http\Services\QuestionService;
+use App\Models\Question;
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller
@@ -31,5 +33,20 @@ class QuestionController extends Controller
     {
         $question = $this->questionService->findById($id);
         return view('question.detail', compact('question'));
+    }
+    public function edit($id)
+    {
+        $question = Question::findOrFail($id);
+
+        return view('question.edit', compact('question'));
+    }
+
+
+    public function update(UpdateQuestionsRequest $request, $id)
+    {
+        $question = Question::findOrFail($id);
+        $question->update($request->all());
+
+        return redirect()->route('question.index');
     }
 }

@@ -1,33 +1,39 @@
-@extends('layouts.app')
+@extends('layouts.navbar')
 
-@section('content')
-    <h3 class="page-title">@lang('quickadmin.topics.title')</h3>
-    
-    {!! Form::model($topic, ['method' => 'PUT', 'route' => ['topics.update', $topic->id]]) !!}
+@section('content_home')
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            @lang('quickadmin.edit')
-        </div>
 
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-xs-12 form-group">
-                    {!! Form::label('title', 'Title*', ['class' => 'control-label']) !!}
-                    {!! Form::text('title', old('title'), ['class' => 'form-control', 'placeholder' => '']) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('title'))
-                        <p class="help-block">
-                            {{ $errors->first('title') }}
-                        </p>
-                    @endif
-                </div>
+
+    <fieldset><legend><h3 class="page-title">Update this category</h3></legend>
+        {!! Form::model($category, ['method' => 'POST', 'route' => ['categories.update', $category->id]]) !!}
+            @csrf
+
+
+
+
+                        <div class="form-group">
+                            <label>Category name
+                                <input type="text" placeholder="New category name" class="form-control" name="category_name" value="{{$category->category_name}}">
+                            </label>
+                            <p class="help-block"></p>
+                            @if($errors->has('category_name'))
+                                <p class="help-block">
+                                    {{ $errors->first('category_name') }}
+                                </p>
+                            @endif
+                            <br>
+
+                        </div>
+
+
+
+
+            <div class="md-form">
+                <label for="form7">Category description</label><textarea id="form7" placeholder="Category description" class="md-textarea form-control" name="category_description" rows="3" >{{$category->category_description}}</textarea>
+
             </div>
-            
-        </div>
-    </div>
-
-    {!! Form::submit(trans('quickadmin.update'), ['class' => 'btn btn-danger']) !!}
+    </fieldset>
+    {!! Form::submit(trans('Update it!'), ['class' => 'btn btn-danger']) !!}
     {!! Form::close() !!}
 @stop
 

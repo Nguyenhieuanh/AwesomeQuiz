@@ -9,7 +9,8 @@ class Question extends Model
     protected $table = "questions";
 
     protected $fillable = [
-        "question_content"
+        "question_content",
+        "difficulty"
     ];
 
     public function answers()

@@ -40,6 +40,7 @@ class QuizQuestionController extends Controller
     public function destroy($id)
     {
         $this->quizQuestionService->destroy($id);
+        alert()->success('Delete completed', 'Successfully');
 
         return redirect()->back();
     }

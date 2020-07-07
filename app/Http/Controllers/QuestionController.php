@@ -44,27 +44,34 @@ class QuestionController extends Controller
     {
         $question = $this->questionService->create($request->all());
 
-        $correctData = [
-            'question_id' => $question->id,
-            'answer_content' => $request->correct_answer,
-            'correct' => 1
-        ];
         $answerData1 = [
             'question_id' => $question->id,
-            'answer_content' => $request->answer_option1,
+            'answer_content' => $request->answer_option_1,
+            'correct' => $request->correct_option_1,
         ];
+
         $answerData2 = [
             'question_id' => $question->id,
-            'answer_content' => $request->answer_option2,
+            'answer_content' => $request->answer_option_2,
+            'correct' => $request->correct_option_2,
         ];
+
         $answerData3 = [
             'question_id' => $question->id,
-            'answer_content' => $request->answer_option3,
+            'answer_content' => $request->answer_option_3,
+            'correct' => $request->correct_option_3,
         ];
-        $correctAnswer = $this->answerService->create($correctData);
+
+        $answerData4 = [
+            'question_id' => $question->id,
+            'answer_content' => $request->answer_option_4,
+            'correct' => $request->correct_option_4,
+        ];
+
         $answerOption1 = $this->answerService->create($answerData1);
         $answerOption2 = $this->answerService->create($answerData2);
         $answerOption3 = $this->answerService->create($answerData3);
+        $answerOption4 = $this->answerService->create($answerData4);
 
         return redirect()->route('question.index');
     }

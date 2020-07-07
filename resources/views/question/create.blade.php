@@ -35,7 +35,7 @@
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
-                                <input type="checkbox" title="Correct" name="correct_option_1">
+                                <input type="checkbox" title="Correct" name="correct_option_1" value="1">
                             </div>
                         </div>
                         <textarea class="form-control @error('answer_option_1') is-invalid @enderror"
@@ -54,7 +54,7 @@
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
-                                <input type="checkbox" title="Correct" name="correct_option_2">
+                                <input type="checkbox" title="Correct" name="correct_option_2" value="1">
                             </div>
                         </div>
                         <textarea class="form-control @error('answer_option_2') is-invalid @enderror"
@@ -74,7 +74,7 @@
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
-                                <input type="checkbox" title="Correct" name="correct_option_3">
+                                <input type="checkbox" title="Correct" name="correct_option_3" value="1">
                             </div>
                         </div>
                         <textarea class="form-control @error('answer_option_3') is-invalid @enderror"
@@ -94,7 +94,7 @@
                     <div class="input-group mb-4">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
-                                <input type="checkbox" title="Correct" name="correct_option_4">
+                                <input type="checkbox" title="Correct" name="correct_option_4" value="1">
                             </div>
                         </div>
                         <textarea class="form-control @error('answer_option_4') is-invalid @enderror"

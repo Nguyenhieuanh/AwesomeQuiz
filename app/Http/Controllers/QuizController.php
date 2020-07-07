@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Repositories\CategoryRepo;
 use App\Http\Requests\QuizFormRequest;
 use App\Http\Services\CategoryService;
 use App\Http\Services\QuestionService;
 use App\Http\Services\QuizQuestionService;
 use App\Http\Services\QuizService;
-use App\Quiz;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
 class QuizController extends Controller
 {
@@ -63,14 +60,16 @@ class QuizController extends Controller
     {
         $quiz = $this->quizService->create($request->all());
         $questions = $this->questionService->getQuestionsByCategoryId($quiz->category_id);
-        $array = [];
+        $question_id = [];
         foreach ($questions as $value) {
-            $array[] = $value->id;
+            $question_id[] = $value->id;
         }
+        shuffle($question_id);
+
         for ($i = 0; $i < $request->question_count; $i++) {
             $data = [
                 'quiz_id' => $quiz->id,
-                'question_id' => $questions[array_rand($array)]->id
+                'question_id' => $question_id[$i]
             ];
             $this->quizQuestionService->create($data);
         }

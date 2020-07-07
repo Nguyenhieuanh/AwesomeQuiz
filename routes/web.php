@@ -57,3 +57,7 @@ Route::group(['middleware' => 'role', 'prefix' => 'quiz'], function () {
     Route::post('/{id}/update', 'QuizController@update')->name('quiz.update');
     Route::post('/{id}/delete', 'QuizController@delete')->name('quiz.delete');
 });
+Route::group(['middleware' => 'role', 'prefix' => 'user'], function () {
+    Route::get('/','UserController@index')->name('user.list');
+    Route::post('/delete', 'UserController@destroy')->name('user.destroy');
+});

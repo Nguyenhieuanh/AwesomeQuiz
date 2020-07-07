@@ -177,6 +177,11 @@
                             </a>
                         </li>
                         <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button" href="{{route('user.list')}}">
+                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">help</i> QuizPlayer Manager
+                            </a>
+                        </li>
+                        <li class="sidebar-menu-item">
                             <a class="sidebar-menu-button" href="{{ route('logout') }}" onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">lock_open</i> Logout

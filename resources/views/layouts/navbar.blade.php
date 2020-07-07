@@ -167,7 +167,7 @@
                         <li class="sidebar-menu-item">
                             <a class="sidebar-menu-button" href="{{route('categories.index')}}">
                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
-                                    import_contacts</i> Category
+                                    import_contacts</i> Quiz Category
                             </a>
                         </li>
                         <li class="sidebar-menu-item">

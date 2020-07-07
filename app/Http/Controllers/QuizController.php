@@ -66,8 +66,9 @@ class QuizController extends Controller
             $question_id[] = $value->id;
         }
         shuffle($question_id);
+        $count = ($request->question_count > count($question_id)) ? count($question_id) : $request->question_count;
 
-        for ($i = 0; $i < $request->question_count; $i++) {
+        for ($i = 0; $i < $count; $i++) {
             $data = [
                 'quiz_id' => $quiz->id,
                 'question_id' => $question_id[$i]
@@ -99,9 +100,7 @@ class QuizController extends Controller
      */
     public function edit($id)
     {
-        $quiz_questions = $this->quizQuestionService->getQuestionsByQuizId($id);
-        $quiz = $this->quizService->findById($id);
-        return view('quizzes.edit', compact('quiz', 'quiz_questions'));
+        //
     }
 
     /**

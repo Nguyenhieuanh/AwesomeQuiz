@@ -55,7 +55,7 @@ class CategoryService implements CRUDInterfaceService
         $quiz = $this->categoryRepo->findById($id);
 
         if ($quiz) {
-            return $this->categoryRepo->destroy($quiz);
+            return $this->categoryRepo->destroy($id);
         }
 
         return 404;

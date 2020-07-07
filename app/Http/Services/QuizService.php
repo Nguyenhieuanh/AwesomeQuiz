@@ -43,7 +43,7 @@ class QuizService implements CRUDInterfaceService
 
         if (!$oldQuiz) {
             if (!$oldQuiz) {
-                return 404;
+                abort(404);
             } else {
                 return  $this->quizRepo->update($request, $oldQuiz);
             }

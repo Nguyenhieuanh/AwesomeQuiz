@@ -22,7 +22,7 @@
                         <td>{{ $q_question->question->question_content }}</td>
                         <td>
                             <a href="#" class="btn btn-sm btn-info">Detail</a> |
-                            <a href="#" class="btn btn-sm btn-danger" onclick="return alert('Are you sure?')">Delete</a>
+                            <a href="{{ route('quizQuestion.destroy', ['id' => $q_question->id]) }}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
                         </td>
                     </tr>
                     @endforeach

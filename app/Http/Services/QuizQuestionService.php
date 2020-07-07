@@ -55,15 +55,14 @@ class QuizQuestionService implements CRUDInterfaceService
         $question = $this->quizQuesRepo->findById($id);
 
         if ($question) {
-            return $this->quizQuesRepo->destroy($question);
+            return $this->quizQuesRepo->destroy($id);
         }
 
-        return 404;
+        abort(404);
     }
 
     public function getQuestionsByQuizId($id)
     {
         return $this->quizQuesRepo->getQuestionsByQuizId($id);
-
     }
 }

@@ -59,9 +59,8 @@ class AnswerService implements CRUDInterfaceService
     {
         $answer = $this->answerRepo->findById($id);
 
-
         if ($answer) {
-            $this->answerRepo->destroy($answer);
+            $this->answerRepo->destroy($id);
             $message = "Delete success!";
         } else {
             abort(404, 'User Not Found');

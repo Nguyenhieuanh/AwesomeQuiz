@@ -44,5 +44,14 @@ class QuizQuestionController extends Controller
         return redirect()->back();
     }
 
-    
+    public function multiDestroy(Request $request)
+    {
+        $id = $request->id;
+
+        for ($i=0; $i < count($id); $i++) {
+            $this->quizQuestionService->destroy($id[$i]);
+        }
+
+        return redirect()->back();
+    }
 }

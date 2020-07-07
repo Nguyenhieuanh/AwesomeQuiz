@@ -13,13 +13,13 @@
         <table class="table table-bordered table-striped table-hover {{ count($questions) > 0 ? 'datatable' : '' }} dt-select">
             <thead>
                 <tr class="table-primary">
-                    <th>Question ID</th>
+                    <th>ID</th>
                     <th>Question Content (Click for answers)</th>
                     <th>Question Difficulty</th>
                     <th>Actions</th>
                 </tr>
             </thead>
-            
+
             <tbody>
                 @if (count($questions) > 0)
                 @foreach ($questions as $question)

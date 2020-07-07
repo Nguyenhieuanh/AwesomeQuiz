@@ -88,8 +88,8 @@ class QuizController extends Controller
     {
         $quiz_questions = $this->quizQuestionService->getQuestionsByQuizId($id);
         $quiz = $this->quizService->findById($id);
-        $question = $this->questionService->getQuestionsByCategoryId($quiz->category_id);
-        return view('quizzes.edit', compact('quiz', 'quiz_questions', 'question'));
+        $questions = $this->questionService->getQuestionsByCategoryId($quiz->category_id);
+        return view('quizzes.edit', compact('quiz', 'quiz_questions', 'questions'));
     }
 
     /**

@@ -24,8 +24,8 @@ class QuizQuestionController extends Controller
         $question_id = $request->question_id;
         for ($i = 0; $i < count($question_id); $i++) {
             for ($j = 0; $j < count($question_id_exist); $j++) {
-                if($question_id[$i] === $question_id_exist[$j]->id) {
-                break;
+                if ($question_id[$i] === $question_id_exist[$j]->id) {
+                    break;
                 }
             }
             $data = [
@@ -48,7 +48,10 @@ class QuizQuestionController extends Controller
     {
         $id = $request->question_id;
 
-        for ($i=0; $i < count($id); $i++) {
+        if (empty($id)) {
+            return redirect()->back();
+        }
+        for ($i = 0; $i < count($id); $i++) {
             $this->quizQuestionService->destroy($id[$i]);
         }
 

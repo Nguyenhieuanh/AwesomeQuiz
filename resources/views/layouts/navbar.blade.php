@@ -10,8 +10,8 @@
     </button>
 
     <!-- Brand -->
-    <a href="student-dashboard.html" class="navbar-brand"><i class="material-icons">
-            school</i> Trắc nghiệm</a>
+    <a href="{{route('home')}}" class="navbar-brand"><i class="material-icons">
+            school</i> AwesomeQuiz</a>
 
     <!-- Search -->
     <form class="navbar-search-form d-none d-md-flex">
@@ -101,18 +101,17 @@
                     <div class="sidebar-heading">Student</div>
                     <ul class="sidebar-menu">
                         <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button" href="{{route('categories.index')}}">
-                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
-                                    import_contacts</i> Category
-                            </a>
-                        </li>
-                        <li class="sidebar-menu-item">
                             <a class="sidebar-menu-button" href="student-browse-courses.html">
                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
                                     search</i> Đề kiểm tra
                             </a>
                         </li>
-
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button" href="{{route('categories.index')}}">
+                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                    import_contacts</i> Quiz Category
+                            </a>
+                        </li>
                         <li class="sidebar-menu-item">
                             <a class="sidebar-menu-button" href="student-view-course.html">
                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
@@ -168,6 +167,12 @@
                             <a class="sidebar-menu-button" href="instructor-courses.html">
                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">import_contacts</i>
                                 Course Manager
+                            </a>
+                        </li>
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button" href="{{route('categories.index')}}">
+                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                    import_contacts</i> Quiz Category
                             </a>
                         </li>
                         <li class="sidebar-menu-item">

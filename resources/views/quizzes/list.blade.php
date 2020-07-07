@@ -2,7 +2,9 @@
 
 @section('content_home')
 <div class="col-12 p-4">
+    @if (Auth::user()->role == 1)
     <a href="{{ route('quiz.create') }}" class="btn btn-success mb-4">Create new Quiz</a>
+    @endif
     <div class="card-group">
         @foreach ($quizzes as $quiz)
         <div class="col-4">

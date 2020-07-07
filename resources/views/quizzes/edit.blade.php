@@ -13,7 +13,9 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>#</th>
+                            <th>
+                                <input type="checkbox" id="checkAll" title="Select all"><br>
+                            </th>
                             <th>Question</th>
                             <th>Action</th>
                         </tr>
@@ -35,7 +37,7 @@
                     </tbody>
                     <tfoot>
                         <td colspan="3">
-                            <button class="btn btn-sm btn-danger" type="submit">Delete selected</button>
+                            <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('Are you sure to delete?')">Delete selected</button>
                         </td>
                     </tfoot>
                 </table>
@@ -49,8 +51,6 @@
         </div>
     </div>
 </div>
-
-
 @endsection
 <!-- Modal -->
 <div class="modal fade" id="addQuestion" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
@@ -88,3 +88,4 @@
         </div>
     </div>
 </div>
+

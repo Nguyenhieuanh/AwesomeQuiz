@@ -101,12 +101,6 @@
                     <div class="sidebar-heading">Student</div>
                     <ul class="sidebar-menu">
                         <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button" href="{{route('categories.index')}}">
-                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
-                                    import_contacts</i> Category
-                            </a>
-                        </li>
-                        <li class="sidebar-menu-item">
                             <a class="sidebar-menu-button" href="student-browse-courses.html">
                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
                                     search</i> Đề kiểm tra
@@ -168,6 +162,12 @@
                             <a class="sidebar-menu-button" href="instructor-courses.html">
                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">import_contacts</i>
                                 Course Manager
+                            </a>
+                        </li>
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button" href="{{route('categories.index')}}">
+                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                    import_contacts</i> Category
                             </a>
                         </li>
                         <li class="sidebar-menu-item">

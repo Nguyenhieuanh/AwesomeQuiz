@@ -40,12 +40,28 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         $question = $this->questionService->create($request->all());
+
         $correctData = [
             'question_id' => $question->id,
             'answer_content' => $request->correct_answer,
             'correct' => 1
         ];
+        $answerData1 = [
+            'question_id' => $question->id,
+            'answer_content' => $request->answer_option1,
+        ];
+        $answerData2 = [
+            'question_id' => $question->id,
+            'answer_content' => $request->answer_option2,
+        ];
+        $answerData3 = [
+            'question_id' => $question->id,
+            'answer_content' => $request->answer_option3,
+        ];
         $correctAnswer = $this->answerService->create($correctData);
+        $answerOption1 = $this->answerService->create($answerData1);
+        $answerOption2 = $this->answerService->create($answerData2);
+        $answerOption3 = $this->answerService->create($answerData3);
 
         return redirect()->route('question.index');
     }

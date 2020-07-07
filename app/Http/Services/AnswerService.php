@@ -33,11 +33,11 @@ class AnswerService implements CRUDInterfaceService
 
     public function create($request)
     {
+        if ($request['correct'] == null) {
+            $request['correct'] = 0;
+        };
 
         $answer = $this->answerRepo->create($request);
-
-        if (!$answer)
-            abort(500);
 
         return $answer;
     }

@@ -4,7 +4,8 @@
 <div class="col-12 p-4">
     <div class="card">
         <div class="card-header">
-            <h4>Quiz Name</h4>
+            <h4>{{ $quiz->name }}</h4>
+            {{ dd($quiz) }}
         </div>
         <div class="card-body">
             <table class="table table-striped">

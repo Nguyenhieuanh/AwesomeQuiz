@@ -1,5 +1,25 @@
 @extends('layouts.navbar')
 
 @section('content_home')
-    edit quiz
+<div class="col-12 p-4">
+    <div class="card">
+        <div class="card-header">
+            <h4>Quiz Name</h4>
+        </div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <th>#</th>
+                    <th>Question</th>
+                    <th>Action</th>
+                </thead>
+                <tbody>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 @endsection

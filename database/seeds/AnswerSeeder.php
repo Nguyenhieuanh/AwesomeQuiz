@@ -34,6 +34,7 @@ class AnswerSeeder extends Seeder
                 'correct' => $answer[2],
             ]);
         }
+        factory(Answer::class,1000)->create();
         // Schema::enableForeignKeyConstraints();
     }
 }

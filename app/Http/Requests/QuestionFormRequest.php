@@ -13,7 +13,7 @@ class QuestionFormRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -26,7 +26,7 @@ class QuestionFormRequest extends FormRequest
         return [
             'question_content' => 'required|unique:questions',
             'category' => 'required',
-            'correct_answer' => 'required|unique:answers,answer_content,id'
+            'correct_answer' => 'required'
         ];
     }
 }

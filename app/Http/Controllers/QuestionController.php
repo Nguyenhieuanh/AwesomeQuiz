@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\QuestionFormRequest;
 use App\Http\Services\AnswerService;
 use App\Http\Services\CategoryService;
 use App\Http\Services\QuestionService;
@@ -37,7 +38,7 @@ class QuestionController extends Controller
         return view('question.create', compact('categories'));
     }
 
-    public function store(Request $request)
+    public function store(QuestionFormRequest $request)
     {
         $question = $this->questionService->create($request->all());
 

@@ -28,7 +28,7 @@ class QuestionService implements CRUDInterfaceService
         $question = $this->questionRepo->findById($id);
 
         if (!$question)
-            abort(404, "Not found");
+            abort(404);
 
         return $question;
     }
@@ -36,9 +36,6 @@ class QuestionService implements CRUDInterfaceService
     public function create($request)
     {
         $question = $this->questionRepo->create($request);
-
-        if (!$question)
-            abort(500);
 
         return $question;
     }

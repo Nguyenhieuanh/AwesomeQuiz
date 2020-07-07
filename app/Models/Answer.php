@@ -9,7 +9,9 @@ class Answer extends Model
     protected $table = "answers";
 
     protected $fillable = [
-        "answer_content"
+        "answer_content",
+        "question_id",
+        "correct"
     ];
 
     public function question()

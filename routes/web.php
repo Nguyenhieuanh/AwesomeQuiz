@@ -39,6 +39,7 @@ Route::group(['prefix' => 'category'], function () {
 Route::group(['middleware' => 'role', 'prefix' => 'question'], function () {
     Route::get('/', 'QuestionController@index')->name('question.index');
     Route::get('/create', 'QuestionController@create')->name('question.create');
+    Route::post('/store', 'QuestionController@store')->name('question.store');
 });
 
 

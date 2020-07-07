@@ -18,8 +18,8 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="answer_option1">Answer Option 1</label>
-            <textarea class="form-control" id="answer_option1" name="answer_option1" rows="2"></textarea>
+            <label for="correct_answer">Correct Answer</label>
+            <textarea class="form-control" id="answer_option1" name="correct_answer" rows="2"></textarea>
         </div>
         <div class="form-group">
             <label for="answer_option2">Answer Option 2</label>

@@ -35,7 +35,7 @@ class QuestionService implements CRUDInterfaceService
 
     public function create($request)
     {
-        $question = $this->questionRepo->create($request->all());
+        $question = $this->questionRepo->create($request);
 
         if (!$question)
             abort(500);

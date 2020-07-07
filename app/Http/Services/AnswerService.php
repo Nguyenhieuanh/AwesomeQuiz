@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Http\Services;
+
 use App\Http\Repositories\AnswerRepo;
 use App\Http\Services\CRUDInterfaceService;
 
@@ -31,7 +33,8 @@ class AnswerService implements CRUDInterfaceService
 
     public function create($request)
     {
-        $answer = $this->answerRepo->create($request->all());
+        $answer = $this->answerRepo->create($request);
+        dd($answer);
 
         if (!$answer)
             abort(500);
@@ -73,4 +76,3 @@ class AnswerService implements CRUDInterfaceService
         return $this->answerRepo->getAnswerByQuestionId($question_id);
     }
 }
-

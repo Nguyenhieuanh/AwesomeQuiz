@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Services\AnswerService;
 use App\Http\Services\CategoryService;
 use App\Http\Services\QuestionService;
 use Illuminate\Http\Request;
@@ -11,11 +12,16 @@ class QuestionController extends Controller
 {
     protected $questionService;
     protected $categoryService;
+    protected $answerService;
 
-    public function __construct(QuestionService $questionService, CategoryService $categoryService)
-    {
+    public function __construct(
+        QuestionService $questionService,
+        CategoryService $categoryService,
+        AnswerService $answerService
+    ) {
         $this->questionService = $questionService;
         $this->categoryService = $categoryService;
+        $this->answerService = $answerService;
         $this->middleware('auth');
     }
 
@@ -33,7 +39,14 @@ class QuestionController extends Controller
 
     public function store(Request $request)
     {
-        $this->questionService->create($request);
+        $question = $this->questionService->create($request->all());
+        $correctData = [
+            'question_id' => $question->id,
+            'answer_content' => $request->correct_answer,
+            'correct' => 1
+        ];
+        $correctAnswer = $this->answerService->create($correctData);
+
         return redirect()->route('question.index');
     }
 }

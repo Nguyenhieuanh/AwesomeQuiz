@@ -1667,6 +1667,7 @@ class ComposerStaticInitfb62e967a27a64163457c7a054ff181a
         'Illuminate\\Console\\Events\\ArtisanStarting' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Console/Events/ArtisanStarting.php',
         'Illuminate\\Console\\Events\\CommandFinished' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Console/Events/CommandFinished.php',
         'Illuminate\\Console\\Events\\CommandStarting' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Console/Events/CommandStarting.php',
+        'Illuminate\\Console\\Events\\ScheduledTaskFailed' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Console/Events/ScheduledTaskFailed.php',
         'Illuminate\\Console\\Events\\ScheduledTaskFinished' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Console/Events/ScheduledTaskFinished.php',
         'Illuminate\\Console\\Events\\ScheduledTaskSkipped' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Console/Events/ScheduledTaskSkipped.php',
         'Illuminate\\Console\\Events\\ScheduledTaskStarting' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Console/Events/ScheduledTaskStarting.php',

@@ -99,7 +99,9 @@ class QuizController extends Controller
      */
     public function edit($id)
     {
-        return view('quizzes.edit');
+        $quiz_questions = $this->quizQuestionService->getQuestionsByQuizId($id);
+        $quiz = $this->quizQuestionService->findById($id);
+        return view('quizzes.edit', compact('quiz', 'quiz_questions'));
     }
 
     /**

@@ -1,7 +1,7 @@
 @extends('layouts.navbar')
 
 @section('content_home')
-<div class="p-2">
+<div class="p-2 mb-5">
     <div class="card">
         <div class="card-header">
             <h4>{{ $quiz->name }}</h4>
@@ -18,6 +18,9 @@
             @endforeach
             <br>
             @endforeach
+        </div>
+        <div class="card-footer">
+            <a class="btn-warning btn" href="{{ route('quiz.edit', ['id' => $quiz->id]) }}">Edit</a>
         </div>
     </div>
 </div>

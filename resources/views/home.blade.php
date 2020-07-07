@@ -4,7 +4,8 @@
     <!-- Content -->
     <div class="container">
         <div class="p-t-2 p-b-2 center">
-            <p class="lead">AwesomeQuiz is a beautifully crafted Quiz application.
+            <p class="lead">AwesomeQuiz is a beautifully crafted Quiz application. <input type="text" name="keyword" placeholder="What're you looking for?">
+                <a href="#" class="btn btn-primary">Search for it!</a>
         </div>
         <div class="card">
             <div class="card-header">{{ __('Dashboard') }}</div>
@@ -26,10 +27,11 @@
                         <h4 class="card-title"><a>Quiz player</a></h4>
                     </div>
                     <a class="preview" style="margin: auto;">
-                        <img src="{{asset('storage/images/player.jpg')}}" style="width: 300px" alt="QuizPlayer App" class="img-fluid">
+                        <img src="{{asset('storage/images/player.jpg')}}" style="width: 300px" alt="QuizPlayer App"
+                             class="img-fluid">
                     </a>
                     <div class="card-block center">
-                        <a href="" class="btn btn-primary-outline btn-rounded"><i class="material-icons">person</i> Be a QuizPlayer!</a>
+                        <a href="" class="btn btn-primary-outline btn-rounded"><i class="material-icons">person</i> Run through our list of Quiz and challenge yourself!</a>
                     </div>
                 </div>
             </div>
@@ -38,11 +40,13 @@
                     <div class="card-header bg-white center">
                         <h4 class="card-title"><a>Quiz maker</a></h4>
                     </div>
-                    <a  class="preview" style="margin: auto;">
-                        <img src="{{asset('storage/images/maker.jpg')}}" style="width: 300px" alt="QuizMaker App" class="img-fluid">
+                    <a class="preview" style="margin: auto;">
+                        <img src="{{asset('storage/images/maker.jpg')}}" style="width: 300px" alt="QuizMaker App"
+                             class="img-fluid">
                     </a>
                     <div class="card-block center">
-                        <a href="" class="btn btn-primary-outline btn-rounded"><i class="material-icons">school</i> Be a QuizMaker!</a>
+                        <a href="" class="btn btn-primary-outline btn-rounded"><i class="material-icons">school</i> Be a
+                            QuizMaker!</a>
                     </div>
                 </div>
             </div>
@@ -52,7 +56,7 @@
             @foreach ($userController as $user)
                 <div class="card">
                     <div class="card-header">
-                            <a href="{{ route('user.list', ['id' => $user->id]) }}">{{ $user->name }}</a>
+                        <a href="{{ route('user.list', ['id' => $user->id]) }}">{{ $user->name }}</a>
                     </div>
                 </div>
             @endforeach
@@ -85,7 +89,7 @@
                 <div class="card">
                     <div class="card-header">
 
-                            <a href="{{ route('question.show', ['id' => $question->id]) }}">{{ $question->question_content }}</a>
+                        <a href="{{ route('question.show', ['id' => $question->id]) }}">{{ $question->question_content }}</a>
 
                     </div>
                 </div>
@@ -97,7 +101,7 @@
             <table class="table table-bordered table-striped {{ count($categories) > 0 ? 'datatable' : '' }} dt-select">
                 <thead>
                 <tr>
-                    <th style="text-align:center;"><input type="checkbox" id="select-all" /></th>
+                    <th style="text-align:center;"><input type="checkbox" id="select-all"/></th>
                     <th>Category Title</th>
                     <th>Actions&nbsp;</th>
                 </tr>
@@ -113,13 +117,14 @@
                             <td>
                                 <a href="{{ route('categories.show',[$category->id]) }}" class="btn btn-xs btn-primary">Detail</a>
                                 @if (Auth::user()->role == 1)
-                                <a href="{{ route('categories.edit',[$category->id]) }}" class="btn btn-xs btn-info">Edit</a>
-                                {!! Form::open(array(
-                                    'style' => 'display: inline-block;',
-                                    'method' => 'DELETE',
-                                    'onsubmit' => "return confirm('Are you sure?');",
-                                    'route' => ['categories.destroy', $category->id])) !!}
-                                {!! Form::submit(trans('Delete'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                    <a href="{{ route('categories.edit',[$category->id]) }}"
+                                       class="btn btn-xs btn-info">Edit</a>
+                                    {!! Form::open(array(
+                                        'style' => 'display: inline-block;',
+                                        'method' => 'DELETE',
+                                        'onsubmit' => "return confirm('Are you sure?');",
+                                        'route' => ['categories.destroy', $category->id])) !!}
+                                    {!! Form::submit(trans('Delete'), array('class' => 'btn btn-xs btn-danger')) !!}
                                 @endif
                                 {!! Form::close() !!}
                             </td>

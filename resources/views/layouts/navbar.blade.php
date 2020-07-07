@@ -10,8 +10,8 @@
     </button>
 
     <!-- Brand -->
-    <a href="student-dashboard.html" class="navbar-brand"><i class="material-icons">
-            school</i> Trắc nghiệm</a>
+    <a href="{{route('home')}}" class="navbar-brand"><i class="material-icons">
+            school</i> AwesomeQuiz</a>
 
     <!-- Search -->
     <form class="navbar-search-form d-none d-md-flex">

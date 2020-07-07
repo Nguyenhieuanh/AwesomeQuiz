@@ -48,14 +48,16 @@ Route::group(['middleware' => 'role', 'prefix' => 'question'], function () {
 });
 
 
-Route::group(['middleware' => 'role', 'prefix' => 'quiz'], function () {
+Route::group(['prefix' => 'quiz'], function () {
+    Route::group(['middleware' => 'role'], function () {
+        Route::get('/{id}/edit', 'QuizController@edit')->name('quiz.edit');
+        Route::post('/{id}/update', 'QuizController@update')->name('quiz.update');
+        Route::post('/{id}/delete', 'QuizController@delete')->name('quiz.delete');
+        Route::get('/create', 'QuizController@create')->name('quiz.create');
+        Route::post('/store', 'QuizController@store')->name('quiz.store');
+    });
     Route::get('/', 'QuizController@index')->name('quiz.list');
-    Route::get('/create', 'QuizController@create')->name('quiz.create');
-    Route::post('/store', 'QuizController@store')->name('quiz.store');
     Route::get('/{id}/detail', 'QuizController@show')->name('quiz.show');
-    Route::get('/{id}/edit', 'QuizController@edit')->name('quiz.edit');
-    Route::post('/{id}/update', 'QuizController@update')->name('quiz.update');
-    Route::post('/{id}/delete', 'QuizController@delete')->name('quiz.delete');
 });
 
 

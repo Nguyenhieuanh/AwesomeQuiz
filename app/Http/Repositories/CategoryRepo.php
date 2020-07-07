@@ -10,6 +10,6 @@ class CategoryRepo extends EloquentRepo implements CRUDInterfaceRepo
 {
     public function getModel()
     {
-        return $model = Category::class;
+        return Category::class;
     }
 }

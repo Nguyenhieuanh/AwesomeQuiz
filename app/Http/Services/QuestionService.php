@@ -43,16 +43,10 @@ class QuestionService implements CRUDInterfaceService
     {
         $question = $this->questionRepo->create($request->all());
 
-        $statusCode = 201;
         if (!$question)
-            $statusCode = 500;
+            abort(500);
 
-        $data = [
-            'statusCode' => $statusCode,
-            'questions' => $question
-        ];
-
-        return $data;
+        return $question;
     }
 
     public function update($request, $id)
@@ -61,36 +55,27 @@ class QuestionService implements CRUDInterfaceService
 
         if (!$oldQuestion) {
             $newQuestion = null;
-            $statusCode = 404;
+            abort(404);
         } else {
             $newQuestion = $this->questionRepo->update($request, $oldQuestion);
-            $statusCode = 200;
         }
 
-        $data = [
-            'statusCode' => $statusCode,
-            'questions' => $newQuestion
-        ];
-        return $data;
+        return $newQuestion;
     }
 
     public function destroy($id)
     {
         $question = $this->questionRepo->findById($id);
 
-        $statusCode = 404;
-        $message = "User not found";
+
         if ($question) {
             $this->questionRepo->destroy($question);
-            $statusCode = 200;
             $message = "Delete success!";
-        }
+        } else {
+            abort(404, 'User Not Found');
+        };
 
-        $data = [
-            'statusCode' => $statusCode,
-            'message' => $message
-        ];
-        return $data;
+        return $message;
     }
 
     public function getQuestionsByCategoryId($category_id)

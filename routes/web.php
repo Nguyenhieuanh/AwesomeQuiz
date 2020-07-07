@@ -39,6 +39,8 @@ Route::group(['prefix' => 'category'], function () {
 Route::group(['middleware' => 'role', 'prefix' => 'question'], function () {
     Route::get('/', 'QuestionController@index')->name('question.index');
     Route::get('/create', 'QuestionController@create')->name('question.create');
+    Route::get('/edit', 'QuestionController@edit')->name('question.edit');
+    Route::get('/destroy', 'QuestionController@destroy')->name('question.destroy');
     Route::get('/show/{id}', 'QuestionController@show')->name('question.show');
 });
 

@@ -15,8 +15,9 @@
                 <tr>
                     <th style="text-align:center;"><input type="checkbox" id="select-all" /></th>
                     <th>Question ID</th>
-                    <th>Question Content</th>
-                    <th>&nbsp;</th>
+                    <th>Question Content (Click for answers)</th>
+                    <th>Question Difficulty</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
 
@@ -26,19 +27,23 @@
                 <tr data-entry-id="{{ $question->id }}">
                     <td></td>
                     <td>{{ $question->id }}</td>
-                    <td>{!! $question->question_content !!}</td>
+                    <td><a href="{{route('question.show',$question->id)}}">{!! $question->question_content !!}</a></td>
+                    <td>@if ($question->difficulty == 1){{__('Easy')}}
+                    @elseif ($question->difficulty == 2){{__('Medium')}}
+                    @else {{__('Hard')}}
+                    @endif</td>
                     <td>
-                        {{-- <a href="{{ route('questions.show',[$question->id]) }}"
-                            class="btn btn-xs btn-primary">@lang('quickadmin.view')</a>
-                        <a href="{{ route('questions.edit',[$question->id]) }}"
-                            class="btn btn-xs btn-info">@lang('quickadmin.edit')</a>
+                         <a href="{{ route('question.show',[$question->id]) }}"
+                            class="btn btn-xs btn-primary">Detail</a>
+                        <a href="{{ route('question.edit',[$question->id]) }}"
+                            class="btn btn-xs btn-info">Edit</a>
                         {!! Form::open(array(
                         'style' => 'display: inline-block;',
                         'method' => 'DELETE',
-                        'onsubmit' => "return confirm('".trans("quickadmin.are_you_sure")."');",
-                        'route' => ['questions.destroy', $question->id])) !!}
-                        {!! Form::submit(trans('quickadmin.delete'), array('class' => 'btn btn-xs btn-danger')) !!}
-                        {!! Form::close() !!} --}}
+                        'onsubmit' => "return confirm('".trans("Are you sure?")."');",
+                        'route' => ['question.destroy', $question->id])) !!}
+                        {!! Form::submit(trans('Delete'), array('class' => 'btn btn-xs btn-danger')) !!}
+                        {!! Form::close() !!}
                     </td>
                 </tr>
                 @endforeach

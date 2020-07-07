@@ -27,15 +27,14 @@
 
     <!-- App CSS -->
     <link type="text/css" href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
 
 </head>
 
 <body>
+    @include('sweetalert::alert')
 
     @yield('content')
-
-    @yield('javasript')
-
 
     <script src="{{ asset('assets/vendor/jquery.min.js') }}"></script>
 

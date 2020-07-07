@@ -31,6 +31,8 @@ class CategoryController extends Controller
     public function store(StoreCategoriesRequest $request)
     {
         Category::create($request->all());
+        alert()->success('Category created', 'Successfully')->autoClose(1800);
+
 
         return redirect()->route('categories.index');
     }
@@ -48,6 +50,7 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($id);
         $category->update($request->all());
+        alert()->success('Category updated', 'Successfully')->autoClose(1800);
 
         return redirect()->route('categories.index');
     }
@@ -65,6 +68,8 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($id);
         $category->delete();
+        alert()->success('Delete completed', 'Successfully')->autoClose(1800);
+
 
         return redirect()->route('categories.index');
     }

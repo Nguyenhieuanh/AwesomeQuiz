@@ -40,6 +40,7 @@ class QuizQuestionController extends Controller
     public function destroy($id)
     {
         $this->quizQuestionService->destroy($id);
+        alert()->success('Delete completed', 'Successfully')->autoClose(1800);
 
         return redirect()->back();
     }
@@ -54,6 +55,8 @@ class QuizQuestionController extends Controller
         for ($i = 0; $i < count($id); $i++) {
             $this->quizQuestionService->destroy($id[$i]);
         }
+        alert()->success('Delete completed', 'Successfully')->autoClose(1600);
+
 
         return redirect()->back();
     }

@@ -10,7 +10,6 @@
             @foreach ($quiz_questions as $key => $q_question)
             <strong>Question {{ ++$key }}.</strong>
             <br>
-            {{-- {{ dd($q_question->question->question_content) }} --}}
             {{ $q_question->question->question_content }}
             <br>
             @foreach ($q_question->question->answers as $key => $answer)

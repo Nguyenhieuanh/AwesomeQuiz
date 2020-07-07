@@ -26,9 +26,6 @@ class CategoryController extends Controller
     public function store(StoreCategoriesRequest $request)
     {
         Category::create($request->all());
-//        $category = new Category();
-//        $category->category_name = $request->category_name;
-//        $category->save();
 
         return redirect()->route('categories.index');
     }

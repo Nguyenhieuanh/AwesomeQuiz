@@ -35,7 +35,7 @@ class AnswerService implements CRUDInterfaceService
     {
 
         $answer = $this->answerRepo->create($request);
-dd($answer);
+
         if (!$answer)
             abort(500);
 

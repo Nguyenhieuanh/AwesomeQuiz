@@ -34,6 +34,6 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         $this->questionService->create($request);
-        // return redirect('question.index',201);
+        return redirect()->route('question.index');
     }
 }

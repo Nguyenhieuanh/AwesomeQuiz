@@ -16,9 +16,10 @@
             <table class="table table-bordered table-striped {{ count($categories) > 0 ? 'datatable' : '' }} dt-select">
                 <thead>
                 <tr>
-                    <th style="text-align:center;"><input type="checkbox" id="select-all" /></th>
+                    <th>ID</th>
                     <th>Category Title</th>
-                    <th>Actions&nbsp;</th>
+                    <th>Description</th>
+                    <th>Actions</th>
                 </tr>
                 </thead>
 
@@ -26,20 +27,23 @@
                 @if (count($categories) > 0)
                     @foreach ($categories as $category)
                         <tr data-entry-id="{{ $category->id }}">
-                            <td></td>
+                            <td>{{$category->id}}</td>
                             <td><a href="{{route('categories.show',[$category->id])}}" >{{ $category->category_name }}</a></td>
+                            <td>{{$category->category_description}}</td>
                             <td>
                                 <a href="{{ route('categories.show',[$category->id]) }}" class="btn btn-xs btn-primary">Detail</a>
                                 @if (Auth::user()->role == 1)
                                 <a href="{{ route('categories.edit',[$category->id]) }}" class="btn btn-xs btn-info">Edit</a>
-                                {!! Form::open(array(
+                                <a href="{{ route('categories.destroy',[$category->id]) }}" class="btn btn-xs btn-danger">Delete</a>
+                                {{-- {!! Form::open(array(
                                     'style' => 'display: inline-block;',
                                     'method' => 'DELETE',
                                     'onsubmit' => "return confirm('Are you sure?');",
                                     'route' => ['categories.destroy', $category->id])) !!}
                                 {!! Form::submit(trans('Delete'), array('class' => 'btn btn-xs btn-danger')) !!}
                                 @endif
-                                {!! Form::close() !!}
+                                {!! Form::close() !!} --}}
+                                @endif
                             </td>
                         </tr>
                     @endforeach

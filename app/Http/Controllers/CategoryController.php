@@ -71,7 +71,7 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         if ($this->categoryService->isUsedCategoryInQuestionTable($id)) {
-            alert()->error('Delete unavailable!', 'Category already has Questions.')->showConfirmButton('Understood!', '#3085d6');
+            alert()->warning('Delete unavailable!', 'Category already has Questions.')->showConfirmButton('Understood!', '#3085d6');
         }else{
             $this->categoryService->destroy($id);
             alert()->success('Delete completed', 'Successfully')->autoClose(1800);

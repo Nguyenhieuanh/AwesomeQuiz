@@ -13,22 +13,22 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>
+                            <th style="width: 60px">
                                 <input type="checkbox" id="checkAll" title="Select all"><br>
                             </th>
                             <th>Question</th>
-                            <th>Action</th>
+                            <th style="width: 150px">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($quiz_questions as $key => $q_question)
                         <tr>
                             <td>
-                                <input type="checkbox" name="question_id[ ]" value="{{ $q_question->id }}">  {{ ++$key }}
+                                <input type="checkbox" name="question_id[ ]" value="{{ $q_question->id }}">
                             </td>
                             <td>
-                                <a data-toggle="modal"
-                                    data-target="#questionDetail">{{ $q_question->question->question_content }}</a>
+                                <a data-toggle="modal" data-target="#questionDetail">
+                                    {{ ++$key.". ". $q_question->question->question_content }}</a>
 
                             </td>
                             <td>

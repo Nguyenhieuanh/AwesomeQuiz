@@ -4,13 +4,13 @@
 <div class="p-2 mb-5">
     <div class="card">
         <div class="card-header">
-            <h4>{{ $quiz->name }}</h4>
+            <h4><strong>{{ $quiz->name }}</strong></h4>
         </div>
         <div class="card-body">
             @foreach ($quiz_questions as $key => $q_question)
-            <strong>Question {{ ++$key }}.</strong>
+            <h4><strong>Question {{ ++$key }}.</strong></h4>
             <br>
-            {{ $q_question->question->question_content }}
+            <strong>{{ $q_question->question->question_content }}</strong>
             <br>
             @foreach ($q_question->question->answers as $key => $answer)
             {{ ++$key . ') '. $answer->answer_content }}

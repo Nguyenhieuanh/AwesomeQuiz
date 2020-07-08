@@ -64,7 +64,6 @@ class CategoryService implements CRUDInterfaceService
     public function isUsedCategoryInQuestionTable($id)
     {
         $quiz = $this->categoryRepo->findById($id);
-        dd($quiz->questions->first());
-        return true;
+        return ($quiz->questions->first());
     }
 }

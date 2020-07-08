@@ -70,9 +70,12 @@ class CategoryController extends Controller
 
     public function destroy($id)
     {
-        $this->categoryService->destroy($id);
-        alert()->success('Delete completed', 'Successfully')->autoClose(1800);
-
+        if ($this->categoryService->isUsedCategoryInQuestionTable($id)) {
+            alert()->error('Delete unavailable!', 'Category already has Questions.')->showConfirmButton('Understood!', '#3085d6');
+        }else{
+            $this->categoryService->destroy($id);
+            alert()->success('Delete completed', 'Successfully')->autoClose(1800);
+        }
 
         return redirect()->route('categories.index');
     }
@@ -87,5 +90,4 @@ class CategoryController extends Controller
             }
         }
     }
-
 }

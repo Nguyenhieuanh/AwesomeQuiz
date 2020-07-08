@@ -14,47 +14,44 @@ class CategoryService implements CRUDInterfaceService
     }
     public function getAll()
     {
-        $quizzes = $this->categoryRepo->getAll();
+        return $this->categoryRepo->getAll();
 
-        return $quizzes;
     }
 
     public function findById($id)
     {
-        $quiz = $this->categoryRepo->findById($id);
+        $category = $this->categoryRepo->findById($id);
 
-        if (!$quiz) {
+        if (!$category) {
             return 404;
         }
 
-        return $quiz;
+        return $category;
     }
 
     public function create($request)
     {
-        $quiz = $this->categoryRepo->create($request);
-
-        return $quiz;
+        return $this->categoryRepo->create($request);
     }
 
     public function update($id, $request)
     {
-        $oldQuiz = $this->categoryRepo->findById($id);
+        $oldCategory = $this->categoryRepo->findById($id);
 
-        if (!$oldQuiz) {
-            if (!$oldQuiz) {
+        if (!$oldCategory) {
+            if (!$oldCategory) {
                 return 404;
             } else {
-                return  $this->categoryRepo->update($request, $oldQuiz);
+                return  $this->categoryRepo->update($request, $oldCategory);
             }
         }
     }
 
     public function destroy($id)
     {
-        $quiz = $this->categoryRepo->findById($id);
+        $category = $this->categoryRepo->findById($id);
 
-        if ($quiz) {
+        if ($category) {
             return $this->categoryRepo->destroy($id);
         }
 
@@ -63,7 +60,7 @@ class CategoryService implements CRUDInterfaceService
 
     public function isUsedCategoryInQuestionTable($id)
     {
-        $quiz = $this->categoryRepo->findById($id);
-        return ($quiz->questions->first());
+        $category = $this->categoryRepo->findById($id);
+        return ($category->questions->first());
     }
 }

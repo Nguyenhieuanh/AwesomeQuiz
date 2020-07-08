@@ -60,4 +60,11 @@ class CategoryService implements CRUDInterfaceService
 
         return 404;
     }
+
+    public function isUsedCategoryInQuestionTable($id)
+    {
+        $quiz = $this->categoryRepo->findById($id);
+        dd($quiz->questions->first());
+        return true;
+    }
 }

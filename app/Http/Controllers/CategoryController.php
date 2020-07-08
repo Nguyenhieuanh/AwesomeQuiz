@@ -70,6 +70,7 @@ class CategoryController extends Controller
 
     public function destroy($id)
     {
+        dd($this->categoryService->isUsedCategoryInQuizTable($id));
         if ($this->categoryService->isUsedCategoryInQuestionTable($id)) {
             alert()->warning('Delete unavailable!', 'Category already has Questions.')->showConfirmButton('Understood!', '#3085d6');
         }else{

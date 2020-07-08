@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Quiz;
+use App\Models\Quiz;
 use Illuminate\Http\Request;
 use App\Http\Services\QuizService;
 use App\Http\Requests\QuizFormRequest;

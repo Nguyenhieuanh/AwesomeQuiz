@@ -6,11 +6,15 @@ use App\Http\Requests\StoreCategoriesRequest;
 use App\Http\Requests\UpdateCategoriesRequest;
 use Illuminate\Http\Request;
 use App\Category;
+use App\Http\Services\CategoryService;
 
 class CategoryController extends Controller
 {
-    public function __construct()
+    protected $categoryService;
+
+    public function __construct(CategoryService $categoryService)
     {
+        $this->categoryService = $categoryService;
         $this->middleware('auth');
     }
 

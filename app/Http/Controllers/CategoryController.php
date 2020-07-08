@@ -70,8 +70,7 @@ class CategoryController extends Controller
 
     public function destroy($id)
     {
-        $category = Category::findOrFail($id);
-        $category->delete();
+        $this->categoryService->destroy($id);
         alert()->success('Delete completed', 'Successfully')->autoClose(1800);
 
 

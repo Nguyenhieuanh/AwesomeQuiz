@@ -15,7 +15,7 @@
                             </strong>
                         </label>
                         <textarea class="form-control @error('question_content') is-invalid @enderror" id="question_content"
-                            name="question_content" rows="1"></textarea>
+                            name="question_content" rows="1" autofocus></textarea>
                     </div>
                     @error('question_content')
                     <span class="invalid-feedback" role="alert">

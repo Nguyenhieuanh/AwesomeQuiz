@@ -59,7 +59,7 @@ class QuestionController extends Controller
             ];
             $this->answerService->create($answerData);
         };
-        alert()->success('Delete completed', 'Successfully')->autoClose(1800);
+        alert()->success('Created new question', 'Successfully')->autoClose(1800);
 
         return redirect()->route('question.index');
     }
@@ -106,7 +106,7 @@ class QuestionController extends Controller
     {
         $this->questionService->destroy($id);
         alert()->success('Delete completed', 'Successfully')->autoClose(1800);
-        
+
         return redirect()->route('question.index');
     }
 }

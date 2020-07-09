@@ -41,95 +41,53 @@
                     <div class="col">
                         <div class="row">
                             <span>
-                            <label for="answer_option_1"> <strong> Answer Option 1 </strong></label>
-                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <label class="btn btn-outline-success btn-sm">
-                                  <input type="radio" name="options" id="option1" checked value="1"> Right
-                                </label>
-                                <label class="btn btn-outline-danger btn-sm active">
-                                  <input type="radio" name="options" id="option2" value="0"> Wrong
-                                </label>
-                            </div>
+                                <label for="answer_option_1"> <strong> Answer Option 1 </strong></label>
+                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <label class="btn btn-outline-success btn-sm">
+                                        <input type="radio" name="correct_option" id="option1" checked value="1"> Right
+                                    </label>
+                                    <label class="btn btn-outline-danger btn-sm active">
+                                        <input type="radio" name="correct_option" id="option2" value="0"> Wrong
+                                    </label>
+                                </div>
                             </span>
                         </div>
                     </div>
-                        <textarea class="form-control @error('answer_option_1') is-invalid @enderror"
-                            id="answer_option_1" name="answer_option_1" rows="2"></textarea>
-                        @error('answer_option_1')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{$message}}</strong>
-                        </span>
-                        @enderror
-                </div>
-                <div class="form-row">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            {{-- <div class="input-group-text">
-                                <input type="checkbox" title="Correct" name="correct_option_1" value="1">
-                            </div> --}}
-                        </div>
-                    </div>
+                    <textarea class="form-control @error('answer_option') is-invalid @enderror" id="answer_option_1"
+                        name="answer_option" rows="2" required></textarea>
+                    @error('answer_option')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{$message}}</strong>
+                    </span>
+                    @enderror
                 </div>
                 {{-- End of Answer group  --}}
-                <div class="form-row">
-                    <div class="col-2">
-                        <label for="answer_option_2">Answer Option 2</label>
-                    </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <input type="checkbox" title="Correct" name="correct_option_2" value="1">
-                            </div>
+                {{-- Start of Answer group  --}}
+                <div class="form-group">
+                    <div class="col">
+                        <div class="row">
+                            <span>
+                                <label for="answer_option_1"> <strong> Answer Option 2 </strong></label>
+                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <label class="btn btn-outline-success btn-sm">
+                                        <input type="radio" name="correct_option" id="option1" checked value="1"> Right
+                                    </label>
+                                    <label class="btn btn-outline-danger btn-sm active">
+                                        <input type="radio" name="correct_option" id="option2" value="0"> Wrong
+                                    </label>
+                                </div>
+                            </span>
                         </div>
-                        <textarea class="form-control @error('answer_option_2') is-invalid @enderror"
-                            id="answer_option_2" name="answer_option_2" rows="2"></textarea>
-                        @error('answer_option_2')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{$message}}</strong>
-                        </span>
-                        @enderror
                     </div>
+                    <textarea class="form-control @error('answer_option') is-invalid @enderror" id="answer_option_1"
+                        name="answer_option" rows="2" required></textarea>
+                    @error('answer_option')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{$message}}</strong>
+                    </span>
+                    @enderror
                 </div>
-
-                <div class="form-row">
-                    <div class="col-2">
-                        <label for="answer_option_3">Answer Option 3</label>
-                    </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <input type="checkbox" title="Correct" name="correct_option_3" value="1">
-                            </div>
-                        </div>
-                        <textarea class="form-control @error('answer_option_3') is-invalid @enderror"
-                            id="answer_option_3" name="answer_option_3" rows="2"></textarea>
-                        @error('answer_option_3')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{$message}}</strong>
-                        </span>
-                        @enderror
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="col-2">
-                        <label for="answer_option_4">Answer Option 4</label>
-                    </div>
-                    <div class="input-group mb-4">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <input type="checkbox" title="Correct" name="correct_option_4" value="1">
-                            </div>
-                        </div>
-                        <textarea class="form-control @error('answer_option_4') is-invalid @enderror"
-                            id="answer_option_4" name="answer_option_4" rows="2"></textarea>
-                        @error('answer_option_4')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{$message}}</strong>
-                        </span>
-                        @enderror
-                    </div>
-                </div>
+                {{-- End of Answer group  --}}
 
                 <div class="col-5">
                     <button type="submit" class="btn btn-success">

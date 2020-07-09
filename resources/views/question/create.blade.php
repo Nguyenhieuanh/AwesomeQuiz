@@ -116,11 +116,14 @@
                 </div>
 
                 <div class="col-5">
-                    <button type="submit" class="btn btn-success">Save</button>
+                    <button type="submit" class="btn btn-success">
+                        <span> <i class="fas fa-save"></i> Save </span>
+                    </button>
                     {{-- pending clear, back button action --}}
                     {{-- <button type="reset" class="btn btn-warning">Clear</button> --}}
                     <button type="button" class="btn btn-dark" onclick="window.history.back()">
-                        <span>  <i class="fas fa-arrow-left"></i> Back</span></button>
+                        <span> <i class="fas fa-arrow-left"></i> Back</span>
+                    </button>
 
 
                 </div>

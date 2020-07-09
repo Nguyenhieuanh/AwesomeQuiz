@@ -37,7 +37,7 @@
                         <a href="{{ route('categories.edit',[$category->id]) }}" class="btn btn-sm btn-info">Edit</a>
                         <button class="btn btn-sm btn-danger"
                         onclick="confirmDelete('{{ route('categories.destroy',[$category->id]) }}')">
-                            Delete
+                        <span><i class="fas fa-trash-alt"></i> Delete</span>
                         </button>
 
                         @endif

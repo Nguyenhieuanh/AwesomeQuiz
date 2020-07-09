@@ -9,25 +9,39 @@
 
 <div class="panel panel-default">
 
-    <div class="panel-body">
+    <div class="table-responsive">
         <table
             class="table table-bordered table-striped table-hover {{ count($questions) > 0 ? 'datatable' : '' }} dt-select">
             <thead>
                 <tr class="table-primary">
-                    <th>ID</th>
-                    <th>Question Content (Click for answers)</th>
-                    <th>Difficulty</th>
-                    <th>Category</th>
-                    <th>Actions</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Question Content (Click for answers)</th>
+                    <th scope="col">Difficulty</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Actions</th>
                 </tr>
             </thead>
-
             <tbody>
                 @if (count($questions) > 0)
                 @foreach ($questions as $question)
                 <tr data-entry-id="{{ $question->id }}">
-                    <td>{{ $question->id }}</td>
-                    <td><a href="{{route('question.show',$question->id)}}">{!! $question->question_content !!}</a></td>
+                    <td scoope="row">{{ $question->id }}</td>
+                    <td>
+                        <p>
+                        <a data-toggle="collapse" href="#_{{$question->id}}" aria-expanded="false"
+                                aria-controls="collapseExample">
+                                {{ $question->question_content }} </a>
+                        </p>
+                        <div class="collapse" id="_{{$question->id}}">
+                            <div class="card card-body">
+                                @foreach($question->answers as $key => $answer)
+                                <p @if ($answer->correct == 1)
+                                    class="table-success"
+                                    @endif> Answer# {{$key}}: {{ $answer->answer_content }} </p>
+                                @endforeach
+                            </div>
+                        </div>
+                    </td>
                     @switch($question->difficulty)
                     @case(1)
                     <td>

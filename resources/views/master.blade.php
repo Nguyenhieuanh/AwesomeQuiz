@@ -30,6 +30,8 @@
     <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
     {{-- Add sweetaler2 CDN --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    {{-- Add Font Awesome CDN --}}
+    <script src="https://kit.fontawesome.com/e2a6888e07.js" crossorigin="anonymous"></script>
 
 </head>
 

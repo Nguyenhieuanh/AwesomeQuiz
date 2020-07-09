@@ -7,6 +7,11 @@
             <h4><strong>{{ $quiz->name }}</strong></h4>
         </div>
         <div class="card-body">
+            @if (Auth::user()->role == 0)
+            <p>Question count: {{ $quiz->question_count }}</p>
+            <p>Duration time: {{ $quiz->duration }} minutes</p>
+            <p>Description: {{ $quiz->description }}</p>
+            @else
             @foreach ($quiz_questions as $key => $q_question)
             <h4><strong>Question {{ ++$key }}.</strong></h4>
             <br>
@@ -18,6 +23,7 @@
             @endforeach
             <br>
             @endforeach
+            @endif
         </div>
         <div class="card-footer">
             @if (Auth::user()->role == 1)

@@ -48,15 +48,9 @@ abstract class EloquentRepo implements CRUDInterfaceRepo
         return $object;
     }
 
-    public function update($id, $data)
+    public function update($data, $object)
     {
-        $result = $this->findById($id);
-        if ($result) {
-            $result->update($data);
-            return $result;
-        }
-
-        return false;
+        return $object->update($data);
     }
 
     public function destroy($id)

@@ -44,15 +44,15 @@
                     <td>
                         <a href="{{ route('question.show',[$question->id]) }}"
                             class="btn btn-xs btn-primary">Detail</a>
-                        {{-- <a href="{{ route('question.edit',[$question->id]) }}"
+                         <a href="{{ route('question.edit',[$question->id]) }}"
                             class="btn btn-xs btn-info">Edit</a>
-                        {!! Form::open(array(
-                        'style' => 'display: inline-block;',
-                        'method' => 'DELETE',
-                        'onsubmit' => "return confirm('".trans("Are you sure?")."');",
-                        'route' => ['question.destroy', $question->id])) !!}
-                        {!! Form::submit(trans('Delete'), array('class' => 'btn btn-xs btn-danger')) !!}
-                        {!! Form::close() !!} --}}
+{{--                        {!! Form::open(array(--}}
+{{--                        'style' => 'display: inline-block;',--}}
+{{--                        'method' => 'DELETE',--}}
+{{--                        'onsubmit' => "return confirm('".trans("Are you sure?")."');",--}}
+{{--                        'route' => ['question.destroy', $question->id])) !!}--}}
+{{--                        {!! Form::submit(trans('Delete'), array('class' => 'btn btn-xs btn-danger')) !!}--}}
+{{--                        {!! Form::close() !!} --}}
                     </td>
                 </tr>
                 @endforeach

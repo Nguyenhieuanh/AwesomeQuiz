@@ -12,9 +12,9 @@
             <table class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr class="table-primary">
-                        <th>#</th>
-                        <th>Answer</th>
-                        <th>Action</th>
+                        <th scope="col">#</th>
+                        <th scope="col">Answer</th>
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -22,12 +22,12 @@
                     <tr @if ($answer->correct == 1)
                         class="table-success"
                         @endif>
-                        <td>{{ ++$key }}</td>
+                        <td scope="row">{{ ++$key }}</td>
 
                         <td>{{ $answer->answer_content }}</td>
                         <td>
                             <button class="btn btn-sm btn-danger"
-                                onclick="confirmDelete('{{ route('question.destroy',[$question->id]) }}')">
+                                onclick="confirmDelete('{{ route('answer.destroy',[$answer->id]) }}')">
                                 <span><i class="fas fa-trash-alt"></i> Delete</span>
                             </button>
                         </td>

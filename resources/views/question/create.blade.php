@@ -27,7 +27,8 @@
                             <div class="mb-3">
                                 <div class="input-group is-invalid">
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text" for="difficulty-select"> <strong> Difficulty </strong>
+                                        <label class="input-group-text" for="difficulty-select"> <strong> Difficulty
+                                            </strong>
                                         </label>
                                     </div>
                                     <select class="custom-select" id="difficulty-select" name="difficulty" required>
@@ -47,7 +48,8 @@
                             <div class="mb-3">
                                 <div class="input-group is-invalid">
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text" for="category-select"> <strong> Category </strong>
+                                        <label class="input-group-text" for="category-select"> <strong> Category
+                                            </strong>
                                         </label>
                                     </div>
                                     <select class="custom-select" id="category-select" name="category" required>
@@ -59,7 +61,6 @@
                             </div>
                         </div>
                         {{-- End of Select Category group --}}
-
                     </div>
                 </div>
 

@@ -32,6 +32,9 @@
                         @endswitch
                     </p>
                 </div>
+                <div class="card-footer">
+                    <a href="" class="btn btn-success">Do Quiz</a>
+                </div>
             </div>
         </div>
         @endforeach

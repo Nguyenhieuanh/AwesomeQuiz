@@ -33,22 +33,14 @@ class UserQuizService
     {
         $oldUserQuiz = $this->userQuizRepo->findById($id);
 
-        if (!$oldUserQuiz) {
-            if (!$oldUserQuiz) {
-                abort(404);
-            } else {
-                return  $this->quizRepo->update($request, $oldUserQuiz);
-            }
-        }
+        return (!$oldUserQuiz ? abort(404) : $this->userQuizRepo->update($request,$oldUserQuiz));
     }
 
     public function destroy($id)
     {
-        $quiz = $this->quizRepo->findById($id);
+        $userQuiz = $this->userQuizRepo->findById($id);
 
-        if ($quiz) {
-            return $this->quizRepo->destroy($quiz);
-        }
-        return 404;
+        return ($userQuiz ? $this->userQuizRepo->destroy($userQuiz) : abort(404));
+
     }
 }

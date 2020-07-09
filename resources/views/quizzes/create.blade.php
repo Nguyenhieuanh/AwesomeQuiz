@@ -51,9 +51,11 @@
                         <label for="duration">Duration</label>
                         <select class="custom-select @error('duration') is-invalid @enderror" name="duration">
                             <option value="" selected>Choose...</option>
-                            <option value="1">45 minutes</option>
-                            <option value="2">90 minutes</option>
-                            <option value="3">120 minutes</option>
+                            <option value="15">15 minutes</option>
+                            <option value="30">30 minutes</option>
+                            <option value="45">45 minutes</option>
+                            <option value="90">90 minutes</option>
+                            <option value="120">120 minutes</option>
                         </select>
                         @error('duration')
                         <span class="invalid-feedback" role="alert">

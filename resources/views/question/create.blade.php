@@ -10,7 +10,11 @@
             <form method="POST" action="{{route('question.store')}}">
                 @csrf
                 <div class="form-group">
-                    <label for="question_content"> <strong> Question </strong></label>
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="difficulty-select"> <strong> Question Content
+                            </strong>
+                        </label>
+                    </div>
                     <textarea class="form-control @error('question_content') is-invalid @enderror" id="question_content"
                         name="question_content" rows="2"></textarea>
                     @error('question_content')
@@ -63,27 +67,102 @@
                     </div>
                 </div>
                 {{-- Start of Answer group  --}}
-                <div class="form-group" id='answer-group'>
+                <div class="form-group">
                     <div class="col">
                         <div class="row">
-                            <span>
-                                <label for="answer_option_1"> <strong> Answer Option 1 </strong></label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <label class="input-group-text" for="difficulty-select"> <strong> Difficulty
-                                            </strong>
-                                        </label>
-                                    </div>
-                                    <select class="custom-select" id="difficulty-select" name="correct" required>
-                                        <option class="text-danger" value="0">Wrong</option>
-                                        <option class="text-success" value="1">Right</option>
-                                    </select>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="correct_select_1"> <strong> Answer Option 1
+                                        </strong>
+                                    </label>
                                 </div>
-                            </span>
+                                <select class="custom-select" id="correct_select_1" name="correct_option[]" required>
+                                    <option class="text-danger" value="0">Wrong</option>
+                                    <option class="text-success" value="1" selected>Right</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <textarea class="form-control @error('answer_option[]') is-invalid @enderror" id="answer_option_1"
                         name="answer_option[]" rows="2" required></textarea>
+                    @error('answer_option[]')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{$message}}</strong>
+                    </span>
+                    @enderror
+                </div>
+                {{-- End of Answer group  --}}
+                {{-- Start of Answer group  --}}
+                <div class="form-group">
+                    <div class="col">
+                        <div class="row">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="correct_select_2"> <strong> Answer Option 2
+                                        </strong>
+                                    </label>
+                                </div>
+                                <select class="custom-select" id="correct_select_2" name="correct_option[]" required>
+                                    <option class="text-danger" value="0">Wrong</option>
+                                    <option class="text-success" value="1">Right</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <textarea class="form-control @error('answer_option[]') is-invalid @enderror" id="answer_option_2"
+                        name="answer_option[]" rows="2" required></textarea>
+                    @error('answer_option[]')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{$message}}</strong>
+                    </span>
+                    @enderror
+                </div>
+                {{-- End of Answer group  --}}
+                {{-- Start of Answer group  --}}
+                <div class="form-group">
+                    <div class="col">
+                        <div class="row">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="correct_select_3"> <strong> Answer Option 3
+                                        </strong>
+                                    </label>
+                                </div>
+                                <select class="custom-select" id="correct_select_3" name="correct_option[]" required>
+                                    <option class="text-danger" value="0">Wrong</option>
+                                    <option class="text-success" value="1">Right</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <textarea class="form-control @error('answer_option[]') is-invalid @enderror" id="answer_option_3"
+                        name="answer_option[]" rows="2"></textarea>
+                    @error('answer_option[]')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{$message}}</strong>
+                    </span>
+                    @enderror
+                </div>
+                {{-- End of Answer group  --}}
+                {{-- Start of Answer group  --}}
+                <div class="form-group">
+                    <div class="col">
+                        <div class="row">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="correct_select_4"> <strong> Answer Option 4
+                                        </strong>
+                                    </label>
+                                </div>
+                                <select class="custom-select" id="correct_select_4" name="correct_option[]" required>
+                                    <option class="text-danger" value="0">Wrong</option>
+                                    <option class="text-success" value="1">Right</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <textarea class="form-control @error('answer_option[]') is-invalid @enderror" id="answer_option_4"
+                        name="answer_option[]" rows="2"></textarea>
                     @error('answer_option[]')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{$message}}</strong>

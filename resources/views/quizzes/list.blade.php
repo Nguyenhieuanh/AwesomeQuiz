@@ -33,7 +33,7 @@
                     </p>
                 </div>
                 <div class="card-footer">
-                    <a href="" class="btn btn-success">Do Quiz</a>
+                    <a href="{{ route('doQuiz', ['id' => $quiz->id]) }}" class="btn btn-success">Do Quiz</a>
                 </div>
             </div>
         </div>

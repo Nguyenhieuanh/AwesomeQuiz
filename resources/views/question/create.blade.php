@@ -118,10 +118,11 @@
                 <div class="col-5">
                     <button type="submit" class="btn btn-success">Save</button>
                     {{-- pending clear, back button action --}}
-                    {{--
-                    <button type="reset" class="btn btn-warning">Clear</button>
-                    <button type="button" class="btn btn-secondary">Back</button>
-                     --}}
+                    {{-- <button type="reset" class="btn btn-warning">Clear</button> --}}
+                    <button type="button" class="btn btn-dark" onclick="window.history.back()">
+                        <span>  <i class="fas fa-arrow-left"></i> Back</span></button>
+
+
                 </div>
             </form>
         </div>

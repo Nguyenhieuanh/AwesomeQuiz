@@ -10,9 +10,9 @@ class QuizQuestion extends Model
         'quiz_id', 'question_id'
     ];
 
-    public function quiz()
+    public function quizzes()
     {
-        return $this->belongsTo('App\Models\Quiz');
+        return $this->belongsToMany('App\Models\Quiz');
     }
 
     public function question ()

@@ -83,9 +83,9 @@
                             </div>
                         </div>
                     </div>
-                    <textarea class="form-control @error('answer_option[]') is-invalid @enderror" id="answer_option_1"
-                        name="answer_option[]" rows="2" required></textarea>
-                    @error('answer_option[]')
+                    <textarea class="form-control @error('answer_content[]') is-invalid @enderror" id="answer_content_1"
+                        name="answer_content[]" rows="2" required></textarea>
+                    @error('answer_content[]')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{$message}}</strong>
                     </span>
@@ -109,9 +109,9 @@
                             </div>
                         </div>
                     </div>
-                    <textarea class="form-control @error('answer_option[]') is-invalid @enderror" id="answer_option_2"
-                        name="answer_option[]" rows="2" required></textarea>
-                    @error('answer_option[]')
+                    <textarea class="form-control @error('answer_content[]') is-invalid @enderror" id="answer_content_2"
+                        name="answer_content[]" rows="2" required></textarea>
+                    @error('answer_content[]')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{$message}}</strong>
                     </span>
@@ -135,9 +135,9 @@
                             </div>
                         </div>
                     </div>
-                    <textarea class="form-control @error('answer_option[]') is-invalid @enderror" id="answer_option_3"
-                        name="answer_option[]" rows="2"></textarea>
-                    @error('answer_option[]')
+                    <textarea class="form-control @error('answer_content[]') is-invalid @enderror" id="answer_content_3"
+                        name="answer_content[]" rows="2"></textarea>
+                    @error('answer_content[]')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{$message}}</strong>
                     </span>
@@ -161,9 +161,9 @@
                             </div>
                         </div>
                     </div>
-                    <textarea class="form-control @error('answer_option[]') is-invalid @enderror" id="answer_option_4"
-                        name="answer_option[]" rows="2"></textarea>
-                    @error('answer_option[]')
+                    <textarea class="form-control @error('answer_content[]') is-invalid @enderror" id="answer_content_4"
+                        name="answer_content[]" rows="2"></textarea>
+                    @error('answer_content[]')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{$message}}</strong>
                     </span>

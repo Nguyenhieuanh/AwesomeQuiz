@@ -22,6 +22,10 @@ class CreateQuizResultsTable extends Migration
             $table->integer('correct');
             $table->integer('answered');
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('question_id')->references('id')->on('questions');
+            $table->foreign('quiz_id')->references('id')->on('quizzes');
+            $table->foreign('answer_id')->references('id')->on('answers');
         });
     }
 

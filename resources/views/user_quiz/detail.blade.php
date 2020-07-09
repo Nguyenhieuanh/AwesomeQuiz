@@ -9,6 +9,7 @@
         <div class="card-body">
             <form action="{{ route('quiz.submit') }}" method="POST" id="doQuiz">
                 @csrf
+                <input type="hidden" name="quiz_id" value="{{ $quiz->id }}">
                 @foreach ($quizQuestions as $key => $q_question)
                 <?php $i=$loop->index; ?>
                 <h4><strong>Question {{ ++$key }}.</strong></h4>
@@ -16,7 +17,6 @@
                 <strong>{{ $q_question->question->question_content }}</strong>
                 <br>
                 @foreach ($q_question->question->answers as $answer)
-                <input type="hidden" name="quiz_id[]" value="{{ $quiz->id }}">
                 <input type="hidden" name="question_id[]" value="{{ $q_question->question->id }}">
                 <input type="hidden" name="answer_id[]" value="{{ $answer->id }}">
                 <input type="hidden" name="correct[]" value="{{ $answer->correct }}">

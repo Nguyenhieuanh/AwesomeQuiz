@@ -40,12 +40,20 @@ $(document).ready(function() {
     // Countdown function
     var timer2 = $(".countdown").html();
     var timer = timer2.split(":");
-    if (localStorage.minutes && localStorage.seconds) {
-        var minutes = localStorage.minutes;
-        var seconds = localStorage.seconds;
+    if (localStorage.minutes && localStorage.seconds && localStorage.start) {
+        let d = Math.floor(new Date().getTime() / 1000);
+        let ran_time = d - localStorage.start;
+        let remain_time = localStorage.minutes * 60 + parseInt(localStorage.seconds);
+        let real_time = remain_time - ran_time;
+        var minutes = Math.floor(real_time / 60);
+        var seconds = Math.floor(real_time % 60);
+        localStorage.start = d;
     } else {
         var minutes = parseInt(timer[0], 10);
         var seconds = parseInt(timer[1], 10);
+        let remain_time = localStorage.minutes * 60 + localStorage.seconds;
+        let d = Math.floor(new Date().getTime() / 1000);
+        localStorage.start = d;
     }
     var interval = setInterval(function() {
         localStorage.minutes = minutes;

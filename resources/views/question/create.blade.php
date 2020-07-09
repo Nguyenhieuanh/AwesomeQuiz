@@ -11,7 +11,7 @@
                 @csrf
                 <div class="form-group">
                     <div class="input-group-prepend">
-                        <label class="input-group-text" for="difficulty-select"> <strong> Question Content
+                        <label class="input-group-text" for="question_content"> <strong> Question Content
                             </strong>
                         </label>
                     </div>

@@ -2,18 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Services\QuizQuestionService;
-use App\Http\Services\QuizService;
 use Illuminate\Http\Request;
+use App\Http\Services\QuizService;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Services\UserQuizService;
+use App\Http\Services\QuizQuestionService;
 
 class UserQuizController extends Controller
 {
     protected $quizService;
     protected $quizQuestionService;
+    protected $userQuizService;
+    protected $quizResultService;
 
-    public function __construct(QuizService $quizService, QuizQuestionService $quizQuestionService ) {
+    public function __construct(
+        QuizService $quizService,
+        QuizQuestionService $quizQuestionService,
+        UserQuizService $userQuizService
+    ) {
         $this->quizQuestionService = $quizQuestionService;
         $this->quizService = $quizService;
+        $this->userQuizService = $userQuizService;
     }
     /**
      * Display a listing of the resource.
@@ -29,6 +38,41 @@ class UserQuizController extends Controller
 
     public function doQuiz(Request $request)
     {
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
+        $duration = $request->duration;
+        $now = time();
+        $ten_minutes = $now + ($duration * 60);
+        $start_time = date('m-d-Y H:i:s', $now);
+        $end_time = date('m-d-Y H:i:s', $ten_minutes);
+
         dd($request->all());
+        $userQuizData = [
+            'user_id' => Auth::id(),
+            'quiz_id' => $request->quiz_id,
+            'start_time' => $start_time,
+            'end_time' => $end_time,
+            'finished' => 1
+        ];
+
+        $this->userQuizService->create($userQuizData);
+
+        $question_id = $request->question_id;
+        $answer_id = $request->answer_id;
+        $question_id = $request->question_id;
+        $correct = $request->correct;
+        $answered = $request->answered;
+
+        for ($i = 0; $i < count($question_id); $i++) {
+            $quizResultData = [
+                'user_id' => Auth::id(),
+                'quiz_id' => $request->quiz_id[$i],
+                'question_id' => $question_id[$i],
+                'answer_id' => $answer_id[$i],
+                'correct' => $correct[$i],
+                'answered' => $answered[$i]
+            ];
+
+            $this->quizResultService;
+        }
     }
 }

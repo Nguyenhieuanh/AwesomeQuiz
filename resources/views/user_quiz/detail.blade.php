@@ -10,6 +10,7 @@
             <form action="{{ route('quiz.submit') }}" method="POST" id="doQuiz">
                 @csrf
                 <input type="hidden" name="quiz_id" value="{{ $quiz->id }}">
+                <input type="hidden" name="duration" value="{{ $quiz->duration }}">
                 @foreach ($quizQuestions as $key => $q_question)
                 <?php $i=$loop->index; ?>
                 <h4><strong>Question {{ ++$key }}.</strong></h4>

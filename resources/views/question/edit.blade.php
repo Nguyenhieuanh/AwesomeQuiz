@@ -61,8 +61,10 @@
                                         </div>
                                         <select class="custom-select" id="category-select" name="category" required>
                                             @foreach ($categories as $category)
-                                            <option value="{{$category->id}}" {{($category->id == $question->category->id) ? 'selected' : ''}}>{{$category->category_name}}
-                                                </option>
+                                            <option value="{{$category->id}}"
+                                                {{($category->id == $question->category->id) ? 'selected' : ''}}>
+                                                {{$category->category_name}}
+                                            </option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -71,6 +73,7 @@
                             {{-- End of Select Category group --}}
                         </div>
                     </div>
+                    @if ($question->answer)
                     {{-- Start of Answer group  --}}
                     <div class="form-group">
                         <div class="col">
@@ -179,6 +182,38 @@
                         @enderror
                     </div>
                     {{-- End of Answer group  --}}
+                    @else
+                    @foreach ($answers as $key => $answer)
+
+                    {{-- Start of Answer group  --}}
+                    <div class="form-group">
+                        <div class="col">
+                            <div class="row">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                    <label class="input-group-text" for="correct_select_{{$key}}"> <strong> Answer Option {{$key}}
+                                            </strong>
+                                        </label>
+                                    </div>
+                                <select class="custom-select" id="correct_select_{{$key}}" name="correct_option[]">
+                                        <option class="text-danger" value="0" {{($answer->correct == 0) ? 'selected' : ''}}>Wrong</option>
+                                        <option class="text-success" value="1" {{($answer->correct == 1) ? 'selected' : ''}}>Right</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <textarea class="form-control @error('answer_content[]') is-invalid @enderror"
+                            id="answer_content_1" name="answer_content[]" rows="2" required></textarea>
+                        @error('answer_content[]')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{$message}}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                    {{-- End of Answer group  --}}
+                        @endforeach
+                    @endif
+
 
 
                     <div class="col-5">

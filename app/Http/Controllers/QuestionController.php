@@ -25,8 +25,7 @@ class QuestionController extends Controller
         QuestionService $questionService,
         CategoryService $categoryService,
         AnswerService $answerService
-    )
-    {
+    ) {
         $this->questionService = $questionService;
         $this->categoryService = $categoryService;
         $this->answerService = $answerService;
@@ -47,36 +46,20 @@ class QuestionController extends Controller
 
     public function store(QuestionFormRequest $request)
     {
+        $answer_content = $request->answer_content;
+        $correct_option = $request->correct_option;
+
         $question = $this->questionService->create($request->all());
 
-        $answerData1 = [
-            'question_id' => $question->id,
-            'answer_content' => $request->answer_option_1,
-            'correct' => $request->correct_option_1,
-        ];
-
-        $answerData2 = [
-            'question_id' => $question->id,
-            'answer_content' => $request->answer_option_2,
-            'correct' => $request->correct_option_2,
-        ];
-
-        $answerData3 = [
-            'question_id' => $question->id,
-            'answer_content' => $request->answer_option_3,
-            'correct' => $request->correct_option_3,
-        ];
-
-        $answerData4 = [
-            'question_id' => $question->id,
-            'answer_content' => $request->answer_option_4,
-            'correct' => $request->correct_option_4,
-        ];
-
-        $answerOption1 = $this->answerService->create($answerData1);
-        $answerOption2 = $this->answerService->create($answerData2);
-        $answerOption3 = $this->answerService->create($answerData3);
-        $answerOption4 = $this->answerService->create($answerData4);
+        for ($i = 0; $i < count($answer_content); $i++) {
+            $answerData = [
+                'question_id' => $question->id,
+                'answer_content' => $answer_content[$i],
+                'correct' => $correct_option[$i],
+            ];
+            $this->answerService->create($answerData);
+        };
+        alert()->success('Delete completed', 'Successfully')->autoClose(1800);
 
         return redirect()->route('question.index');
     }
@@ -92,7 +75,6 @@ class QuestionController extends Controller
         $categories = $this->categoryService->getAll();
         $question = Question::findOrFail($id);
         $answers = $this->answerService->getAnswerByQuestionId($id);
-//        dd($answers);
 
         return view('question.edit', compact('question', 'categories', 'answers'));
     }

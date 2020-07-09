@@ -10,7 +10,7 @@
             <form method="POST" action="{{route('question.store')}}">
                 @csrf
                 <div class="form-group">
-                    <label for="question_content">Question</label>
+                    <label for="question_content"> <strong> Question </strong></label>
                     <textarea class="form-control @error('question_content') is-invalid @enderror" id="question_content"
                         name="question_content" rows="2"></textarea>
                     @error('question_content')
@@ -20,7 +20,7 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="difficulty">Difficulty</label>
+                    <label for="difficulty"><strong> Difficulty </strong> </label>
                     <select class="form-control" id="difficulty" name="difficulty">
                         <option value="1">Easy</option>
                         <option value="2">Medium</option>
@@ -29,23 +29,30 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="category">Category</label>
+                    <label for="category"> <strong> Category </strong> </label>
                     <select class="form-control" id="category" name="category">
                         @foreach ($categories as $category)
                         <option value="{{$category->id}}">{{$category->category_name}}</option>
                         @endforeach
                     </select>
                 </div>
-                <div class="form-row">
-                    <div class="col-2">
-                        <label for="answer_option_1">Answer Option 1</label>
-                    </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <input type="checkbox" title="Correct" name="correct_option_1" value="1">
+                {{-- Start of Answer group  --}}
+                <div class="form-group">
+                    <div class="col">
+                        <div class="row">
+                            <span>
+                            <label for="answer_option_1"> <strong> Answer Option 1 </strong></label>
+                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                <label class="btn btn-outline-success btn-sm">
+                                  <input type="radio" name="options" id="option1" checked value="1"> Right
+                                </label>
+                                <label class="btn btn-outline-danger btn-sm active">
+                                  <input type="radio" name="options" id="option2" value="0"> Wrong
+                                </label>
                             </div>
+                            </span>
                         </div>
+                    </div>
                         <textarea class="form-control @error('answer_option_1') is-invalid @enderror"
                             id="answer_option_1" name="answer_option_1" rows="2"></textarea>
                         @error('answer_option_1')
@@ -53,8 +60,17 @@
                             <strong>{{$message}}</strong>
                         </span>
                         @enderror
+                </div>
+                <div class="form-row">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            {{-- <div class="input-group-text">
+                                <input type="checkbox" title="Correct" name="correct_option_1" value="1">
+                            </div> --}}
+                        </div>
                     </div>
                 </div>
+                {{-- End of Answer group  --}}
                 <div class="form-row">
                     <div class="col-2">
                         <label for="answer_option_2">Answer Option 2</label>

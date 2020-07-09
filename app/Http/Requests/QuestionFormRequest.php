@@ -26,8 +26,6 @@ class QuestionFormRequest extends FormRequest
         return [
             'question_content' => 'required|unique:questions',
             'category' => 'required',
-            'answer_option_1' => 'required',
-            'answer_option_2' => 'required',
         ];
     }
 }

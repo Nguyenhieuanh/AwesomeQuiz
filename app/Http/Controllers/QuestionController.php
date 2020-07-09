@@ -47,6 +47,7 @@ class QuestionController extends Controller
 
     public function store(QuestionFormRequest $request)
     {
+        dd($request);
         $question = $this->questionService->create($request->all());
 
         $answerData1 = [

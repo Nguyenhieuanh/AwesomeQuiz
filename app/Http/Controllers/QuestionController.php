@@ -93,7 +93,6 @@ class QuestionController extends Controller
         $categories = $this->categoryService->getAll();
         $question = Question::findOrFail($id);
         $answers = $this->answerService->getAnswerByQuestionId($id);
-//        dd($answers);
 
         return view('question.edit', compact('question', 'categories', 'answers'));
     }

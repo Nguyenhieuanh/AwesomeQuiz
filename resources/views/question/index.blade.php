@@ -16,7 +16,8 @@
                 <tr class="table-primary">
                     <th>ID</th>
                     <th>Question Content (Click for answers)</th>
-                    <th>Question Difficulty</th>
+                    <th>Difficulty</th>
+                    <th>Category</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -44,6 +45,9 @@
                     </td>
                     @break
                     @endswitch
+                    <td>
+                        {{$question->category->category_name}}
+                    </td>
                     <td>
                         <a href="{{ route('question.show',[$question->id]) }}" class="btn btn-sm btn-info">
                             <span><i class="fas fa-info-circle"></i> Detail</span></a>

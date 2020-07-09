@@ -25,12 +25,10 @@
                 @if (count($questions) > 0)
                 @foreach ($questions as $question)
                 <tr data-entry-id="{{ $question->id }}">
-                    <td scoope="row">{{ $question->id }}</td>
+                    <td scoope="row" class="text text-center">{{ $question->id }}</td>
                     <td>
-                        <p>
-                        <a data-toggle="collapse" href="#_{{$question->id}}" aria-expanded="false"
-                                aria-controls="collapseExample">
-                                {{ $question->question_content }} </a>
+                        <p data-toggle="collapse" href="#_{{$question->id}}" aria-expanded="false">
+                            {{ $question->question_content }} </p>
                         </p>
                         <div class="collapse" id="_{{$question->id}}">
                             <div class="card card-body">

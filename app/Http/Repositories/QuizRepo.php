@@ -2,7 +2,7 @@
 
 namespace App\Http\Repositories;
 
-use App\Quiz;
+use App\Models\Quiz;
 use App\Http\Repositories\CRUDInterfaceRepo;
 use App\Http\Repositories\Eloquent\EloquentRepo;
 

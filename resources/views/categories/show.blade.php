@@ -24,14 +24,9 @@
 
                                 <td>@if (Auth::user()->role == 1)
                                     <a href="{{ route('categories.edit',[$category->id]) }}" class="btn btn-xs btn-info">Edit</a>
-                                    {!! Form::open(array(
-                                        'style' => 'display: inline-block;',
-                                        'method' => 'DELETE',
-                                        'onsubmit' => "return confirm('Are you sure?');",
-                                        'route' => ['categories.destroy', $category->id])) !!}
-                                    {!! Form::submit(trans('Delete'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                    <a href="{{ route('categories.destroy',[$category->id]) }}" class="btn btn-xs btn-danger"
+                                        onclick="return confirm('Are you sure?')">Delete</a>
                                     @endif
-                                    {!! Form::close() !!}
                                 </td>
                         </tr>
                     </table>

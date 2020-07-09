@@ -29,7 +29,7 @@ Route::group(['prefix' => 'category'], function () {
         Route::post('/store', 'CategoryController@store')->name('categories.store');
         Route::get('/edit/{id}', 'CategoryController@edit')->name('categories.edit');
         Route::post('/update/{id}', 'CategoryController@update')->name('categories.update');
-        Route::delete('/destroy/{id}', 'CategoryController@destroy')->name('categories.destroy');
+        Route::get('/destroy/{id}', 'CategoryController@destroy')->name('categories.destroy');
         Route::get('/mass_destroy', 'CategoryController@massDestroy')->name('categories.mass_destroy');
     });
     Route::get('/', 'CategoryController@index')->name('categories.index');

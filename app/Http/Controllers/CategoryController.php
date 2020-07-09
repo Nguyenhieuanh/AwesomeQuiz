@@ -2,15 +2,21 @@
 
 namespace App\Http\Controllers;
 
+const colorOfConfirmButton = '#3085d6';
+
 use App\Http\Requests\StoreCategoriesRequest;
 use App\Http\Requests\UpdateCategoriesRequest;
 use Illuminate\Http\Request;
 use App\Category;
+use App\Http\Services\CategoryService;
 
 class CategoryController extends Controller
 {
-    public function __construct()
+    protected $categoryService;
+
+    public function __construct(CategoryService $categoryService)
     {
+        $this->categoryService = $categoryService;
         $this->middleware('auth');
     }
 
@@ -66,10 +72,12 @@ class CategoryController extends Controller
 
     public function destroy($id)
     {
-        $category = Category::findOrFail($id);
-        $category->delete();
-        alert()->success('Delete completed', 'Successfully')->autoClose(1800);
-
+        if ($this->categoryService->isUsedCategoryInQuestionTable($id) || $this->categoryService->isUsedCategoryInQuizTable($id)) {
+            alert()->warning('Delete unavailable!', 'Category already has Questions or Quizzes.')->showConfirmButton('Understood!', colorOfConfirmButton);
+        } else {
+            $this->categoryService->destroy($id);
+            alert()->success('Delete completed', 'Successfully')->autoClose(1800);
+        }
 
         return redirect()->route('categories.index');
     }
@@ -84,5 +92,4 @@ class CategoryController extends Controller
             }
         }
     }
-
 }

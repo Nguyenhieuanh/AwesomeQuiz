@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserQuiz extends Model
 {
+    protected $fillable = [
+        'user_id', 'quiz_id', 'start_time', 'end_time',  'finished'
+    ];
+
     public function Users()
     {
         return $this->belongsToMany('App\User');
@@ -15,6 +19,4 @@ class UserQuiz extends Model
     {
         return $this->belongsToMany('App\Models\Quiz');
     }
-
-
 }

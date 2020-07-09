@@ -7,6 +7,7 @@ use App\Http\Services\QuizService;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Services\UserQuizService;
 use App\Http\Services\QuizQuestionService;
+use App\Http\Services\QuizResultService;
 
 class UserQuizController extends Controller
 {
@@ -18,8 +19,10 @@ class UserQuizController extends Controller
     public function __construct(
         QuizService $quizService,
         QuizQuestionService $quizQuestionService,
-        UserQuizService $userQuizService
+        UserQuizService $userQuizService,
+        QuizResultService $quizResultService
     ) {
+        $this->quizResultService = $quizResultService;
         $this->quizQuestionService = $quizQuestionService;
         $this->quizService = $quizService;
         $this->userQuizService = $userQuizService;
@@ -42,10 +45,9 @@ class UserQuizController extends Controller
         $duration = $request->duration;
         $now = time();
         $ten_minutes = $now + ($duration * 60);
-        $start_time = date('m-d-Y H:i:s', $now);
-        $end_time = date('m-d-Y H:i:s', $ten_minutes);
+        $start_time = date('Y-m-d H:i:s', $now);
+        $end_time = date('Y-m-d H:i:s', $ten_minutes);
 
-        dd($request->all());
         $userQuizData = [
             'user_id' => Auth::id(),
             'quiz_id' => $request->quiz_id,
@@ -65,14 +67,18 @@ class UserQuizController extends Controller
         for ($i = 0; $i < count($question_id); $i++) {
             $quizResultData = [
                 'user_id' => Auth::id(),
-                'quiz_id' => $request->quiz_id[$i],
+                'quiz_id' => $request->quiz_id,
                 'question_id' => $question_id[$i],
                 'answer_id' => $answer_id[$i],
                 'correct' => $correct[$i],
                 'answered' => $answered[$i]
             ];
 
-            $this->quizResultService;
+            $this->quizResultService->create($quizResultData);
         }
+
+        alert("Success", "Done", "success")->autoClose(2000);
+
+        return redirect()->back();
     }
 }

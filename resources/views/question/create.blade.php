@@ -79,13 +79,33 @@
                             </span>
                         </div>
                     </div>
-                    <textarea class="form-control @error('answer_option') is-invalid @enderror" id="answer_option_1"
+                    <textarea class="form-control @error('answer_option') is-invalid @enderror" id="answer_option_2"
                         name="answer_option" rows="2" required></textarea>
                     @error('answer_option')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{$message}}</strong>
                     </span>
                     @enderror
+                </div>
+                {{-- End of Answer group  --}}
+                {{-- Start of Answer group  --}}
+                <div class="form-group">
+                    <div class="col">
+                        <div class="row">
+                            <span>
+                                <label for="answer_option_1"> <strong> Answer Option 3 </strong></label>
+                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <label class="btn btn-outline-success btn-sm">
+                                        <input type="radio" name="correct_option" id="option1" checked value="1"> Right
+                                    </label>
+                                    <label class="btn btn-outline-danger btn-sm active">
+                                        <input type="radio" name="correct_option" id="option2" value="0"> Wrong
+                                    </label>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                    <textarea class="form-control" id="answer_option_3" name="answer_option" rows="2"></textarea>
                 </div>
                 {{-- End of Answer group  --}}
 

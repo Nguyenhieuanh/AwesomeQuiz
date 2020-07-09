@@ -13,6 +13,6 @@ class QuizResults extends Model
 
     public function quizzes()
     {
-        $this->belongsToMany('App\Users');
+        $this->belongsToMany('App\Models\Quiz');
     }
 }

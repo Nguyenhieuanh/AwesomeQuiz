@@ -32,23 +32,14 @@
                     <td>{{$category->category_description}}</td>
                     <td>
                         <a href="{{ route('categories.show',[$category->id]) }}"
-                            class="btn btn-xs btn-primary">Detail</a>
+                            class="btn btn-sm btn-primary">Detail</a>
                         @if (Auth::user()->role == 1)
-                        <a href="{{ route('categories.edit',[$category->id]) }}" class="btn btn-xs btn-info">Edit</a>
-                        <a href="{{ route('categories.destroy',[$category->id]) }}" class="btn btn-xs btn-danger"
-                            onclick="return confirm('Are you sure?')">Delete</a>
-                        <button class="btn btn-danger"
+                        <a href="{{ route('categories.edit',[$category->id]) }}" class="btn btn-sm btn-info">Edit</a>
+                        <button class="btn btn-sm btn-danger"
                         onclick="confirmDelete('{{ route('categories.destroy',[$category->id]) }}')">
-                            Test Delete
+                            Delete
                         </button>
-                        {{-- {!! Form::open(array(
-                                    'style' => 'display: inline-block;',
-                                    'method' => 'DELETE',
-                                    'onsubmit' => "return confirm('Are you sure?');",
-                                    'route' => ['categories.destroy', $category->id])) !!}
-                                {!! Form::submit(trans('Delete'), array('class' => 'btn btn-xs btn-danger')) !!}
-                                @endif
-                                {!! Form::close() !!} --}}
+
                         @endif
                     </td>
                 </tr>

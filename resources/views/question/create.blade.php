@@ -63,7 +63,7 @@
                     </div>
                 </div>
                 {{-- Start of Answer group  --}}
-                <div class="form-group">
+                <div class="form-group" id='answer-group'>
                     <div class="col">
                         <div class="row">
                             <span>
@@ -74,7 +74,7 @@
                                             </strong>
                                         </label>
                                     </div>
-                                    <select class="custom-select" id="difficulty-select" name="difficulty" required>
+                                    <select class="custom-select" id="difficulty-select" name="correct" required>
                                         <option class="text-danger" value="0">Wrong</option>
                                         <option class="text-success" value="1">Right</option>
                                     </select>
@@ -91,6 +91,7 @@
                     @enderror
                 </div>
                 {{-- End of Answer group  --}}
+
 
                 <div class="col-5">
                     <button type="submit" class="btn btn-success">

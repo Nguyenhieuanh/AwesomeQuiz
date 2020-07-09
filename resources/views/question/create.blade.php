@@ -24,7 +24,8 @@
                     <div class="mb-3">
                         <div class="input-group is-invalid">
                             <div class="input-group-prepend">
-                                <label class="input-group-text" for="difficulty-select"> <strong> Difficulty </strong> </label>
+                                <label class="input-group-text" for="difficulty-select"> <strong> Difficulty </strong>
+                                </label>
                             </div>
                             <select class="custom-select" id="difficulty-select" name="difficulty" required>
                                 <option value="1">Easy</option>
@@ -35,14 +36,24 @@
                     </div>
                 </div>
                 {{-- End of Select difficulty group --}}
+                {{-- Start of Select Category group --}}
                 <div class="form-group">
-                    <label for="category"> <strong> Category </strong> </label>
-                    <select class="form-control" id="category" name="category">
-                        @foreach ($categories as $category)
-                        <option value="{{$category->id}}">{{$category->category_name}}</option>
-                        @endforeach
-                    </select>
+                    <div class="mb-3">
+                        <div class="input-group is-invalid">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="category-select"> <strong> Category </strong>
+                                </label>
+                            </div>
+                            <select class="custom-select" id="category-select" name="category" required>
+                                @foreach ($categories as $category)
+                                <option value="{{$category->id}}">{{$category->category_name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                 </div>
+                {{-- End of Select Category group --}}
+
                 {{-- Start of Answer group  --}}
                 <div class="form-group">
                     <div class="col">

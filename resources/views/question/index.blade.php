@@ -44,9 +44,9 @@
                     </td>
                     @break
                     @endswitch
-
                     <td>
                         <a href="{{ route('question.show',[$question->id]) }}" class="btn btn-xs btn-primary">Detail</a>
+                        <a href="{{ route('question.edit',[$question->id]) }}" class="btn btn-xs btn-info">Edit</a>
                         <button class="btn btn-sm btn-danger"
                             onclick="confirmDelete('{{ route('question.destroy',[$question->id]) }}')">
                             <span><i class="fas fa-trash-alt"></i> Delete</span>

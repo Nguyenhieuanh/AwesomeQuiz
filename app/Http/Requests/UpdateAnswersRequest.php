@@ -1,10 +1,12 @@
 <?php
 
+
 namespace App\Http\Requests;
+
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class QuestionFormRequest extends FormRequest
+class UpdateAnswersRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +26,8 @@ class QuestionFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'question_content' => 'required|unique:questions',
-            'category' => 'required',
+
+            'answer_content' => 'required',
         ];
     }
 }

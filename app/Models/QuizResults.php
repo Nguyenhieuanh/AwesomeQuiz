@@ -15,4 +15,14 @@ class QuizResults extends Model
     {
         $this->belongsToMany('App\Models\Quiz');
     }
+
+    public function questions()
+    {
+        return $this->belongsToMany('App\Models\Question');
+    }
+
+    public function answers()
+    {
+        return $this->belongsToMany('App\Models\Answer');
+    }
 }

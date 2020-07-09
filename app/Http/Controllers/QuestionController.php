@@ -96,4 +96,12 @@ class QuestionController extends Controller
 
         return redirect()->route('question.index');
     }
+
+    public function destroy($id)
+    {
+        $this->questionService->destroy($id);
+        alert()->success('Delete completed', 'Successfully')->autoClose(1800);
+        
+        return redirect()->route('question.index');
+    }
 }

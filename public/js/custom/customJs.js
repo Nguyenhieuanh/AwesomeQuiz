@@ -15,25 +15,10 @@ function confirmDelete(url_link) {
         showCancelButton: true,
         confirmButtonText: 'Yes, delete it!',
         cancelButtonText: 'No, cancel!',
-        reverseButtons: true
+
     }).then((result) => {
         if (result.value) {
-            swalWithBootstrapButtons.fire(
-                'Deleted!',
-                'Your file has been deleted.',
-                'success'
-            ).then(function () {
                 window.location = url_link;
-            })
-        } else if (
-            /* Read more about handling dismissals below */
-            result.dismiss === Swal.DismissReason.cancel
-        ) {
-            swalWithBootstrapButtons.fire(
-                'Cancelled',
-                'Your imaginary file is safe :)',
-                'error'
-            )
-        }
+        } 
     })
 }

@@ -14,9 +14,9 @@
                         <label class="input-group-text" for="question_content"> <strong> Question Content
                             </strong>
                         </label>
+                        <textarea class="form-control @error('question_content') is-invalid @enderror" id="question_content"
+                            name="question_content" rows="1"></textarea>
                     </div>
-                    <textarea class="form-control @error('question_content') is-invalid @enderror" id="question_content"
-                        name="question_content" rows="2"></textarea>
                     @error('question_content')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{$message}}</strong>

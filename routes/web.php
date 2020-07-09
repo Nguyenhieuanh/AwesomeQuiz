@@ -71,3 +71,7 @@ Route::group(['middleware' => 'role', 'prefix' => 'user'], function () {
     Route::get('/', 'UserController@index')->name('user.list');
     Route::post('/delete', 'UserController@destroy')->name('user.destroy');
 });
+
+Route::group(['middleware' => 'role', 'prefix' => 'answer'], function () {
+    Route::get('/delete/{id}', 'AnswerController@destroy')->name('answer.destroy');
+});

@@ -25,6 +25,8 @@
     <!-- Sidebar Collapse -->
     <link type="text/css" href="{{ asset('assets/vendor/sidebar-collapse.min.css') }}" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
+
     <!-- App CSS -->
     <link type="text/css" href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
     <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
@@ -69,11 +71,6 @@
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
     </script> --}}
     <script src="{{ asset('js/custom/customJs.js') }}"></script>
-    <script>
-        $("#checkAll").click(function(){
-        $('input:checkbox').not(this).prop('checked', this.checked);
-    });
-    </script>
 </body>
 
 </html>

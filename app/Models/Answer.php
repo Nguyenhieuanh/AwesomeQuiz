@@ -18,4 +18,9 @@ class Answer extends Model
     {
         return $this->belongsTo('App\Models\Question');
     }
+
+    public function quizResults()
+    {
+        return $this->hasMany('App\Models\QuizResult');
+    }
 }

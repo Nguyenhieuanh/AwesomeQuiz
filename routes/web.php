@@ -73,5 +73,6 @@ Route::group(['middleware' => 'role', 'prefix' => 'user'], function () {
 });
 
 Route::group(['prefix' => 'test'], function () {
-    Route::get('/{id}', 'UserQuizController@index')->name('doQuiz');
+    Route::get('/{id}', 'UserQuizController@index')->name('quiz.doQuiz');
+    Route::post('/', 'UserQuizController@doQuiz')->name('quiz.submit');
 });

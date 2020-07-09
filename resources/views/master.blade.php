@@ -68,6 +68,13 @@
         $("#checkAll").click(function(){
         $('input:checkbox').not(this).prop('checked', this.checked);
     });
+
+    $(document).ready(function () {
+            $(".deactivate").prop("disabled", false);
+            $(".checkboxes").on("change", function () {
+                $(this).next().prop("disabled", $(this).prop("checked"));
+            });
+        })
     </script>
 </body>
 

@@ -35,10 +35,10 @@
                                                 </strong>
                                             </label>
                                         </div>
-                                        <select class="custom-select" id="difficulty-select" name="difficulty" required>
-                                            <option value="1">Easy</option>
-                                            <option value="2">Medium</option>
-                                            <option value="3">Hard</option>
+                                        <select class="form-control" id="difficulty" name="difficulty">
+                                            <option value="1" {{($question->difficulty == 1) ? 'selected' : ''}}>Easy</option>
+                                            <option value="2" {{($question->difficulty == 2) ? 'selected' : ''}}>Medium</option>
+                                            <option value="3" {{($question->difficulty == 3) ? 'selected' : ''}}>Hard</option>
                                         </select>
                                     </div>
                                 </div>

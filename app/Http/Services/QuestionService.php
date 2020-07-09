@@ -64,7 +64,6 @@ class QuestionService implements CRUDInterfaceService
                 $this->answerRepo->destroy($answer->id);
             }
         }
-
         if ($question) {
             return $this->questionRepo->destroy($id);
         };
@@ -75,5 +74,11 @@ class QuestionService implements CRUDInterfaceService
     public function getQuestionsByCategoryId($category_id)
     {
         return $this->questionRepo->getQuestionsByCategoryId($category_id);
+    }
+
+    public function isQuestionUsedInQuiz($id)
+    {
+        $question = $this->findById($id);
+        return $question->quizQuestion->first();
     }
 }

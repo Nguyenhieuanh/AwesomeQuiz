@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-const colorOfConfirmButton = '#3085d6';
-
 use App\Http\Requests\StoreCategoriesRequest;
 use App\Http\Requests\UpdateCategoriesRequest;
 use Illuminate\Http\Request;
@@ -73,7 +71,7 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         if ($this->categoryService->isUsedCategoryInQuestionTable($id) || $this->categoryService->isUsedCategoryInQuizTable($id)) {
-            alert()->warning('Delete unavailable!', 'Category already has Questions or Quizzes.')->showConfirmButton('Understood!', colorOfConfirmButton);
+            alert()->warning('Delete unavailable!', 'Category already has Questions or Quizzes.')->showConfirmButton('Understood!');
         } else {
             $this->categoryService->destroy($id);
             alert()->success('Delete completed', 'Successfully')->autoClose(1800);

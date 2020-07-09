@@ -41,7 +41,7 @@ Route::group(['middleware' => 'role', 'prefix' => 'question'], function () {
     Route::get('/create', 'QuestionController@create')->name('question.create');
     Route::post('/store', 'QuestionController@store')->name('question.store');
     Route::get('/edit/{id}', 'QuestionController@edit')->name('question.edit');
-    Route::get('/update/{id}', 'QuestionController@update')->name('question.update');
+    Route::post('/update/{id}', 'QuestionController@update')->name('question.update');
     Route::get('/destroy/{id}', 'QuestionController@destroy')->name('question.destroy');
     Route::get('/show/{id}', 'QuestionController@show')->name('question.show');
     Route::post('/store', 'QuestionController@store')->name('question.store');

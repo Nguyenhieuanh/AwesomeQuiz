@@ -104,9 +104,12 @@ class QuestionController extends Controller
 
     public function destroy($id)
     {
-        $this->questionService->destroy($id);
-        alert()->success('Delete completed', 'Successfully')->autoClose(1800);
-
+        if ($this->questionService->isQuestionUsedInQuiz($id)) {
+            alert()->warning('Delete unavailable!', 'Question already has used in Quiz.')->showConfirmButton('Understood!');
+        } else {
+            $this->questionService->destroy($id);
+            alert()->success('Delete completed', 'Successfully')->autoClose(1800);
+        }
         return redirect()->route('question.index');
     }
 }

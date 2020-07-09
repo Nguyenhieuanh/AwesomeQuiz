@@ -11,6 +11,7 @@
                 @csrf
                 <div class="form-group">
                     <label for="question_content"> <strong> Question </strong></label>
+
                     <textarea class="form-control @error('question_content') is-invalid @enderror" id="question_content"
                         name="question_content" rows="2"></textarea>
                     @error('question_content')
@@ -19,40 +20,48 @@
                     </span>
                     @enderror
                 </div>
-                {{-- Start of Select difficulty group --}}
-                <div class="form-group">
-                    <div class="mb-3">
-                        <div class="input-group is-invalid">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" for="difficulty-select"> <strong> Difficulty </strong>
-                                </label>
+                <div class="form-row">
+                    <div class="col">
+                        {{-- Start of Select difficulty group --}}
+                        <div class="form-group">
+                            <div class="mb-3">
+                                <div class="input-group is-invalid">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="difficulty-select"> <strong> Difficulty </strong>
+                                        </label>
+                                    </div>
+                                    <select class="custom-select" id="difficulty-select" name="difficulty" required>
+                                        <option value="1">Easy</option>
+                                        <option value="2">Medium</option>
+                                        <option value="3">Hard</option>
+                                    </select>
+                                </div>
                             </div>
-                            <select class="custom-select" id="difficulty-select" name="difficulty" required>
-                                <option value="1">Easy</option>
-                                <option value="2">Medium</option>
-                                <option value="3">Hard</option>
-                            </select>
                         </div>
+                        {{-- End of Select difficulty group --}}
+
+                    </div>
+                    <div class="col">
+                        {{-- Start of Select Category group --}}
+                        <div class="form-group">
+                            <div class="mb-3">
+                                <div class="input-group is-invalid">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="category-select"> <strong> Category </strong>
+                                        </label>
+                                    </div>
+                                    <select class="custom-select" id="category-select" name="category" required>
+                                        @foreach ($categories as $category)
+                                        <option value="{{$category->id}}">{{$category->category_name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        {{-- End of Select Category group --}}
+
                     </div>
                 </div>
-                {{-- End of Select difficulty group --}}
-                {{-- Start of Select Category group --}}
-                <div class="form-group">
-                    <div class="mb-3">
-                        <div class="input-group is-invalid">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" for="category-select"> <strong> Category </strong>
-                                </label>
-                            </div>
-                            <select class="custom-select" id="category-select" name="category" required>
-                                @foreach ($categories as $category)
-                                <option value="{{$category->id}}">{{$category->category_name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                {{-- End of Select Category group --}}
 
                 {{-- Start of Answer group  --}}
                 <div class="form-group">

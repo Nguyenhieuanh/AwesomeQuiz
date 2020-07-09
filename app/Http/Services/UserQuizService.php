@@ -4,7 +4,7 @@ namespace App\Http\Services;
 
 use App\Http\Repositories\UserQuizRepo;
 
-class UserQuizService
+class UserQuizService implements CRUDInterfaceService
 {
     protected $userQuizRepo;
 
@@ -41,6 +41,5 @@ class UserQuizService
         $userQuiz = $this->userQuizRepo->findById($id);
 
         return ($userQuiz ? $this->userQuizRepo->destroy($userQuiz) : abort(404));
-
     }
 }

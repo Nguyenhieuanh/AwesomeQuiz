@@ -2,18 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Services\QuizService;
 use Illuminate\Http\Request;
 
 class UserQuizController extends Controller
 {
+    protected $quizService;
+    protected $quiz;
+
+    public function __construct(QuizService $quizService, QuizService $quiz ) {
+        $this->quiz = $quiz;
+        $this->quizService = $quizService;
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        return view('user_quiz.detail');
+        $quiz_questions = $this->quizQuestionService->getQuestionsByQuizId($id);
+        $quiz = $this->quizService->findById($id);
+        return view('user_quiz.detail', compact('quiz', 'quiz_service'));
     }
 
     /**

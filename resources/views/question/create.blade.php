@@ -19,15 +19,22 @@
                     </span>
                     @enderror
                 </div>
+                {{-- Start of Select difficulty group --}}
                 <div class="form-group">
-                    <label for="difficulty"><strong> Difficulty </strong> </label>
-                    <select class="form-control" id="difficulty" name="difficulty">
-                        <option value="1">Easy</option>
-                        <option value="2">Medium</option>
-                        <option value="3">Hard</option>
-                    </select>
+                    <div class="mb-3">
+                        <div class="input-group is-invalid">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="difficulty-select"> <strong> Difficulty </strong> </label>
+                            </div>
+                            <select class="custom-select" id="difficulty-select" name="difficulty" required>
+                                <option value="1">Easy</option>
+                                <option value="2">Medium</option>
+                                <option value="3">Hard</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-
+                {{-- End of Select difficulty group --}}
                 <div class="form-group">
                     <label for="category"> <strong> Category </strong> </label>
                     <select class="form-control" id="category" name="category">
@@ -43,10 +50,11 @@
                             <span>
                                 <label for="answer_option_1"> <strong> Answer Option 1 </strong></label>
                                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                    <label class="btn btn-outline-success btn-sm">
-                                        <input type="radio" name="correct_option" id="option1" checked value="1"> Right
+                                    <label class="btn btn-outline-success btn-sm active">
+                                        <input type="radio" name="correct_option" id="option1" checked value="1">
+                                        Right
                                     </label>
-                                    <label class="btn btn-outline-danger btn-sm active">
+                                    <label class="btn btn-outline-danger btn-sm">
                                         <input type="radio" name="correct_option" id="option2" value="0"> Wrong
                                     </label>
                                 </div>
@@ -70,10 +78,10 @@
                                 <label for="answer_option_1"> <strong> Answer Option 2 </strong></label>
                                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                     <label class="btn btn-outline-success btn-sm">
-                                        <input type="radio" name="correct_option" id="option1" checked value="1"> Right
+                                        <input type="radio" name="correct_option" id="option1" value="1"> Right
                                     </label>
                                     <label class="btn btn-outline-danger btn-sm active">
-                                        <input type="radio" name="correct_option" id="option2" value="0"> Wrong
+                                        <input type="radio" name="correct_option" id="option2" checked value="0"> Wrong
                                     </label>
                                 </div>
                             </span>
@@ -96,10 +104,10 @@
                                 <label for="answer_option_1"> <strong> Answer Option 3 </strong></label>
                                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                     <label class="btn btn-outline-success btn-sm">
-                                        <input type="radio" name="correct_option" id="option1" checked value="1"> Right
+                                        <input type="radio" name="correct_option" id="option1" value="1"> Right
                                     </label>
                                     <label class="btn btn-outline-danger btn-sm active">
-                                        <input type="radio" name="correct_option" id="option2" value="0"> Wrong
+                                        <input type="radio" name="correct_option" id="option2" checked value="0"> Wrong
                                     </label>
                                 </div>
                             </span>
@@ -108,7 +116,26 @@
                     <textarea class="form-control" id="answer_option_3" name="answer_option" rows="2"></textarea>
                 </div>
                 {{-- End of Answer group  --}}
-
+                {{-- Start of Answer group  --}}
+                <div class="form-group">
+                    <div class="col">
+                        <div class="row">
+                            <span>
+                                <label for="answer_option_1"> <strong> Answer Option 4 </strong></label>
+                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <label class="btn btn-outline-success btn-sm">
+                                        <input type="radio" name="correct_option" id="option1" value="1"> Right
+                                    </label>
+                                    <label class="btn btn-outline-danger btn-sm active">
+                                        <input type="radio" name="correct_option" id="option2" checked value="0"> Wrong
+                                    </label>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                    <textarea class="form-control" id="answer_option_4" name="answer_option" rows="2"></textarea>
+                </div>
+                {{-- End of Answer group  --}}
                 <div class="col-5">
                     <button type="submit" class="btn btn-success">
                         <span> <i class="fas fa-save"></i> Save </span>

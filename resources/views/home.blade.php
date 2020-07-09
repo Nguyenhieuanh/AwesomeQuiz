@@ -76,7 +76,12 @@
                             Number of questions: {{ $quiz->question_count }}
                         </p>
                         <p>
-                            Duration: {{ $quiz->duration }}
+                            Duration:
+                            @switch($quiz->duration)
+                                @case(1) 45 minutes @break
+                                @case(2) 90 minutes @break
+                                @case(3) 120 minutes @break
+                            @endswitch
                         </p>
                     </div>
                 </div>

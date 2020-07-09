@@ -28,6 +28,10 @@
     <!-- App CSS -->
     <link type="text/css" href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
     <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
+    {{-- Add sweetaler2 CDN --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    {{-- Add Font Awesome CDN --}}
+    <script src="https://kit.fontawesome.com/e2a6888e07.js" crossorigin="anonymous"></script>
 
 </head>
 
@@ -64,6 +68,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
     </script> --}}
+    <script src="{{ asset('js/custom/customJs.js') }}"></script>
     <script>
         $("#checkAll").click(function(){
         $('input:checkbox').not(this).prop('checked', this.checked);

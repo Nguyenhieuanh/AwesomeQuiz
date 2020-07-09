@@ -7,12 +7,12 @@
                 <h3>Create New Question</h3>
             </div>
             <div class="card-body p-4">
-                <form method="GET" action="{{route('question.update',$question->id)}}">
+                <form method="POST" action="{{route('question.update',$question->id)}}">
                     @csrf
                     <div class="form-group">
                         <label for="question_content">Question</label>
                         <textarea class="form-control @error('question_content') is-invalid @enderror" id="question_content"
-                                  name="question_content" value="{{old($question->question_content)}}" rows="2"></textarea>
+                                  name="question_content"  rows="2">{{$question->question_content}}</textarea>
                         @error('question_content')
                         <span class="invalid-feedback" role="alert">
                         <strong>{{$message}}</strong>
@@ -22,6 +22,18 @@
                     <div class="form-group">
                         <label for="difficulty">Difficulty</label>
                         <select class="form-control" id="difficulty" name="difficulty">
+                            <option value="default">
+                                @switch($question->difficulty)
+                                    @case(1)
+                                    <td><p class="text-success">Easy</p></td>
+                                    @break
+                                    @case(2)
+                                    <td><p class="text-warning">Medium</p></td>
+                                    @break
+                                    @case(3)
+                                    <td><p class="text-danger">Hard</p></td>
+                                    @break
+                                @endswitch</option>
                             <option value="1">Easy</option>
                             <option value="2">Medium</option>
                             <option value="3">Hard</option>
@@ -31,8 +43,9 @@
                     <div class="form-group">
                         <label for="category">Category</label>
                         <select class="form-control" id="category" name="category">
+                            <option value="{{$question->category_id}}">{{$question->category->category_name}}</option>
                             @foreach ($categories as $category)
-                                <option value="{{$category->id}}">{{$category->category_name}}</option>
+                                <option value="{{$category->category_name}}">{{$category->category_name}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -41,79 +54,26 @@
                             <label for="answer_option_1">Answer Option 1</label>
                         </div>
                         <div class="input-group mb-3">
+                            @foreach($answers as $key => $answer)
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
-                                    <input type="checkbox" title="Correct" name="correct_option_1" value="1">
+                                    <input type="checkbox" title="Correct" name="{{"correct_option_". ++$key}}" value="{{ $answer->correct }}"
+                                    {{ $answer->correct == 1 ? "checked" : "" }}
+                                    >
+{{--                                    {{ dd($answer->correct) }}--}}
                                 </div>
                             </div>
-                            <textarea class="form-control @error('answer_option_1') is-invalid @enderror"
-                                      id="answer_option_1" name="answer_option_1" value="{{old($request->answer_option_1)}}" rows="2"></textarea>
-                            @error('answer_option_1')
+                            <textarea class="form-control @error("answer_option_". ++$key) is-invalid @enderror"
+                                      id="answer_option_1" name="{{"answer_option_". ++$key}}"  rows="2">{{ $answer->answer_content }}</textarea>
+                            @error('answer_option_'.++$key)
                             <span class="invalid-feedback" role="alert">
                             <strong>{{$message}}</strong>
-                        </span>
+                            </span>
                             @enderror
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col-2">
-                            <label for="answer_option_2">Answer Option 2</label>
-                        </div>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    <input type="checkbox" title="Correct" name="correct_option_2" value="1">
-                                </div>
-                            </div>
-                            <textarea class="form-control @error('answer_option_2') is-invalid @enderror"
-                                      id="answer_option_2" name="answer_option_2" {{old($request->answer_option_2)}} rows="2"></textarea>
-                            @error('answer_option_2')
-                            <span class="invalid-feedback" role="alert">
-                            <strong>{{$message}}</strong>
-                        </span>
-                            @enderror
+                            @endforeach
                         </div>
                     </div>
 
-                    <div class="form-row">
-                        <div class="col-2">
-                            <label for="answer_option_3">Answer Option 3</label>
-                        </div>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    <input type="checkbox" title="Correct" name="correct_option_3" value="1">
-                                </div>
-                            </div>
-                            <textarea class="form-control @error('answer_option_3') is-invalid @enderror"
-                                      id="answer_option_3" name="answer_option_3" {{old($request->answer_option_3)}} rows="2"></textarea>
-                            @error('answer_option_3')
-                            <span class="invalid-feedback" role="alert">
-                            <strong>{{$message}}</strong>
-                        </span>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="col-2">
-                            <label for="answer_option_4">Answer Option 4</label>
-                        </div>
-                        <div class="input-group mb-4">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    <input type="checkbox" title="Correct" name="correct_option_4" value="1">
-                                </div>
-                            </div>
-                            <textarea class="form-control @error('answer_option_4') is-invalid @enderror"
-                                      id="answer_option_4" name="answer_option_4" {{old($request->answer_option_4)}} rows="2"></textarea>
-                            @error('answer_option_4')
-                            <span class="invalid-feedback" role="alert">
-                            <strong>{{$message}}</strong>
-                        </span>
-                            @enderror
-                        </div>
-                    </div>
 
                     <div class="col-5">
                         <button type="submit" class="btn btn-success">Save</button>

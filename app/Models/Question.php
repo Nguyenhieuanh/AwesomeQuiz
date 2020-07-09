@@ -18,7 +18,7 @@ class Question extends Model
         return $this->hasMany('App\Models\Answer');
     }
 
-    public function categories()
+    public function category()
     {
         return $this->belongsTo('App\Models\Category');
     }

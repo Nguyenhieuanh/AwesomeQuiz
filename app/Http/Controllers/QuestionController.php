@@ -81,41 +81,14 @@ class QuestionController extends Controller
         $question = $this->questionService->findById($id);
         return view('question.detail', compact('question'));
     }
-    public function edit($id, QuestionFormRequest $request)
+    public function edit($id)
     {
         $categories = $this->categoryService->getAll();
         $question = Question::findOrFail($id);
-        $answerData1 = [
-            'question_id' => $question->id,
-            'answer_content' => $request->answer_option_1,
-            'correct' => $request->correct_option_1,
-        ];
+        $answers = $this->answerService->getAnswerByQuestionId($id);
+//        dd($answers);
 
-        $answerData2 = [
-            'question_id' => $question->id,
-            'answer_content' => $request->answer_option_2,
-            'correct' => $request->correct_option_2,
-        ];
-
-        $answerData3 = [
-            'question_id' => $question->id,
-            'answer_content' => $request->answer_option_3,
-            'correct' => $request->correct_option_3,
-        ];
-
-        $answerData4 = [
-            'question_id' => $question->id,
-            'answer_content' => $request->answer_option_4,
-            'correct' => $request->correct_option_4,
-        ];
-
-        $answerOption1 = $this->answerService->create($answerData1);
-        $answerOption2 = $this->answerService->create($answerData2);
-        $answerOption3 = $this->answerService->create($answerData3);
-        $answerOption4 = $this->answerService->create($answerData4);
-
-
-        return view('question.edit', compact('question','categories'));
+        return view('question.edit', compact('question','categories', 'answers'));
     }
 
 

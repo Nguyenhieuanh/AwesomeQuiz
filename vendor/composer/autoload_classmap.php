@@ -1176,7 +1176,6 @@ return array(
     'Illuminate\\Console\\Events\\ArtisanStarting' => $vendorDir . '/laravel/framework/src/Illuminate/Console/Events/ArtisanStarting.php',
     'Illuminate\\Console\\Events\\CommandFinished' => $vendorDir . '/laravel/framework/src/Illuminate/Console/Events/CommandFinished.php',
     'Illuminate\\Console\\Events\\CommandStarting' => $vendorDir . '/laravel/framework/src/Illuminate/Console/Events/CommandStarting.php',
-    'Illuminate\\Console\\Events\\ScheduledTaskFailed' => $vendorDir . '/laravel/framework/src/Illuminate/Console/Events/ScheduledTaskFailed.php',
     'Illuminate\\Console\\Events\\ScheduledTaskFinished' => $vendorDir . '/laravel/framework/src/Illuminate/Console/Events/ScheduledTaskFinished.php',
     'Illuminate\\Console\\Events\\ScheduledTaskSkipped' => $vendorDir . '/laravel/framework/src/Illuminate/Console/Events/ScheduledTaskSkipped.php',
     'Illuminate\\Console\\Events\\ScheduledTaskStarting' => $vendorDir . '/laravel/framework/src/Illuminate/Console/Events/ScheduledTaskStarting.php',

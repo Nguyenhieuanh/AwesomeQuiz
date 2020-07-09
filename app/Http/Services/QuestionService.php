@@ -43,7 +43,7 @@ class QuestionService implements CRUDInterfaceService
     public function update($request, $id)
     {
         $oldQuestion = $this->questionRepo->findById($id);
-
+//                dd($oldQuestion);
         if (!$oldQuestion) {
             $newQuestion = null;
             abort(404);
@@ -73,4 +73,5 @@ class QuestionService implements CRUDInterfaceService
     {
         return $this->questionRepo->getQuestionsByCategoryId($category_id);
     }
+
 }

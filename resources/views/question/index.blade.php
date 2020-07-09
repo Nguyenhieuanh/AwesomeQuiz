@@ -36,7 +36,9 @@
                             <div class="card card-body">
                                 @foreach($question->answers as $key => $answer)
                                 <p @if ($answer->correct == 1)
-                                    class="table-success"
+                                    class="table-success" title='Right'
+                                    @else
+                                    class="table-light" title='Wrong'
                                     @endif> Answer# {{$key}}: {{ $answer->answer_content }} </p>
                                 @endforeach
                             </div>

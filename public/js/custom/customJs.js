@@ -23,12 +23,6 @@ function confirmDelete(url_link) {
         });
 }
 
-$("#checkAll").click(function() {
-    $("input:checkbox")
-        .not(this)
-        .prop("checked", this.checked);
-});
-
 $(document).ready(function() {
     $(".deactivate").prop("disabled", false);
     $(".checkboxes").on("change", function() {
@@ -36,4 +30,41 @@ $(document).ready(function() {
             .next()
             .prop("disabled", $(this).prop("checked"));
     });
+
+    $("#checkAll").click(function() {
+        $("input:checkbox")
+            .not(this)
+            .prop("checked", this.checked);
+    });
+
+    // Countdown function
+    var timer2 = $(".countdown").html();
+    var timer2 = "00:03";
+    var interval = setInterval(function() {
+        var timer = timer2.split(":");
+        var minutes = parseInt(timer[0], 10);
+        var seconds = parseInt(timer[1], 10);
+        --seconds;
+        minutes = seconds < 0 ? --minutes : minutes;
+        if (minutes < 0) {
+            clearInterval(interval);
+            Swal.fire({
+                icon: "warning",
+                title: "Time's Up",
+                text: 'Please submit your exam!',
+                showClass: {
+                    popup: "animate__animated animate__zoomIn"
+                },
+                hideClass: {
+                    popup: "animate__animated animate__fadeOutUp"
+                }
+            }).then(result => {
+                $("#doQuiz").submit();
+            });
+        }
+        seconds = seconds < 0 ? 59 : seconds;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+        $(".countdown").html(minutes + ":" + seconds);
+        timer2 = minutes + ":" + seconds;
+    }, 1000);
 });

@@ -56,6 +56,8 @@ class UserQuizController extends Controller
             'finished' => 1
         ];
 
+        dd($request->all());
+
         $this->userQuizService->create($userQuizData);
 
         $question_id = $request->question_id;

@@ -4,7 +4,12 @@
 <div class="p-2 mb-5">
     <div class="card">
         <div class="card-header">
-            <h4><strong>{{ $quiz->name }}</strong></h4>
+            <div class="row">
+                <div class="col-10">
+                    <h4><strong>{{ $quiz->name }}</strong></h4>
+                </div>
+                <div class="col-2 ml-auto mr-0"><strong>Duration: </strong><span class="countdown">{{ $quiz->duration}}:00</span></div>
+            </div>
         </div>
         <div class="card-body">
             <form action="{{ route('quiz.submit') }}" method="POST" id="doQuiz">

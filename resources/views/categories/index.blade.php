@@ -38,8 +38,8 @@
                         <a href="{{ route('categories.destroy',[$category->id]) }}" class="btn btn-xs btn-danger"
                             onclick="return confirm('Are you sure?')">Delete</a>
                         <button class="btn btn-danger"
-                        onclick="confirmDelete({{route('categories.destroy',[$category->id])}})">
-                            <i class="far fa-trash-alt"></i> Delete
+                        onclick="confirmDelete('{{ route('categories.destroy',[$category->id]) }}')">
+                            Test Delete
                         </button>
                         {{-- {!! Form::open(array(
                                     'style' => 'display: inline-block;',

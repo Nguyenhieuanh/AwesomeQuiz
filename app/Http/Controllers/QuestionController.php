@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdateAnswersRequest;
+use App\Http\Requests\UpdateCategoriesRequest;
 use App\Http\Requests\UpdateQuestionsRequest;
 use App\Http\Requests\QuestionFormRequest;
 use App\Http\Services\AnswerService;
 use App\Http\Services\CategoryService;
 use App\Http\Services\QuestionService;
+use App\Models\Answer;
+use App\Models\Category;
 use App\Models\Question;
 use Illuminate\Http\Request;
 
@@ -21,7 +25,8 @@ class QuestionController extends Controller
         QuestionService $questionService,
         CategoryService $categoryService,
         AnswerService $answerService
-    ) {
+    )
+    {
         $this->questionService = $questionService;
         $this->categoryService = $categoryService;
         $this->answerService = $answerService;
@@ -81,6 +86,7 @@ class QuestionController extends Controller
         $question = $this->questionService->findById($id);
         return view('question.detail', compact('question'));
     }
+
     public function edit($id)
     {
         $categories = $this->categoryService->getAll();
@@ -88,15 +94,29 @@ class QuestionController extends Controller
         $answers = $this->answerService->getAnswerByQuestionId($id);
 //        dd($answers);
 
-        return view('question.edit', compact('question','categories', 'answers'));
+        return view('question.edit', compact('question', 'categories', 'answers'));
     }
 
 
-    public function update(UpdateQuestionsRequest $request, $id)
+    public function update(UpdateQuestionsRequest $questionsRequest, $id)
     {
-        $question = Question::findOrFail($id);
-        $question->update($request->all());
-
+        $question_data = [
+            "question_content" => $questionsRequest->question_content,
+            "category_id" => $questionsRequest->category_id,
+            "difficulty" => $questionsRequest->difficulty
+        ];
+        $this->questionService->update($question_data, $id);
+        $question = $this->questionService->findById($id);
+        $corrects = $questionsRequest->correct_option;
+        $answers = $questionsRequest->answer_content;
+        $answerId = $question->answers;
+        for ($i = 0; $i < count($answerId); $i++) {
+            $data = [
+                "answer_content" => $answers[$i],
+                "correct" => $corrects[$i]
+            ];
+            $this->answerService->update($data, $answerId[$i]->id);
+        }
         return redirect()->route('question.index');
     }
 }

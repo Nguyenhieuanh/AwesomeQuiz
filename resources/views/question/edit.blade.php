@@ -4,7 +4,7 @@
     <div class="col-8 mt-3 mx-auto">
         <div class="card">
             <div class="card-header">
-                <h3>Create New Question</h3>
+                <h3>Edit This Question</h3>
             </div>
             <div class="card-body p-4">
                 <form method="POST" action="{{route('question.update',$question->id)}}">
@@ -12,7 +12,7 @@
                     <div class="form-group">
                         <label for="question_content">Question</label>
                         <textarea class="form-control @error('question_content') is-invalid @enderror" id="question_content"
-                                  name="question_content"  rows="2">{{$question->question_content}}</textarea>
+                                  name="question_content"  rows="5">{{$question->question_content}}</textarea>
                         @error('question_content')
                         <span class="invalid-feedback" role="alert">
                         <strong>{{$message}}</strong>
@@ -22,7 +22,7 @@
                     <div class="form-group">
                         <label for="difficulty">Difficulty</label>
                         <select class="form-control" id="difficulty" name="difficulty">
-                            <option value="default">
+                            <option value="{{$question->difficulty}}">
                                 @switch($question->difficulty)
                                     @case(1)
                                     <td><p class="text-success">Easy</p></td>
@@ -53,25 +53,26 @@
                         <div class="col-2">
                             <label for="answer_option_1">Answer Option 1</label>
                         </div>
+                        @foreach($answers as $key => $answer)
                         <div class="input-group mb-3">
-                            @foreach($answers as $key => $answer)
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
-                                    <input type="checkbox" title="Correct" name="{{"correct_option_". ++$key}}" value="{{ $answer->correct }}"
-                                    {{ $answer->correct == 1 ? "checked" : "" }}
-                                    >
-{{--                                    {{ dd($answer->correct) }}--}}
+                                    <select name="correct_option[]">
+                                        <option value="1" {{ $answer->correct == 1 ? 'selected' : '' }}>Right</option>
+                                        <option value="0" {{ $answer->correct == 0 ? 'selected' : ''}}>Wrong</option>
+                                    </select>
+
                                 </div>
                             </div>
                             <textarea class="form-control @error("answer_option_". ++$key) is-invalid @enderror"
-                                      id="answer_option_1" name="{{"answer_option_". ++$key}}"  rows="2">{{ $answer->answer_content }}</textarea>
+                                      id="answer_option_1" name="answer_content[]"  rows="2">{{ $answer->answer_content }}</textarea>
                             @error('answer_option_'.++$key)
                             <span class="invalid-feedback" role="alert">
                             <strong>{{$message}}</strong>
                             </span>
                             @enderror
-                            @endforeach
                         </div>
+                        @endforeach
                     </div>
 
 

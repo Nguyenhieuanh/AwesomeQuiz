@@ -60,11 +60,10 @@ class QuestionService implements CRUDInterfaceService
         $question = $this->questionRepo->findById($id);
         $answers = $question->answers->all();
         if ($answers) {
-            foreach ($answers as $key => $answer) {
-
+            foreach ($answers as $answer) {
+                $this->answerRepo->destroy($answer->id);
             }
         }
-        dd($answers, 2);
 
         if ($question) {
             return $this->questionRepo->destroy($id);

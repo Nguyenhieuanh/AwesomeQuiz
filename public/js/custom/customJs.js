@@ -1,3 +1,10 @@
+
+/* -------------------------------------------------------------------------- */
+/*                            Alert confirm delete                            */
+/* -------------------------------------------------------------------------- */
+/**
+ * TODO: Alert Confirm Delete with Sweetalert2
+ */
 const swalWithBootstrapButtons = Swal.mixin({
     customClass: {
         confirmButton: "btn btn-success",
@@ -6,11 +13,11 @@ const swalWithBootstrapButtons = Swal.mixin({
     buttonsStyling: false
 });
 
-function confirmDelete(url_link) {
+function confirmDelete(url_link, message="You won't be able to revert this!") {
     swalWithBootstrapButtons
         .fire({
             title: "Are you sure?",
-            text: "You won't be able to revert this!",
+            text: message,
             icon: "warning",
             showCancelButton: true,
             confirmButtonText: "Yes, delete it!",
@@ -22,7 +29,14 @@ function confirmDelete(url_link) {
             }
         });
 }
+/* ----------------------------------- End ---------------------------------- */
 
+/* -------------------------------------------------------------------------- */
+/*                              Textarea autosize                             */
+/* -------------------------------------------------------------------------- */
+/**
+ * TODO: Auto resize textarea method
+ */
 $(
     "#question_content, #answer_content_1, #answer_content_2, #answer_content_3, #answer_content_4"
 )
@@ -36,3 +50,5 @@ $(
         this.style.height = "auto";
         this.style.height = this.scrollHeight + "px";
     });
+
+/* ----------------------------------- End ---------------------------------- */

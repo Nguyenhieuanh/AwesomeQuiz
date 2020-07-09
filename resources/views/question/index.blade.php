@@ -68,7 +68,7 @@
                         <a href="{{ route('question.edit',[$question->id]) }}" class="btn btn-sm btn-primary">
                             <span><i class="far fa-edit"></i> Edit</a></span>
                         <button class="btn btn-sm btn-danger"
-                            onclick="confirmDelete('{{ route('question.destroy',[$question->id]) }}')">
+                            onclick="confirmDelete('{{ route('question.destroy',[$question->id]) }}','You will delete all answers of this question!')">
                             <span><i class="fas fa-trash-alt"></i> Delete</span>
                         </button>
                     </td>

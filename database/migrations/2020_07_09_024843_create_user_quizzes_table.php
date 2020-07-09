@@ -17,6 +17,8 @@ class CreateUserQuizzesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('quiz_id');
+            $table->dateTime('start_time');
+            $table->dateTime('end_time');
             $table->tinyInteger('finished');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');

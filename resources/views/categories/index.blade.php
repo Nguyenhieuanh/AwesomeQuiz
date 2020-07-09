@@ -37,6 +37,10 @@
                         <a href="{{ route('categories.edit',[$category->id]) }}" class="btn btn-xs btn-info">Edit</a>
                         <a href="{{ route('categories.destroy',[$category->id]) }}" class="btn btn-xs btn-danger"
                             onclick="return confirm('Are you sure?')">Delete</a>
+                        <button class="btn btn-danger"
+                        onclick="confirmDelete({{route('categories.destroy',[$category->id])}})">
+                            <i class="far fa-trash-alt"></i> Delete
+                        </button>
                         {{-- {!! Form::open(array(
                                     'style' => 'display: inline-block;',
                                     'method' => 'DELETE',

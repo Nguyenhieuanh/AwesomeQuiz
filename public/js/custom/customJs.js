@@ -23,7 +23,9 @@ function confirmDelete(url_link) {
         });
 }
 
-$("textarea")
+$(
+    "#question_content, #answer_content_1, #answer_content_2, #answer_content_3, #answer_content_4"
+)
     .each(function() {
         this.setAttribute(
             "style",

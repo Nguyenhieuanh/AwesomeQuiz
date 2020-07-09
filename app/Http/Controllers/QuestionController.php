@@ -25,8 +25,7 @@ class QuestionController extends Controller
         QuestionService $questionService,
         CategoryService $categoryService,
         AnswerService $answerService
-    )
-    {
+    ) {
         $this->questionService = $questionService;
         $this->categoryService = $categoryService;
         $this->answerService = $answerService;
@@ -52,7 +51,7 @@ class QuestionController extends Controller
 
         $question = $this->questionService->create($request->all());
 
-        for ($i=0; $i < count($answer_content); $i++) {
+        for ($i = 0; $i < count($answer_content); $i++) {
             $answerData = [
                 'question_id' => $question->id,
                 'answer_content' => $answer_content[$i],
@@ -60,6 +59,7 @@ class QuestionController extends Controller
             ];
             $this->answerService->create($answerData);
         };
+        alert()->success('Delete completed', 'Successfully')->autoClose(1800);
 
         return redirect()->route('question.index');
     }

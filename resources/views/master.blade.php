@@ -69,18 +69,6 @@
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
     </script> --}}
     <script src="{{ asset('js/custom/customJs.js') }}"></script>
-    <script>
-        $("#checkAll").click(function(){
-        $('input:checkbox').not(this).prop('checked', this.checked);
-    });
-
-    $(document).ready(function () {
-            $(".deactivate").prop("disabled", false);
-            $(".checkboxes").on("change", function () {
-                $(this).next().prop("disabled", $(this).prop("checked"));
-            });
-        })
-    </script>
 </body>
 
 </html>

@@ -39,11 +39,17 @@ $(document).ready(function() {
 
     // Countdown function
     var timer2 = $(".countdown").html();
-    var timer2 = "00:03";
-    var interval = setInterval(function() {
-        var timer = timer2.split(":");
+    var timer = timer2.split(":");
+    if (localStorage.minutes && localStorage.seconds) {
+        var minutes = localStorage.minutes;
+        var seconds = localStorage.seconds;
+    } else {
         var minutes = parseInt(timer[0], 10);
         var seconds = parseInt(timer[1], 10);
+    }
+    var interval = setInterval(function() {
+        localStorage.minutes = minutes;
+        localStorage.seconds = seconds;
         --seconds;
         minutes = seconds < 0 ? --minutes : minutes;
         if (minutes < 0) {
@@ -51,7 +57,7 @@ $(document).ready(function() {
             Swal.fire({
                 icon: "warning",
                 title: "Time's Up",
-                text: 'Please submit your exam!',
+                text: "Please submit your exam!",
                 showClass: {
                     popup: "animate__animated animate__zoomIn"
                 },
@@ -59,6 +65,7 @@ $(document).ready(function() {
                     popup: "animate__animated animate__fadeOutUp"
                 }
             }).then(result => {
+                localStorage.clear();
                 $("#doQuiz").submit();
             });
         }

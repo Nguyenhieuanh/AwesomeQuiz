@@ -76,6 +76,7 @@ Route::group(['middleware' => 'role', 'prefix' => 'answer'], function () {
     Route::get('/delete/{id}', 'AnswerController@destroy')->name('answer.destroy');
 });
 Route::group(['prefix' => 'test'], function () {
-    Route::get('/{id}', 'UserQuizController@index')->name('quiz.doQuiz');
+    Route::get('/doExam/{id}', 'UserQuizController@index')->name('quiz.doQuiz');
     Route::post('/', 'UserQuizController@doQuiz')->name('quiz.submit');
+    Route::get('/result', 'QuizResultController@showResult')->name('quiz.result');
 });

@@ -23,9 +23,9 @@
                         <td>{{ $category->category_name }}</td>
                         <td>{{ $category->category_description }}</td>
 
-                        <td>@if (Auth::user()->role == 1)
+                        <td>@if (Auth::user()->role == 2)
                             <a href="{{ route('categories.edit',[$category->id]) }}" class="btn btn-sm btn-primary">
-                                <span><i class="far fa-edit"></i> Edit</a></span>
+                                <span><i class="far fa-edit"></i></span> Edit</a>
                             <button class="btn btn-sm btn-danger"
                                 onclick="confirmDelete('{{ route('categories.destroy',[$category->id]) }}')">
                                 <span><i class="fas fa-trash-alt"></i> Delete</span>

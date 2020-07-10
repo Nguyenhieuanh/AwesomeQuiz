@@ -43,7 +43,7 @@ abstract class EloquentRepo implements CRUDInterfaceRepo
         try {
             $object = $this->model->create($data);
         } catch (\Exception $e) {
-            return null;
+            return $e->getMessage();
         }
         return $object;
     }

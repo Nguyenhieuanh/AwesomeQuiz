@@ -25,11 +25,11 @@
                         <td scope="row">{{ ++$key }}</td>
 
                         <td>{{ $answer->answer_content }}</td>
-                        <td>
+                        <td> @if (Auth::user()->role == 2)
                             <button class="btn btn-sm btn-danger"
                                 onclick="confirmDelete('{{ route('answer.destroy',[$answer->id]) }}')">
                                 <span><i class="fas fa-trash-alt"></i> Delete</span>
-                            </button>
+                            </button>@endif
                         </td>
                     </tr>
                     @endforeach

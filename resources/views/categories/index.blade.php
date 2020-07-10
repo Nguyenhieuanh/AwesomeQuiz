@@ -24,9 +24,9 @@
                 <tbody>
                     @if (count($categories) > 0)
                     @foreach ($categories as $category)
-                    <tr data-entry-id="{{ $category->id }}">
+                    <tr data-entry-id="{{ $category->id }}" data-toggle="modal" data-target="#category-details" title="Click for more Details">
                         <td> {{$category->id}}</td>
-                        <td data-toggle="modal" data-target="#category-details" title="Click for more Details">
+                        <td>
                             <p>{{ $category->category_name }}</p>
                         </td>
                         <td>{{$category->category_description}}</td>

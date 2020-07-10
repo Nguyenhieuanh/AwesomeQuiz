@@ -1,38 +1,40 @@
 @extends('layouts.navbar')
 
 @section('content_home')
-<div class="col-12">
-
-    <fieldset><legend><h3 class="page-title">Create new category</h3></legend>
-    <form method="POST" action="{{route('categories.store')}}">
-        @csrf
-
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <div class="row">
-                    <div class="form-group">
-                        <input type="text" placeholder="New category name" class="form-control" name="category_name">
-                        <p class="help-block"></p>
-                        @if($errors->has('category_name'))
-                        <p class="help-block">
-                            {{ $errors->first('category_name') }}
-                        </p>
-                        @endif
-                        <br>
-
+<div class="col-8 mt-3 mx-auto">
+    <div class="card">
+        <div class="card-header">
+            <h3>Create New Category</h3>
+        </div>
+        <div class="card-body p-4">
+            <form method="POST" action="{{route('categories.store')}}">
+                @csrf
+                <div class="form-group">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="category_name"> <strong> Category Name
+                            </strong>
+                        </label>
+                        <input type="text" class="form-control" id="category_name" name="category_name" autofocus>
                     </div>
+                    @error('category_name')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{$message}}</strong>
+                    </span>
+                    @enderror
+                    <textarea class="form-control @error('category_description') is-invalid @enderror"
+                        id="category_description" name="category_description" rows="5" placeholder="Category Description"></textarea>
                 </div>
 
-            </div>
+                <button type="submit" class="btn btn-success">
+                    <span> <i class="fas fa-save"></i> Save </span>
+                </button>
+                <button type="button" class="btn btn-dark" onclick="window.history.back()">
+                    <span> <i class="fas fa-arrow-left"></i> Back</span>
+                </button>
+
+            </form>
         </div>
-                    <div class="md-form">
-                        <textarea id="form7" placeholder="Category description" class="md-textarea form-control" name="category_description" rows="3"></textarea>
-
-                    </div>
-        <button type="submit" name="submit" class="btn btn-primary">CREATE</button>
-    </form>
-    </fieldset>
+    </div>
 </div>
-
 
 @endsection

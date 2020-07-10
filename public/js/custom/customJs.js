@@ -38,7 +38,7 @@ function confirmDelete(url_link, message="You won't be able to revert this!") {
  * TODO: Auto resize textarea method
  */
 $(
-    "#question_content, #answer_content_1, #answer_content_2, #answer_content_3, #answer_content_4"
+    "#question_content, #answer_content_1, #answer_content_2, #answer_content_3, #answer_content_4, #category_description"
 )
     .each(function() {
         this.setAttribute(

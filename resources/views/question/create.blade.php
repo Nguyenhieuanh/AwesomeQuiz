@@ -43,7 +43,6 @@
                             </div>
                         </div>
                         {{-- End of Select difficulty group --}}
-
                     </div>
                     <div class="col">
                         {{-- Start of Select Category group --}}
@@ -170,8 +169,6 @@
                     @enderror
                 </div>
                 {{-- End of Answer group  --}}
-
-
                 <div class="col-5">
                     <button type="submit" class="btn btn-success">
                         <span> <i class="fas fa-save"></i> Save </span>

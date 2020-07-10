@@ -37,7 +37,7 @@ class QuizResultController extends Controller
                 $point++;
             }
         };
-        dd($point);
-        return view('user_quiz.result');
+        $questions_count = $questions->count();
+        return view('user_quiz.result', compact('point', 'questions_count'));
     }
 }

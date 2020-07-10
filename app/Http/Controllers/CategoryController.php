@@ -34,13 +34,14 @@ class CategoryController extends Controller
 
     public function store(StoreCategoriesRequest $request)
     {
-        $this->categoryService->create($request->all());
-
+        $question = $this->categoryService->create($request->all());
+        if(!$question){
+            alert()->error('Create category error', 'Error')->showConfirmButton('OK');
+            return redirect()->route('categories.create');
+        };
         alert()->success('Category created', 'Successfully')->autoClose(1800);
-
-        return redirect()->route('categories.index');
+        return redirect()->route('categories.create');
     }
-
 
     public function edit($id)
     {

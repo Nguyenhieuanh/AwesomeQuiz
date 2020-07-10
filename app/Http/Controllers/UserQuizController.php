@@ -41,7 +41,6 @@ class UserQuizController extends Controller
 
     public function doQuiz(Request $request)
     {
-        return redirect()->route('quiz.result');
         date_default_timezone_set('Asia/Ho_Chi_Minh');
         $duration = $request->duration;
         $now = time();
@@ -81,6 +80,6 @@ class UserQuizController extends Controller
 
         alert("Success", "Done", "success")->autoClose(2000);
 
-        return redirect()->route('quiz.result');
+        return redirect()->route('quiz.result', ['id' => $userQuiz->id]);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Services;
 
-
+use App\Http\Repositories\AnswerRepo;
 use App\Http\Repositories\QuestionRepo;
 use App\Http\Services\CRUDInterfaceService;
 
@@ -10,10 +10,12 @@ use App\Http\Services\CRUDInterfaceService;
 class QuestionService implements CRUDInterfaceService
 {
     protected $questionRepo;
+    protected $answerRepo;
 
-    public function __construct(QuestionRepo $questionRepo)
+    public function __construct(QuestionRepo $questionRepo, AnswerRepo $answerRepo)
     {
         $this->questionRepo = $questionRepo;
+        $this->answerRepo = $answerRepo;
     }
 
     public function getAll()
@@ -43,7 +45,6 @@ class QuestionService implements CRUDInterfaceService
     public function update($request, $id)
     {
         $oldQuestion = $this->questionRepo->findById($id);
-//                dd($oldQuestion);
         if (!$oldQuestion) {
             $newQuestion = null;
             abort(404);
@@ -57,16 +58,17 @@ class QuestionService implements CRUDInterfaceService
     public function destroy($id)
     {
         $question = $this->questionRepo->findById($id);
-
-
+        $answers = $question->answers->all();
+        if ($answers) {
+            foreach ($answers as $answer) {
+                $this->answerRepo->destroy($answer->id);
+            }
+        }
         if ($question) {
-            $this->questionRepo->destroy($id);
-            $message = "Delete success!";
-        } else {
-            abort(404, 'User Not Found');
+            return $this->questionRepo->destroy($id);
         };
 
-        return $message;
+        return 404;
     }
 
     public function getQuestionsByCategoryId($category_id)
@@ -74,4 +76,9 @@ class QuestionService implements CRUDInterfaceService
         return $this->questionRepo->getQuestionsByCategoryId($category_id);
     }
 
+    public function isQuestionUsedInQuiz($id)
+    {
+        $question = $this->findById($id);
+        return $question->quizQuestion->first();
+    }
 }

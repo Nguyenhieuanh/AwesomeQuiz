@@ -8,7 +8,8 @@
                 <div class="col-10">
                     <h4><strong>{{ $quiz->name }}</strong></h4>
                 </div>
-                <div class="col-2 ml-auto mr-0"><strong>Duration: </strong><span class="countdown">{{ $quiz->duration}}:00</span></div>
+                <div class="col-2 ml-auto mr-0"><strong>Duration: </strong><span
+                        class="countdown">{{ $quiz->duration}}:00</span></div>
             </div>
         </div>
         <div class="card-body">
@@ -42,7 +43,7 @@
             <a class="btn-warning btn" href="{{ route('quiz.edit', ['id' => $quiz->id]) }}">Edit</a>
             @else
             <button class="btn btn-primary" onclick="event.preventDefault();
-            document.getElementById('doQuiz').submit();">Submit</button>
+            document.getElementById('doQuiz').submit(); localStorage.clear()">Submit</button>
             @endif
         </div>
     </div>

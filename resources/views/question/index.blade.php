@@ -67,8 +67,8 @@
                     <td>
                         {{-- <a href="{{ route('question.show',[$question->id]) }}" class="btn btn-sm btn-info">
                             <span><i class="fas fa-info-circle"></i> Detail</span></a> --}}
-                        <a href="{{ route('question.edit',[$question->id]) }}" class="btn btn-sm btn-primary">
-                            <span><i class="far fa-edit"></i></span> Edit</a>
+{{--                        <a href="{{ route('question.edit',[$question->id]) }}" class="btn btn-sm btn-primary">--}}
+{{--                            <span><i class="far fa-edit"></i></span> Edit</a>--}}
                         <a href="{{ route('question.show',[$question->id]) }}" class="btn btn-xs btn-primary">Detail</a>
                         @if (Auth::user()->role == 2)
                         <a href="{{ route('question.edit',[$question->id]) }}" class="btn btn-xs btn-info">Edit</a>

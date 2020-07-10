@@ -26,7 +26,7 @@
             @endif
         </div>
         <div class="card-footer">
-            @if (Auth::user()->role == 1)
+            @if (Auth::user()->role == 1 ||Auth::user()->role == 2)
             <a class="btn-warning btn" href="{{ route('quiz.edit', ['id' => $quiz->id]) }}">Edit</a>
             @endif
         </div>

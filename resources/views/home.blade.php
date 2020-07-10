@@ -17,7 +17,7 @@
                     </div>
                 @endif
 
-                @if (Auth::user()->role == 0) {{__('You are logged in as QuizPlayer!')}} @elseif (Auth::user()->role == 1) {{__('You are logged in as QuizMaker!')}} @else {{__("You're not logged in yet, please consider Login or Register")}} @endif
+                @if (Auth::user()->role == 0) {{__('You are logged in as QuizPlayer!')}} @elseif (Auth::user()->role == 1) {{__('You are logged in as QuizMaker!')}} @elseif (Auth::user()->role == 2)<h1> {{__("You're God!")}}</h1> @else {{__("You're not logged in yet, please consider Login or Register")}} @endif
             </div>
         </div>
         <div class="row">
@@ -38,7 +38,7 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header bg-white center">
-                        <h4 class="card-title"><a>Quiz maker</a></h4>
+                        <h4 class="card-title"><a>Quiz manager</a></h4>
                     </div>
                     <a class="preview" style="margin: auto;">
                         <img src="{{asset('storage/images/maker.jpg')}}" style="width: 300px" alt="QuizMaker App"
@@ -46,7 +46,7 @@
                     </a>
                     <div class="card-block center">
                         <a href="" class="btn btn-primary-outline btn-rounded"><i class="material-icons">school</i> Be a
-                            QuizMaker!</a>
+                            QuizManager!</a>
                     </div>
                 </div>
             </div>

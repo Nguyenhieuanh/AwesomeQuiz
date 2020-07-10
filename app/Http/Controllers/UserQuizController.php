@@ -57,7 +57,7 @@ class UserQuizController extends Controller
             'finished' => 1
         ];
 
-        $this->userQuizService->create($userQuizData);
+        $userQuiz = $this->userQuizService->create($userQuizData);
 
         $question_id = $request->question_id;
         $answer_id = $request->answer_id;
@@ -72,7 +72,8 @@ class UserQuizController extends Controller
                 'question_id' => $question_id[$i],
                 'answer_id' => $answer_id[$i],
                 'correct' => $correct[$i],
-                'answered' => $answered[$i]
+                'answered' => $answered[$i],
+                'user_quiz_id' => $userQuiz->id
             ];
 
             $this->quizResultService->create($quizResultData);

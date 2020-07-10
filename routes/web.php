@@ -73,7 +73,9 @@ Route::group(['middleware' => 'manager.role', 'prefix' => 'quiz-question'], func
 
 Route::group(['middleware' => 'admin.role', 'prefix' => 'user'], function () {
     Route::get('/', 'UserController@index')->name('user.list');
-    Route::post('/delete', 'UserController@destroy')->name('user.destroy');
+    Route::get('/promote/{id}', 'UserController@promote')->name('user.promote');
+    Route::get('/demote/{id}', 'UserController@demote')->name('user.demote');
+    Route::post('/block/{id}', 'UserController@block')->name('user.block');
 });
 
 Route::group(['prefix' => 'test'], function () {

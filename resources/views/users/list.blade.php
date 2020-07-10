@@ -14,6 +14,7 @@
                     <th>Users ID</th>
                     <th>Full Name</th>
                     <th>Email</th>
+                    <th>Role</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -27,6 +28,18 @@
                             <td>{!! $user->name !!}</td>
                             <td>{!! $user->email !!}</td>
                             <td>
+                            @switch($user->role)
+                                @case(0)<p class="text-success">QuizPlayer</p>@break
+                                @case(1)<p class="text-warning">QuizManager</p>@break
+                                @case(2)<p class="text-danger">God</p>@break
+                                @endswitch
+                            </td>
+                            <td>@if (Auth::user()->role != 0)
+                                    <a href="{{route('user.promote',$user->id)}}" class="btn btn-warning">Promote to Manager</a>
+                                    @endif
+                                @if (Auth::user()->role == 2)
+                                    <a href="{{route('user.demote',$user->id)}}" class="btn btn-danger">Demote to Player</a>
+                                    @endif
 {{--                                <a href="{{ route('question.show',[$user->id]) }}"--}}
 {{--                                   class="btn btn-xs btn-primary">Detail</a>--}}
 {{--                                <a href="{{ route('question.edit',[$user->id]) }}"--}}

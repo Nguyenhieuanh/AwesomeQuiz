@@ -3,7 +3,7 @@
 @section('content_home')
 <h3 class="page-title">Category</h3>
 
-<p>@if (Auth::user()->role == 1)
+<p>@if (Auth::user()->role == 2)
     <a href="{{ route('categories.create') }}" class="btn btn-success">Create new category</a>@endif
 </p>
 
@@ -33,9 +33,9 @@
                     <td>
                         <a href="{{ route('categories.show',[$category->id]) }}" class="btn btn-sm btn-info">
                             <span><i class="fas fa-info-circle"></i> Detail</span></a>
-                        @if (Auth::user()->role == 1)
+                        @if (Auth::user()->role == 2)
                         <a href="{{ route('categories.edit',[$category->id]) }}" class="btn btn-sm btn-primary">
-                            <span><i class="far fa-edit"></i> Edit</a></span>
+                            <span><i class="far fa-edit"></i></span> Edit</a>
                         <button class="btn btn-sm btn-danger"
                             onclick="confirmDelete('{{ route('categories.destroy',[$category->id]) }}')">
                             <span><i class="fas fa-trash-alt"></i> Delete</span>

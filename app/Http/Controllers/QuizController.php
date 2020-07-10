@@ -37,6 +37,7 @@ class QuizController extends Controller
     public function index()
     {
         $quizzes = Quiz::paginate(6);
+
         return view('quizzes.list', compact('quizzes'));
     }
 
@@ -60,6 +61,7 @@ class QuizController extends Controller
     public function store(QuizFormRequest $request)
     {
         $quiz = $this->quizService->create($request->all());
+//        dd($request->all());
         $msg = $this->quizQuestionService->generate($quiz, $request->question_count);
 
         if ($msg) {
@@ -110,14 +112,29 @@ class QuizController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //
+    }
+    public function statisticsCalculate($id){
+
+        $quiz_questions = $this->quizQuestionService->getQuestionsByQuizId($id);
+        $count_easy = 0;
+        $count_medium = 0;
+        $count_hard = 0;
+        foreach ($quiz_questions as $quiz_question) {
+            if ($quiz_question->question->difficulty == 1) {
+                $count_easy++;
+            }
+            if ($quiz_question->question->difficulty == 2) {
+                $count_medium++;
+            }
+            if ($quiz_question->question->difficulty == 3) {
+                $count_hard++;
+            }
+        }
+        return view('quizzes.statistics',compact('count_easy', 'count_medium','count_hard'));
+
+
     }
 }

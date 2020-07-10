@@ -4,8 +4,11 @@
 <div class="p-2 mb-5">
     <div class="card">
         <div class="card-header">
-            <h4><strong>{{ $quiz->name }}</strong></h4>
+            <h4><strong>{{ $quiz->name }}</strong> - @if (Auth::user()->role == 1 ||Auth::user()->role == 2)
+                    <a class="btn-warning btn" href="{{ route('quiz.edit', ['id' => $quiz->id]) }}">Edit</a>
+                @endif</h4>
         </div>
+
         <div class="card-body">
             @if (Auth::user()->role == 0)
             <p>Question count: {{ $quiz->question_count }}</p>
@@ -26,7 +29,7 @@
             @endif
         </div>
         <div class="card-footer">
-            @if (Auth::user()->role == 1)
+            @if (Auth::user()->role == 1 ||Auth::user()->role == 2)
             <a class="btn-warning btn" href="{{ route('quiz.edit', ['id' => $quiz->id]) }}">Edit</a>
             @endif
         </div>

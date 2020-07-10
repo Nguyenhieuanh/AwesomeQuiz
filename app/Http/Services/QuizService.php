@@ -33,7 +33,7 @@ class QuizService implements CRUDInterfaceService
     public function create($request)
     {
         $quiz = $this->quizRepo->create($request);
-
+//        dd($request);
         return $quiz;
     }
 

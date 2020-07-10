@@ -31,14 +31,14 @@
                     </span>
                     @enderror
                 </div>
-
-                <button type="submit" class="btn btn-success">
-                    <span> <i class="fas fa-save"></i> Save </span>
-                </button>
-                <button type="button" class="btn btn-dark" onclick="window.history.back()">
-                    <span> <i class="fas fa-arrow-left"></i> Back</span>
-                </button>
-
+                <div class="float-right">
+                    <button type="submit" class="btn btn-success">
+                        <span> <i class="fas fa-save"></i> Save </span>
+                    </button>
+                    <a href="{{ route('categories.index') }}" class="btn btn-secondary">
+                        <span> <i class="fas fa-arrow-left"></i> Back</span>
+                    </a>
+                </div>
             </form>
         </div>
     </div>

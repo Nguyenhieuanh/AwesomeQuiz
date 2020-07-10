@@ -14,8 +14,8 @@
                         <label class="input-group-text" for="question_content"> <strong> Question Content
                             </strong>
                         </label>
-                        <textarea class="form-control @error('question_content') is-invalid @enderror" id="question_content"
-                            name="question_content" rows="1" autofocus></textarea>
+                        <textarea class="form-control @error('question_content') is-invalid @enderror"
+                            id="question_content" name="question_content" rows="1" autofocus></textarea>
                     </div>
                     @error('question_content')
                     <span class="invalid-feedback" role="alert">
@@ -75,7 +75,7 @@
                                         </strong>
                                     </label>
                                 </div>
-                                <select class="custom-select" id="correct_select_1" name="correct_option[]" required>
+                                <select class="custom-select" id="correct_select_1" name="correct_option[]">
                                     <option class="text-danger" value="0">Wrong</option>
                                     <option class="text-success" value="1" selected>Right</option>
                                 </select>
@@ -101,7 +101,7 @@
                                         </strong>
                                     </label>
                                 </div>
-                                <select class="custom-select" id="correct_select_2" name="correct_option[]" required>
+                                <select class="custom-select" id="correct_select_2" name="correct_option[]">
                                     <option class="text-danger" value="0">Wrong</option>
                                     <option class="text-success" value="1">Right</option>
                                 </select>
@@ -127,7 +127,7 @@
                                         </strong>
                                     </label>
                                 </div>
-                                <select class="custom-select" id="correct_select_3" name="correct_option[]" required>
+                                <select class="custom-select" id="correct_select_3" name="correct_option[]">
                                     <option class="text-danger" value="0">Wrong</option>
                                     <option class="text-success" value="1">Right</option>
                                 </select>
@@ -153,7 +153,7 @@
                                         </strong>
                                     </label>
                                 </div>
-                                <select class="custom-select" id="correct_select_4" name="correct_option[]" required>
+                                <select class="custom-select" id="correct_select_4" name="correct_option[]">
                                     <option class="text-danger" value="0">Wrong</option>
                                     <option class="text-success" value="1">Right</option>
                                 </select>
@@ -169,15 +169,15 @@
                     @enderror
                 </div>
                 {{-- End of Answer group  --}}
-                <div class="col-5">
+                <div class="float-right">
                     <button type="submit" class="btn btn-success">
                         <span> <i class="fas fa-save"></i> Save </span>
                     </button>
                     {{-- pending clear, back button action --}}
                     {{-- <button type="reset" class="btn btn-warning">Clear</button> --}}
-                    <button type="button" class="btn btn-dark" onclick="window.history.back()">
+                    <a href="{{ route('question.index') }}" class="btn btn-secondary">
                         <span> <i class="fas fa-arrow-left"></i> Back</span>
-                    </button>
+                    </a>
                 </div>
             </form>
         </div>

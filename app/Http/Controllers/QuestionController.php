@@ -59,7 +59,7 @@ class QuestionController extends Controller
             ];
             $this->answerService->create($answerData);
         };
-        alert()->success('Delete completed', 'Successfully')->autoClose(1800);
+        alert()->success('Created new question', 'Successfully')->autoClose(1800);
 
         return redirect()->route('question.index');
     }
@@ -98,6 +98,17 @@ class QuestionController extends Controller
                 "correct" => $corrects[$i]
             ];
             $this->answerService->update($data, $answerId[$i]->id);
+        }
+        return redirect()->route('question.index');
+    }
+
+    public function destroy($id)
+    {
+        if ($this->questionService->isQuestionUsedInQuiz($id)) {
+            alert()->warning('Delete unavailable!', 'Question already has used in Quiz.')->showConfirmButton('Understood!');
+        } else {
+            $this->questionService->destroy($id);
+            alert()->success('Delete completed', 'Successfully')->autoClose(1800);
         }
         return redirect()->route('question.index');
     }

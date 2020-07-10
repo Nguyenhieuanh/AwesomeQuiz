@@ -42,7 +42,7 @@ Route::group(['middleware' => 'role', 'prefix' => 'question'], function () {
     Route::post('/store', 'QuestionController@store')->name('question.store');
     Route::get('/edit/{id}', 'QuestionController@edit')->name('question.edit');
     Route::post('/update/{id}', 'QuestionController@update')->name('question.update');
-    Route::get('/destroy', 'QuestionController@destroy')->name('question.destroy');
+    Route::get('/destroy/{id}', 'QuestionController@destroy')->name('question.destroy');
     Route::get('/show/{id}', 'QuestionController@show')->name('question.show');
     Route::post('/store', 'QuestionController@store')->name('question.store');
 });
@@ -72,6 +72,9 @@ Route::group(['middleware' => 'role', 'prefix' => 'user'], function () {
     Route::post('/delete', 'UserController@destroy')->name('user.destroy');
 });
 
+Route::group(['middleware' => 'role', 'prefix' => 'answer'], function () {
+    Route::get('/delete/{id}', 'AnswerController@destroy')->name('answer.destroy');
+});
 Route::group(['prefix' => 'test'], function () {
     Route::get('/{id}', 'UserQuizController@index')->name('quiz.doQuiz');
     Route::post('/', 'UserQuizController@doQuiz')->name('quiz.submit');

@@ -141,7 +141,7 @@ $(document).ready(function() {
             $("#question_content").addClass("is-invalid");
             count++;
         } else {
-            count--;
+            $("#question_content").removeClass("is-invalid");
         }
         if (count == 0) {
             $("#myForm").submit();

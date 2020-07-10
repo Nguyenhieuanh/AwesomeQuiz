@@ -50,18 +50,23 @@ class QuestionController extends Controller
         $correct_option = $request->correct_option;
 
         $question = $this->questionService->create($request->all());
-
+        $answers =[];
         for ($i = 0; $i < count($answer_content); $i++) {
             $answerData = [
                 'question_id' => $question->id,
                 'answer_content' => $answer_content[$i],
                 'correct' => $correct_option[$i],
             ];
-            $this->answerService->create($answerData);
+            $answer = $this->answerService->create($answerData);
+            array_push($answers,$answer);
         };
+        if (!$question && !$answers) {
+            alert()->error('Create question error', 'Error')->showConfirmButton('OK');
+            return redirect()->route('question.create');
+        }
         alert()->success('Created new question', 'Successfully')->autoClose(1800);
 
-        return redirect()->route('question.index');
+        return redirect()->route('question.create');
     }
 
     public function show($id)

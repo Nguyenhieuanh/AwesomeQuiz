@@ -27,6 +27,8 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
 
+    <link rel="stylesheet" href="{{ asset('sass/customCSS.css') }}">
+
     <!-- App CSS -->
     <link type="text/css" href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
     <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>

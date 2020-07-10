@@ -1,7 +1,7 @@
 #### Icon Awefont List
 
 -   Delete icon:
-    <button class="btn btn-sm btn-danger" onclick="confirmDelete('{{ route('categories.destroy',[$category->id]) }}')">
+    `<button class="btn btn-sm btn-danger" onclick="confirmDelete('{{ route('categories.destroy',[$category->id]) }}')">`
     <span><i class="fas fa-trash-alt"></i> Delete</span>
     </button>
 -   Edit icon:

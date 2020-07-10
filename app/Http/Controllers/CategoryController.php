@@ -34,10 +34,9 @@ class CategoryController extends Controller
 
     public function store(StoreCategoriesRequest $request)
     {
+        $this->categoryService->create($request->all());
 
-        Category::create($request->all());
         alert()->success('Category created', 'Successfully')->autoClose(1800);
-
 
         return redirect()->route('categories.index');
     }

@@ -19,18 +19,13 @@
                         Number of questions: {{ $quiz->question_count }}
                     </p>
                     <p>
-                        Duration:
-                        @switch($quiz->duration)
-                            @case(2)
-                                90 minutes
-                                @break
-                            @case(3)
-                                120 minutes
-                                @break
-                            @default
-                                45 minutes
-                        @endswitch
+                        Duration: {{ $quiz->duration }} minutes
                     </p>
+                </div>
+                <div class="card-footer">
+                    @if (Auth::user()->role == 0)
+                    <a href="{{ route('quiz.doQuiz', ['id' => $quiz->id]) }}" class="btn btn-success">Do Quiz</a>
+                    @endif
                 </div>
             </div>
         </div>

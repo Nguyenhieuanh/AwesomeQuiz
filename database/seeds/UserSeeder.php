@@ -20,8 +20,8 @@ class UserSeeder extends Seeder
         factory(User::class, 10)->create();
         DB::table('users')->insert([
             'name' => Str::random(10),
-            'email' => 'aaa@gmail.com',
-            'password' => Hash::make('aaa'),
+            'email' => 'admin@admin.com',
+            'password' => Hash::make('12345678'),
             'role' => 1
         ]);
     }

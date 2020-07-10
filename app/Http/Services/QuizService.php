@@ -41,23 +41,13 @@ class QuizService implements CRUDInterfaceService
     {
         $oldQuiz = $this->quizRepo->findById($id);
 
-        if (!$oldQuiz) {
-            if (!$oldQuiz) {
-                abort(404);
-            } else {
-                return  $this->quizRepo->update($request, $oldQuiz);
-            }
-        }
+        return (!$oldQuiz ? abort(404) : $this->quizRepo->update($request, $oldQuiz));
     }
 
     public function destroy($id)
     {
         $quiz = $this->quizRepo->findById($id);
 
-        if ($quiz) {
-            return $this->quizRepo->destroy($quiz);
-        }
-
-        return 404;
+        return ($quiz ? $this->quizRepo->destroy($quiz) : abort(404));
     }
 }

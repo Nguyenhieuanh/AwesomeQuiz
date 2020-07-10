@@ -63,8 +63,8 @@
                         {{$question->category->category_name}}
                     </td>
                     <td>
-                        <a href="{{ route('question.show',[$question->id]) }}" class="btn btn-sm btn-info">
-                            <span><i class="fas fa-info-circle"></i> Detail</span></a>
+                        {{-- <a href="{{ route('question.show',[$question->id]) }}" class="btn btn-sm btn-info">
+                            <span><i class="fas fa-info-circle"></i> Detail</span></a> --}}
                         <a href="{{ route('question.edit',[$question->id]) }}" class="btn btn-sm btn-primary">
                             <span><i class="far fa-edit"></i> Edit</a></span>
                         <button class="btn btn-sm btn-danger"

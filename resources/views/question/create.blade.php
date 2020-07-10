@@ -70,7 +70,7 @@
                 </div>
                 <div id="dynamic-field">
                     <div class="form-group">
-                        <label for="password">Answer option #1</label>
+                        <strong>Answer option #1</strong>
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <div class="input-group-text" id="basic-addon1">
@@ -96,7 +96,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="password">Answer option #2</label>
+                        <strong>Answer option #2</strong>
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <div class="input-group-text" id="basic-addon1">
@@ -121,18 +121,22 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-5">
+            </form>
+        </div>
+        <div class="card-footer">
+            {{-- pending clear, back button action --}}
+            {{-- <button type="reset" class="btn btn-warning">Clear</button> --}}
+            <div class="row">
+                <button class="btn btn-primary ml-3" type="button" id="add-answer">Add answer</button>
+                <div class="mr-1 ml-auto">
                     <button type="button" id="btn-submit" class="btn btn-success">
                         <span> <i class="fas fa-save"></i> Save </span>
                     </button>
-                    {{-- pending clear, back button action --}}
-                    {{-- <button type="reset" class="btn btn-warning">Clear</button> --}}
-                    <button class="btn btn-primary" type="button" id="add-answer">Add answer</button>
-                    <button type="button" class="btn btn-dark" onclick="window.history.back()">
+                    <button type="button" class="btn btn-secondary" onclick="window.history.back()">
                         <span> <i class="fas fa-arrow-left"></i> Back</span>
                     </button>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>

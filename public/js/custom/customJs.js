@@ -63,9 +63,9 @@ $(document).ready(function() {
         i++;
         $("#dynamic-field").append(
             '<div class="form-group">' +
-                '<label for="password">Answer option #' +
+                '<strong>Answer option #' +
                 i +
-                ":</label>" +
+                ":</strong>" +
                 '<div class="input-group">' +
                 '<div class="input-group-prepend">' +
                 '<div class="input-group-text" id="basic-addon1">' +

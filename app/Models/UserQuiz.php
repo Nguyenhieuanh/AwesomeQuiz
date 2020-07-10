@@ -19,4 +19,9 @@ class UserQuiz extends Model
     {
         return $this->belongsToMany('App\Models\Quiz');
     }
+
+    public function quizResults()
+    {
+        return $this->hasMany('App\Models\QuizResult');
+    }
 }

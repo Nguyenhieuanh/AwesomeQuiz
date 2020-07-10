@@ -529,6 +529,7 @@ class ComposerStaticInitfb62e967a27a64163457c7a054ff181a
         'App\\Http\\Controllers\\QuestionController' => __DIR__ . '/../..' . '/app/Http/Controllers/QuestionController.php',
         'App\\Http\\Controllers\\QuizController' => __DIR__ . '/../..' . '/app/Http/Controllers/QuizController.php',
         'App\\Http\\Controllers\\QuizQuestionController' => __DIR__ . '/../..' . '/app/Http/Controllers/QuizQuestionController.php',
+        'App\\Http\\Controllers\\QuizResultController' => __DIR__ . '/../..' . '/app/Http/Controllers/QuizResultController.php',
         'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
         'App\\Http\\Controllers\\UserQuizController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserQuizController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',

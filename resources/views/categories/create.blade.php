@@ -14,15 +14,22 @@
                         <label class="input-group-text" for="category_name"> <strong> Category Name
                             </strong>
                         </label>
-                        <input type="text" class="form-control" id="category_name" name="category_name" autofocus>
+                        <input type="text" class="form-control @error('category_name') is-invalid @enderror"
+                            id="category_name" name="category_name" autofocus>
+                        @error('category_name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{$message}}</strong>
+                        </span>
+                        @enderror
                     </div>
-                    @error('category_name')
+                    <textarea class="form-control @error('category_description') is-invalid @enderror"
+                        id="category_description" name="category_description" rows="5"
+                        placeholder="Category Description"></textarea>
+                    @error('category_description')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{$message}}</strong>
                     </span>
                     @enderror
-                    <textarea class="form-control @error('category_description') is-invalid @enderror"
-                        id="category_description" name="category_description" rows="5" placeholder="Category Description"></textarea>
                 </div>
 
                 <button type="submit" class="btn btn-success">

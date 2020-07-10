@@ -34,6 +34,7 @@ class CategoryController extends Controller
 
     public function store(StoreCategoriesRequest $request)
     {
+
         Category::create($request->all());
         alert()->success('Category created', 'Successfully')->autoClose(1800);
 

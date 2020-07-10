@@ -37,7 +37,7 @@
                                     class="table-success" title='Right'
                                     @else
                                     class="table-light" title='Wrong'
-                                    @endif> Answer# {{$key}}: {{ $answer->answer_content }} </p>
+                                    @endif> Answer# {{$key+1}}: {{ $answer->answer_content }} </p>
                                 @endforeach
                             </div>
                         </div>

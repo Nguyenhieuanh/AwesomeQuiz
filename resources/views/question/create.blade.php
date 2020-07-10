@@ -7,21 +7,23 @@
             <h3>Create New Question</h3>
         </div>
         <div class="card-body p-4">
-            <form method="POST" action="{{route('question.store')}}">
+            <form method="POST" action="{{route('question.store')}}" id="myForm">
                 @csrf
                 <div class="form-group">
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="question_content"> <strong> Question Content
                             </strong>
                         </label>
-                        <textarea class="form-control @error('question_content') is-invalid @enderror" id="question_content"
-                            name="question_content" rows="1" autofocus></textarea>
+                        <textarea class="form-control q-content @error('question_content') is-invalid @enderror"
+                            id="question_content" name="question_content" rows="1" autofocus></textarea>
+                        <div class="invalid-feedback">The question content field is required.
+                        </div>
+                        @error('question_content')
+                        <div class="invalid-feedback" role="alert">
+                            <strong>{{$message}}</strong>
+                        </div>
+                        @enderror
                     </div>
-                    @error('question_content')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{$message}}</strong>
-                    </span>
-                    @enderror
                 </div>
                 <div class="form-row">
                     <div class="col">
@@ -66,118 +68,66 @@
                         {{-- End of Select Category group --}}
                     </div>
                 </div>
-                {{-- Start of Answer group  --}}
-                <div class="form-group">
-                    <div class="col">
-                        <div class="row">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <label class="input-group-text" for="correct_select_1"> <strong> Answer Option 1
-                                        </strong>
+                <div id="dynamic-field">
+                    <div class="form-group">
+                        <label for="password">Answer option #1</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text" id="basic-addon1">
+                                    <input type="hidden" name="corrects[]" class="deactivate" value="0">
+                                    <input class="inp-cbx checkboxes" id="cbx" data-id="1" type="checkbox"
+                                        name="corrects[]" style="display: none" value="1">
+                                    <label class="cbx" for="cbx">
+                                        <span class="bg-light" title="Correct answer">
+                                            <svg width="12px" height="10px" viewbox="0 0 12 10">
+                                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                            </svg>
+                                        </span>
                                     </label>
                                 </div>
-                                <select class="custom-select" id="correct_select_1" name="correct_option[]" required>
-                                    <option class="text-danger" value="0">Wrong</option>
-                                    <option class="text-success" value="1" selected>Right</option>
-                                </select>
                             </div>
+                            <textarea class="form-control answers" name="answer_content[]" rows="2"></textarea>
+                            <div class="input-group-append">
+                                <span role="button" class="input-group-text remove" title="Delete">
+                                    <i class="far fa-trash-alt"></i></span>
+                            </div>
+                            <div class="invalid-feedback">The answer option field is required.</div>
                         </div>
                     </div>
-                    <textarea class="form-control @error('answer_content[]') is-invalid @enderror" id="answer_content_1"
-                        name="answer_content[]" rows="2" required></textarea>
-                    @error('answer_content[]')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{$message}}</strong>
-                    </span>
-                    @enderror
-                </div>
-                {{-- End of Answer group  --}}
-                {{-- Start of Answer group  --}}
-                <div class="form-group">
-                    <div class="col">
-                        <div class="row">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <label class="input-group-text" for="correct_select_2"> <strong> Answer Option 2
-                                        </strong>
-                                    </label>
-                                </div>
-                                <select class="custom-select" id="correct_select_2" name="correct_option[]" required>
-                                    <option class="text-danger" value="0">Wrong</option>
-                                    <option class="text-success" value="1">Right</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <textarea class="form-control @error('answer_content[]') is-invalid @enderror" id="answer_content_2"
-                        name="answer_content[]" rows="2" required></textarea>
-                    @error('answer_content[]')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{$message}}</strong>
-                    </span>
-                    @enderror
-                </div>
-                {{-- End of Answer group  --}}
-                {{-- Start of Answer group  --}}
-                <div class="form-group">
-                    <div class="col">
-                        <div class="row">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <label class="input-group-text" for="correct_select_3"> <strong> Answer Option 3
-                                        </strong>
-                                    </label>
-                                </div>
-                                <select class="custom-select" id="correct_select_3" name="correct_option[]" required>
-                                    <option class="text-danger" value="0">Wrong</option>
-                                    <option class="text-success" value="1">Right</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <textarea class="form-control @error('answer_content[]') is-invalid @enderror" id="answer_content_3"
-                        name="answer_content[]" rows="2"></textarea>
-                    @error('answer_content[]')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{$message}}</strong>
-                    </span>
-                    @enderror
-                </div>
-                {{-- End of Answer group  --}}
-                {{-- Start of Answer group  --}}
-                <div class="form-group">
-                    <div class="col">
-                        <div class="row">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <label class="input-group-text" for="correct_select_4"> <strong> Answer Option 4
-                                        </strong>
-                                    </label>
-                                </div>
-                                <select class="custom-select" id="correct_select_4" name="correct_option[]" required>
-                                    <option class="text-danger" value="0">Wrong</option>
-                                    <option class="text-success" value="1">Right</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <textarea class="form-control @error('answer_content[]') is-invalid @enderror" id="answer_content_4"
-                        name="answer_content[]" rows="2"></textarea>
-                    @error('answer_content[]')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{$message}}</strong>
-                    </span>
-                    @enderror
-                </div>
-                {{-- End of Answer group  --}}
 
-
+                    <div class="form-group">
+                        <label for="password">Answer option #2</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text" id="basic-addon1">
+                                    <input type="hidden" name="corrects[]" class="deactivate" value="0">
+                                    <input class="inp-cbx checkboxes" id="cbx1" data-id="1" type="checkbox"
+                                        name="corrects[]" style="display: none" value="1">
+                                    <label class="cbx" for="cbx1">
+                                        <span class="bg-light" title="Correct answer">
+                                            <svg width="12px" height="10px" viewbox="0 0 12 10">
+                                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                            </svg>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                            <textarea class="form-control answers" name="answer_content[]" rows="2"></textarea>
+                            <div class="input-group-append">
+                                <span role="button" class="input-group-text remove" title="Delete">
+                                    <i class="far fa-trash-alt"></i></span>
+                            </div>
+                            <div class="invalid-feedback">The answer option field is required.</div>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-5">
-                    <button type="submit" class="btn btn-success">
+                    <button type="button" id="btn-submit" class="btn btn-success">
                         <span> <i class="fas fa-save"></i> Save </span>
                     </button>
                     {{-- pending clear, back button action --}}
                     {{-- <button type="reset" class="btn btn-warning">Clear</button> --}}
+                    <button class="btn btn-primary" type="button" id="add-answer">Add answer</button>
                     <button type="button" class="btn btn-dark" onclick="window.history.back()">
                         <span> <i class="fas fa-arrow-left"></i> Back</span>
                     </button>

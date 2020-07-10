@@ -56,10 +56,10 @@ $(
 /* ----------------------------------- End ---------------------------------- */
 
 $(document).ready(function() {
-    var i = 1;
-
+    var i = 2;
     // Add answer option
     $(document).on("click", "#add-answer", function() {
+        console.log($("#add-answer"));
         i++;
         $("#dynamic-field").append(
             '<div class="form-group">' +

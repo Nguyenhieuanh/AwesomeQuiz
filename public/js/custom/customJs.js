@@ -40,7 +40,7 @@ function confirmDelete(
  * TODO: Auto resize textarea method
  */
 $(
-    "#question_content, #answer_content_1, #answer_content_2, #answer_content_3, #answer_content_4"
+    "textarea"
 )
     .each(function() {
         this.setAttribute(
@@ -136,6 +136,13 @@ $(document).ready(function() {
                 $(this).removeClass("is-invalid");
             }
         });
+
+        if ($("#question_content").val() == "") {
+            $("#question_content").addClass("is-invalid");
+            count++;
+        } else {
+            count--;
+        }
         if (count == 0) {
             $("#myForm").submit();
         }

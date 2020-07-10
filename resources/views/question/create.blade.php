@@ -14,7 +14,7 @@
                         <label class="input-group-text" for="question_content"> <strong> Question Content
                             </strong>
                         </label>
-                        <textarea class="form-control q-content @error('question_content') is-invalid @enderror"
+                        <textarea class="form-control @error('question_content') is-invalid @enderror"
                             id="question_content" name="question_content" rows="1" autofocus></textarea>
                         <div class="invalid-feedback">The question content field is required.
                         </div>
@@ -86,7 +86,7 @@
                                     </label>
                                 </div>
                             </div>
-                            <textarea class="form-control answers" name="answer_content[]" rows="2"></textarea>
+                            <textarea class="form-control answers" name="answer_content[]" rows="1"></textarea>
                             <div class="input-group-append">
                                 <span role="button" class="input-group-text remove" title="Delete">
                                     <i class="far fa-trash-alt"></i></span>
@@ -112,7 +112,7 @@
                                     </label>
                                 </div>
                             </div>
-                            <textarea class="form-control answers" name="answer_content[]" rows="2"></textarea>
+                            <textarea class="form-control answers" name="answer_content[]" rows="1"></textarea>
                             <div class="input-group-append">
                                 <span role="button" class="input-group-text remove" title="Delete">
                                     <i class="far fa-trash-alt"></i></span>

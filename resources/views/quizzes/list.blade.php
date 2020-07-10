@@ -11,7 +11,9 @@
             <div class="card mb-3">
                 <div class="card-header">
                     <h3>
-                        <a href="{{ route('quiz.show', ['id' => $quiz->id]) }}">{{ $quiz->name }}</a>
+                        <a href="{{ route('quiz.show', ['id' => $quiz->id]) }}">{{ $quiz->name }}</a> - @if (Auth::user()->role == 1 ||Auth::user()->role == 2)
+                            <a class="btn-warning btn" href="{{ route('quiz.edit', ['id' => $quiz->id]) }}">Edit</a>
+                        @endif
                     </h3>
                 </div>
                 <div class="card-body">

@@ -27,7 +27,12 @@
         </div>
                     <div class="md-form">
                         <textarea id="form7" placeholder="Category description" class="md-textarea form-control" name="category_description" rows="3"></textarea>
-
+                        <p class="help-block"></p>
+                        @if($errors->has('category_description'))
+                            <p class="help-block">
+                                {{ $errors->first('category_description') }}
+                            </p>
+                        @endif
                     </div>
         <button type="submit" name="submit" class="btn btn-primary">CREATE</button>
     </form>

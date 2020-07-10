@@ -24,7 +24,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'category'], function () {
-    Route::group(['middleware' => 'role'], function () {
+    Route::group(['middleware' => 'admin.role'], function () {
         Route::get('/create', 'CategoryController@create')->name('categories.create');
         Route::post('/store', 'CategoryController@store')->name('categories.store');
         Route::get('/edit/{id}', 'CategoryController@edit')->name('categories.edit');
@@ -36,20 +36,24 @@ Route::group(['prefix' => 'category'], function () {
     Route::get('/show/{id}', 'CategoryController@show')->name('categories.show');
 });
 
-Route::group(['middleware' => 'role', 'prefix' => 'question'], function () {
-    Route::get('/', 'QuestionController@index')->name('question.index');
-    Route::get('/create', 'QuestionController@create')->name('question.create');
-    Route::post('/store', 'QuestionController@store')->name('question.store');
-    Route::get('/edit/{id}', 'QuestionController@edit')->name('question.edit');
-    Route::post('/update/{id}', 'QuestionController@update')->name('question.update');
-    Route::get('/destroy/{id}', 'QuestionController@destroy')->name('question.destroy');
-    Route::get('/show/{id}', 'QuestionController@show')->name('question.show');
-    Route::post('/store', 'QuestionController@store')->name('question.store');
+Route::group(['prefix' => 'question'], function () {
+    Route::group(['middleware' => 'admin.role'], function () {
+        Route::get('/create', 'QuestionController@create')->name('question.create');
+        Route::post('/store', 'QuestionController@store')->name('question.store');
+        Route::get('/edit/{id}', 'QuestionController@edit')->name('question.edit');
+        Route::post('/update/{id}', 'QuestionController@update')->name('question.update');
+        Route::get('/destroy', 'QuestionController@destroy')->name('question.destroy');
+    });
+    Route::group(['middleware' => 'manager.role'], function () {
+        Route::get('/', 'QuestionController@index')->name('question.index');
+        Route::get('/show/{id}', 'QuestionController@show')->name('question.show');
+    });
+
 });
 
 
 Route::group(['prefix' => 'quiz'], function () {
-    Route::group(['middleware' => 'role'], function () {
+    Route::group(['middleware' => 'manager.role'], function () {
         Route::get('/{id}/edit', 'QuizController@edit')->name('quiz.edit');
         Route::post('/{id}/update', 'QuizController@update')->name('quiz.update');
         Route::post('/{id}/delete', 'QuizController@delete')->name('quiz.delete');
@@ -61,20 +65,19 @@ Route::group(['prefix' => 'quiz'], function () {
 });
 
 
-Route::group(['middleware' => 'role', 'prefix' => 'quiz-question'], function () {
+Route::group(['middleware' => 'manager.role', 'prefix' => 'quiz-question'], function () {
     Route::post('/store', 'QuizQuestionController@store')->name('quizQuestion.store');
     Route::get('/{id}/delete', 'QuizQuestionController@destroy')->name('quizQuestion.destroy');
     Route::post('/multiDelete', 'QuizQuestionController@multiDestroy')->name('quizQuestion.multiDestroy');
 });
 
-Route::group(['middleware' => 'role', 'prefix' => 'user'], function () {
+Route::group(['middleware' => 'admin.role', 'prefix' => 'user'], function () {
     Route::get('/', 'UserController@index')->name('user.list');
-    Route::post('/delete', 'UserController@destroy')->name('user.destroy');
+    Route::get('/promote/{id}', 'UserController@promote')->name('user.promote');
+    Route::get('/demote/{id}', 'UserController@demote')->name('user.demote');
+    Route::post('/block/{id}', 'UserController@block')->name('user.block');
 });
 
-Route::group(['middleware' => 'role', 'prefix' => 'answer'], function () {
-    Route::get('/delete/{id}', 'AnswerController@destroy')->name('answer.destroy');
-});
 Route::group(['prefix' => 'test'], function () {
     Route::get('/{id}', 'UserQuizController@index')->name('quiz.doQuiz');
     Route::post('/', 'UserQuizController@doQuiz')->name('quiz.submit');

@@ -8,6 +8,7 @@
                     <a class="btn-warning btn" href="{{ route('quiz.edit', ['id' => $quiz->id]) }}">Edit</a>
                 @endif</h4>
         </div>
+
         <div class="card-body">
             @if (Auth::user()->role == 0)
             <p>Question count: {{ $quiz->question_count }}</p>

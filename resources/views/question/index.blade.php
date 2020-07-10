@@ -11,7 +11,7 @@
 
     <div class="table-responsive">
         <table
-            class="table table-bordered table-hover {{ count($questions) > 0 ? 'datatable' : '' }} dt-select">
+            class="table table-bordered table-hover {{ count($questions) > 0 ? 'datatable' : '' }}">
             <thead>
                 <tr class="table-primary">
                     <th scope="col">ID</th>

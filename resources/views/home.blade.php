@@ -77,7 +77,7 @@
                         </p>
                         <p>
                             Duration:
-                            @switch($quiz->duration)
+                            @switch($quiz->id)
                                 @case(1) 45 minutes @break
                                 @case(2) 90 minutes @break
                                 @case(3) 120 minutes @break

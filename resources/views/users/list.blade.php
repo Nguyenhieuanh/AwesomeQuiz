@@ -34,12 +34,11 @@
                                 @case(2)<p class="text-danger">God</p>@break
                                 @endswitch
                             </td>
-                            <td>@if (Auth::user()->role != 0)
+                            <td>@if($user->role == 0)
                                     <a href="{{route('user.promote',$user->id)}}" class="btn btn-warning">Promote to Manager</a>
-                                    @endif
-                                @if (Auth::user()->role == 2)
+                                @else
                                     <a href="{{route('user.demote',$user->id)}}" class="btn btn-danger">Demote to Player</a>
-                                    @endif
+                                @endif
 {{--                                <a href="{{ route('question.show',[$user->id]) }}"--}}
 {{--                                   class="btn btn-xs btn-primary">Detail</a>--}}
 {{--                                <a href="{{ route('question.edit',[$user->id]) }}"--}}

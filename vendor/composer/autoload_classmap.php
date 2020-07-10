@@ -23,6 +23,7 @@ return array(
     'App\\Http\\Controllers\\QuestionController' => $baseDir . '/app/Http/Controllers/QuestionController.php',
     'App\\Http\\Controllers\\QuizController' => $baseDir . '/app/Http/Controllers/QuizController.php',
     'App\\Http\\Controllers\\QuizQuestionController' => $baseDir . '/app/Http/Controllers/QuizQuestionController.php',
+    'App\\Http\\Controllers\\QuizResultController' => $baseDir . '/app/Http/Controllers/QuizResultController.php',
     'App\\Http\\Controllers\\UserController' => $baseDir . '/app/Http/Controllers/UserController.php',
     'App\\Http\\Controllers\\UserQuizController' => $baseDir . '/app/Http/Controllers/UserQuizController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',

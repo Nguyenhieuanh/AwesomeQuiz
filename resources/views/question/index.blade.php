@@ -4,7 +4,9 @@
 <h3 class="page-title">Question Manager</h3>
 
 <p>
+    @if (Auth::user()->role == 2)
     <a href="{{ route('question.create') }}" class="btn btn-success">New Question</a>
+        @endif
 </p>
 
 <div class="panel panel-default">
@@ -46,11 +48,13 @@
                     @endswitch
                     <td>
                         <a href="{{ route('question.show',[$question->id]) }}" class="btn btn-xs btn-primary">Detail</a>
+                        @if (Auth::user()->role == 2)
                         <a href="{{ route('question.edit',[$question->id]) }}" class="btn btn-xs btn-info">Edit</a>
                         <button class="btn btn-sm btn-danger"
                             onclick="confirmDelete('{{ route('question.destroy',[$question->id]) }}')">
                             <span><i class="fas fa-trash-alt"></i> Delete</span>
                         </button>
+                            @endif
                     </td>
                 </tr>
                 @endforeach

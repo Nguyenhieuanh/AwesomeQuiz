@@ -69,21 +69,26 @@
                 </div>
                 <div id="dynamic-field">
                     <div class="form-group">
-                        <label for="password">Answer option #1</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <div class="input-group-text" id="basic-addon1">
-                                    <input type="hidden" name="corrects[]" class="deactivate" value="0">
+                                    <input type="hidden" name="corrects[]" class="deactivate" value="0" disabled>
                                     <input class="inp-cbx checkboxes" id="cbx" data-id="1" type="checkbox"
-                                        name="corrects[]" style="display: none" value="1">
+                                        name="corrects[]" style="display: none" value="1" checked>
                                     <label class="cbx" for="cbx">
-                                        <span class="bg-light" title="Correct answer">
+                                        <span title="Correct answer">
                                             <svg width="12px" height="10px" viewbox="0 0 12 10">
                                                 <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
                                             </svg>
                                         </span>
                                     </label>
                                 </div>
+                            </div>
+                            <div class="input-group-prepend">
+                                <label class="input-group-text"><strong> Answer
+                                        Option #1
+                                    </strong>
+                                </label>
                             </div>
                             <textarea class="form-control answers" name="answer_content[]" rows="1"></textarea>
                             <div class="input-group-append">
@@ -95,7 +100,6 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="password">Answer option #2</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <div class="input-group-text" id="basic-addon1">
@@ -111,6 +115,12 @@
                                     </label>
                                 </div>
                             </div>
+                            <div class="input-group-prepend">
+                                <label class="input-group-text"><strong> Answer
+                                        Option #2
+                                    </strong>
+                                </label>
+                            </div>
                             <textarea class="form-control answers" name="answer_content[]" rows="1"></textarea>
                             <div class="input-group-append">
                                 <span role="button" class="input-group-text remove" title="Delete">
@@ -120,19 +130,22 @@
                         </div>
                     </div>
                 </div>
-                {{-- End of Answer group  --}}
-                <button class="btn btn-primary" type="button" id="add-answer">Add answer</button>
-                <div class="float-right">
+            </form>
+        </div>
+        <div class="card-footer">
+            {{-- pending clear, back button action --}}
+            {{-- <button type="reset" class="btn btn-warning">Clear</button> --}}
+            <div class="row">
+                <button class="btn btn-primary ml-3" type="button" id="add-answer">Add answer</button>
+                <div class="mr-1 ml-auto">
                     <button type="button" id="btn-submit" class="btn btn-success">
                         <span> <i class="fas fa-save"></i> Save </span>
                     </button>
-                    {{-- pending clear, back button action --}}
-                    {{-- <button type="reset" class="btn btn-warning">Clear</button> --}}
                     <a href="{{ route('question.index') }}" class="btn btn-secondary">
                         <span> <i class="fas fa-arrow-left"></i> Back</span>
                     </a>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>

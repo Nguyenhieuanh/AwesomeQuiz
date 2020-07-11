@@ -25,8 +25,13 @@
                             <p>
                                 Duration: {{ $quiz->duration }} minutes
                             </p>
-                            <a class="btn btn-info" href="{{route('quiz.statistics',['id'=>$quiz->id])}}">Show
-                                statistics</a>
+                            <p>
+                                @foreach ($quiz->quizQuestions as $q_question)
+                                    {{ ($q_question->question->difficulty == 1) }}
+                                @endforeach
+                            </p>
+                            {{-- <a class="btn btn-info" href="{{route('quiz.statistics',['id'=>$quiz->id])}}">Show
+                                statistics</a> --}}
                         </div>
                         <div class="card-footer">
                             @if (Auth::user()->role == 0)

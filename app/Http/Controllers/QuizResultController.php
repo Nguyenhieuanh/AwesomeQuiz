@@ -23,6 +23,7 @@ class QuizResultController extends Controller
     {
         $userQuiz = $this->userQuizService->findById($id);
         $questions = $userQuiz->quizResults->groupBy('question_id');
+        // dd($questions);
         $point = 0;
         $checkCorrect = false;
         foreach ($questions as $question) {
@@ -30,14 +31,15 @@ class QuizResultController extends Controller
                 if ($item->correct != $item->answered) {
                     $checkCorrect = false;
                     break;
+                } else {
+                    $checkCorrect = true;
                 }
-                $checkCorrect = true;
             }
             if ($checkCorrect) {
                 $point++;
             }
         };
         $questions_count = $questions->count();
-        return view('user_quiz.result', compact('point', 'questions_count'));
+        return view('user_quiz.result', compact('point', 'questions_count', 'questions', 'userQuiz'));
     }
 }

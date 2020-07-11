@@ -25,9 +25,9 @@ class QuizResult extends Model
         return $this->belongsToMany('App\Models\Question');
     }
 
-    public function answers()
+    public function answer()
     {
-        return $this->belongsToMany('App\Models\Answer');
+        return $this->belongsTo('App\Models\Answer');
     }
 
     public function userQuiz()

@@ -77,10 +77,12 @@
                         </p>
                         <p>
                             Duration:
-                            @switch($quiz->id)
-                                @case(1) 45 minutes @break
-                                @case(2) 90 minutes @break
-                                @case(3) 120 minutes @break
+                            @switch($quiz->duration)
+                                @case(15) 15 minutes @break
+                                @case(30) 30 minutes @break
+                                @case(45) 45 minutes @break
+                                @case(90) 90 minutes @break
+                                @case(120) 120 minutes @break
                             @endswitch
                         </p>
                     </div>

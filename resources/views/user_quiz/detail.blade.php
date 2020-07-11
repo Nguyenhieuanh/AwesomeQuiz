@@ -28,9 +28,9 @@
                 <input type="hidden" name="answer_id[]" value="{{ $answer->id }}">
                 <input type="hidden" name="correct[]" value="{{ $answer->correct }}">
                 <label>
+                    <input type="hidden" class="deactive" name="answered[]" value="0" id="">
                     <input type="checkbox" class="checkboxes" name="answered[]" value="1" id="">
                     {{ $answer->answer_content }}
-                    <input type="hidden" class="deactive" name="answered[]" value="0" id="">
                 </label>
                 <br>
                 @endforeach

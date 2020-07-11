@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class QuizResult extends Model
 {
     protected $fillable = [
-        'user_id', 'quiz_id', 'question_id', 'answer_id', 'correct', 'answered'
+        'user_id', 'quiz_id', 'question_id', 'answer_id', 'correct', 'answered', 'user_quiz_id'
     ];
 
     public function users()
@@ -28,5 +28,10 @@ class QuizResult extends Model
     public function answers()
     {
         return $this->belongsToMany('App\Models\Answer');
+    }
+
+    public function userQuiz()
+    {
+        return $this->belongsTo('App\Models\UserQuiz');
     }
 }

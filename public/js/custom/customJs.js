@@ -54,16 +54,13 @@ $(document).ready(function() {
         });
 
     /* ----------------------------------- End ---------------------------------- */
-    var i = 2;
+    var i = $("#myForm textarea").size() - 1;
     // Add answer option
     $(document).on("click", "#add-answer", function() {
         console.log($("#add-answer"));
         i++;
         $("#dynamic-field").append(
             '<div class="form-group">' +
-                "<strong>Answer option #" +
-                i +
-                ":</strong>" +
                 '<div class="input-group">' +
                 '<div class="input-group-prepend">' +
                 '<div class="input-group-text" id="basic-addon1">' +
@@ -84,6 +81,10 @@ $(document).ready(function() {
                 "</label>" +
                 "</div>" +
                 "</div>" +
+                '<div class="input-group-prepend">' +
+                '<label class="input-group-text"> <strong> Answer Option #' +
+                i +
+                "</strong></label></div>" +
                 '<textarea class="form-control answers" name="answer_content[]" rows="1"></textarea>' +
                 '<div class="input-group-append">' +
                 '<span role="button" class="input-group-text remove" title="Delete">' +

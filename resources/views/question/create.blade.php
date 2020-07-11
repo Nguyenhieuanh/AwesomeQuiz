@@ -70,7 +70,6 @@
                 </div>
                 <div id="dynamic-field">
                     <div class="form-group">
-                        <strong>Answer option #1</strong>
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <div class="input-group-text" id="basic-addon1">
@@ -86,6 +85,12 @@
                                     </label>
                                 </div>
                             </div>
+                            <div class="input-group-prepend">
+                                <label class="input-group-text"><strong> Answer
+                                        Option #1
+                                    </strong>
+                                </label>
+                            </div>
                             <textarea class="form-control answers" name="answer_content[]" rows="1"></textarea>
                             <div class="input-group-append">
                                 <span role="button" class="input-group-text remove" title="Delete">
@@ -96,7 +101,6 @@
                     </div>
 
                     <div class="form-group">
-                        <strong>Answer option #2</strong>
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <div class="input-group-text" id="basic-addon1">
@@ -111,6 +115,12 @@
                                         </span>
                                     </label>
                                 </div>
+                            </div>
+                            <div class="input-group-prepend">
+                                <label class="input-group-text"><strong> Answer
+                                        Option #2
+                                    </strong>
+                                </label>
                             </div>
                             <textarea class="form-control answers" name="answer_content[]" rows="1"></textarea>
                             <div class="input-group-append">

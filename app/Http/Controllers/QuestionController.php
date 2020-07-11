@@ -47,7 +47,7 @@ class QuestionController extends Controller
     public function store(QuestionFormRequest $request)
     {
         $answer_content = $request->answer_content;
-        $correct_option = $request->correct_option;
+        $correct_option = $request->corrects;
 
         $question = $this->questionService->create($request->all());
 

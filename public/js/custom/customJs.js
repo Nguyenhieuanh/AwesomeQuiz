@@ -39,9 +39,7 @@ function confirmDelete(
 /**
  * TODO: Auto resize textarea method
  */
-$(
-    "textarea"
-)
+$("#myForm textarea")
     .each(function() {
         this.setAttribute(
             "style",
@@ -63,7 +61,7 @@ $(document).ready(function() {
         i++;
         $("#dynamic-field").append(
             '<div class="form-group">' +
-                '<strong>Answer option #' +
+                "<strong>Answer option #" +
                 i +
                 ":</strong>" +
                 '<div class="input-group">' +
@@ -110,16 +108,15 @@ $(document).ready(function() {
         $(this).prop("checked")
             ? $(this)
                   .prev()
-                  .prop("disabled", true)
-            : $(this)
-                  .prev()
-                  .prop("disabled", false);
-        $(this).prop("checked")
-            ? $(this)
+                  .prop("disabled", true) &&
+              $(this)
                   .next()
                   .children()
                   .removeClass("bg-light")
             : $(this)
+                  .prev()
+                  .prop("disabled", false) &&
+              $(this)
                   .next()
                   .children()
                   .addClass("bg-light");

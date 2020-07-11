@@ -74,11 +74,11 @@
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <div class="input-group-text" id="basic-addon1">
-                                    <input type="hidden" name="corrects[]" class="deactivate" value="0">
+                                    <input type="hidden" name="corrects[]" class="deactivate" value="0" disabled>
                                     <input class="inp-cbx checkboxes" id="cbx" data-id="1" type="checkbox"
-                                        name="corrects[]" style="display: none" value="1">
+                                        name="corrects[]" style="display: none" value="1" checked>
                                     <label class="cbx" for="cbx">
-                                        <span class="bg-light" title="Correct answer">
+                                        <span title="Correct answer">
                                             <svg width="12px" height="10px" viewbox="0 0 12 10">
                                                 <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
                                             </svg>

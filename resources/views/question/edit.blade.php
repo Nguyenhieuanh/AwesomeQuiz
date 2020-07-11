@@ -118,17 +118,22 @@
                         {{-- End of Answer group  --}}
                         @endforeach
                     </div>
-                    <div class="col-5">
-                        <button type="submit" class="btn btn-success">
-                            <span> <i class="fas fa-save"></i> Save </span>
-                        </button>
-                        {{-- pending clear, back button action --}}
-                        {{-- <button type="reset" class="btn btn-warning">Clear</button> --}}
-                        <button type="button" class="btn btn-dark" onclick="window.history.back()">
-                            <span> <i class="fas fa-arrow-left"></i> Back</span>
-                        </button>
-                    </div>
                 </form>
+            </div>
+        </div>
+        <div class="card-footer pl-4 pr-4">
+            {{-- pending clear, back button action --}}
+            {{-- <button type="reset" class="btn btn-warning">Clear</button> --}}
+            <div class="row">
+                <button class="btn btn-primary ml-3" type="button" id="add-answer">Add answer</button>
+                <div class="mr-1 ml-auto">
+                    <button type="button" id="btn-submit" class="btn btn-success">
+                        <span> <i class="fas fa-save"></i> Save </span>
+                    </button>
+                    <button type="button" class="btn btn-secondary" onclick="window.history.back()">
+                        <span> <i class="fas fa-arrow-left"></i> Back</span>
+                    </button>
+                </div>
             </div>
         </div>
     </div>

@@ -4,13 +4,22 @@
 <div class="col mt-3 mx-auto">
     <div class="card">
         <div class="card-header">
-            <h3 class="page-title">Question</h3>
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{route("home")}}">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{{route("question.index")}}">Question</a></li>
-                </ol>
-            </nav>
+            <div class="float-left">
+                <h3 class="page-title">Question</h3>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{route("home")}}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{route("question.index")}}">Question</a></li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="col-4 mb-3 float-right">
+                <div class="input-group-append">
+                    <input type="text" class="form-control" placeholder="Search"
+                        aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <button class="btn btn-outline-success" type="button" id="button-addon2">Search</button>
+                </div>
+            </div>
         </div>
         <div class="card-body p-4">
             @if (Auth::user()->role == 2)

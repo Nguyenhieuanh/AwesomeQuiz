@@ -15,6 +15,8 @@
     `<span> <i class="fas fa-save"></i> Save </span>`
     `</button>`
 -   Back icon btn:
-    `<button type="button" class="btn btn-dark" onclick="window.history.back()">`
+    `<button type="button" class="btn btn-secondary" onclick="window.history.back()">`
     `<span> <i class="fas fa-arrow-left"></i> Back</span>`
     `</button>`
+    or
+    `<a href="{{ route('categories.index') }}" class="btn btn-secondary"><span> <i class="fas fa-arrow-left"></i> Back</span> </a>`

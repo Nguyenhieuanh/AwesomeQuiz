@@ -20,7 +20,7 @@ class CategoryController extends Controller
 
     public function index()
     {
-        $categories = Category::paginate(5);
+        $categories = Category::paginate(10);
 
         return view('categories.index', compact('categories'));
     }
@@ -34,17 +34,18 @@ class CategoryController extends Controller
 
     public function store(StoreCategoriesRequest $request)
     {
-        Category::create($request->all());
+        $question = $this->categoryService->create($request->all());
+        if(!$question){
+            alert()->error('Create category error', 'Error')->showConfirmButton('OK');
+            return redirect()->route('categories.create');
+        };
         alert()->success('Category created', 'Successfully')->autoClose(1800);
-
-
-        return redirect()->route('categories.index');
+        return redirect()->route('categories.create');
     }
-
 
     public function edit($id)
     {
-        $category = Category::findOrFail($id);
+        $category = $this->categoryService->findById($id);
 
         return view('categories.edit', compact('category'));
     }

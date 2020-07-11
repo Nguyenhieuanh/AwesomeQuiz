@@ -1,79 +1,77 @@
 @extends('layouts.navbar')
 
 @section('content_home')
-{{-- <p>You right: {{ $point.'/'.$questions_count }}</p>
-<p>Your point: {{ $point/$questions_count * 100 }} point</p> --}}
-
-<div class="p-4 col-11 mx-auto">
-    <div class="card">
-        <div class="card-header">
-            <h3>{{ $userQuiz->quiz->name }}</h3>
-            <p>{{ $userQuiz->quiz->created_at }}</p>
-        </div>
-        <div class="card-body p-4">
-            <table class="table table-bordered">
-                <thead class="thead-light">
-                    <tr>
-                        <th>#</th>
-                        <th>Question</th>
-                        <th>Answer</th>
-                    </tr>
-                </thead>
-                <tbody>
+<div class="card">
+    <div class="card-header">
+        <h3>{{ $userQuiz->quiz->name }}</h3>
+    </div>
+    <div class="card-body">
+        @php
+        ($i = 1)
+        @endphp
+        @foreach ($questions as $question)
+        <table class="table table-bordered">
+            <thead class="bg-info text-white">
+                <tr>
+                    <th class="align-text-top">Question #{{ $i++ }}</th>
+                    <th>{{ $question->first()->question->question_content }}</th>
+                    <th class="align-text-top">Correct answer</th>
+                    <th class="align-text-top">Your answer</th>
+                </tr>
+            </thead>
+            <tbody>
+                @php
+                ($first = true)
+                @endphp
+                @foreach ($question as $item)
+                <tr>
+                    @if ($first == true)
+                    <td rowspan="{{ $item->answer->count() }}">Answer</td>
                     @php
-                    ($i=0)
-                    @endphp
-                    @php
-                    ($checkCorrect=false)
-                    @endphp
-                    @foreach ($questions as $question)
-                    @php
-                    ($first = true)
-                    @endphp
-                    @foreach ($question as $item)
-                    @if ($item->correct != $item->answered)
-                    @php
-                    ($checkCorrect = false)
-                    @endphp
-                    @else
-                    @php
-                    ($checkCorrect = true)
+                    ($first = false)
                     @endphp
                     @endif
-                    <tr>
-                        @if ($first == true)
-                        <td rowspan="{{ $question->count() }}">{{ ++$i }}</td>
-                        <td rowspan="{{ $question->count() }}" class="{{ $checkCorrect ? "table-success" : "table-danger" }}">
-                            @if ($item->correct != $item->answered)
-                            @php
-                            ($checkCorrect = false)
-                            @endphp
-                            @else
-                            @php
-                            ($checkCorrect = false)
-                            @endphp
-                            @endif
-                        </td>
-                        @php
-                        ($first = false)
-                        @endphp
-                        @endif
-                        <td
-                            class="@if ($item->answered==$item->correct && $item->correct == 1) alert alert-success @endif">
-                            {{ $item->answer->answer_content }}
-                            @if ($item->correct == 1)
-                            <b><i>(correct answer)</i></b>
-                            @endif
-                            @if ($item->answered == 1)
-                            <span><i>(your answer)</i></span>
-                            @endif
-                        </td>
-                    </tr>
-                    @endforeach
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
+                    <td class="
+                    @if ($item->answered == $item->correct && $item->answered == 1)
+                    alert alert-success
+                    @elseif(($item->answered == 1 && $item->answered != $item->correct) || ($item->correct == 1 && $item->answered != $item->correct))
+                    alert alert-danger
+                    @endif
+                    ">
+                        {{ $item->answer->answer_content }}
+                    </td>
+                    <td class="
+                    @if ($item->answered == $item->correct && $item->answered == 1)
+                    alert alert-success
+                    @elseif(($item->answered == 1 && $item->answered != $item->correct) || ($item->correct == 1 && $item->answered != $item->correct))
+                    alert alert-danger
+                    @endif
+                    ">
+                        {{ $item->correct == 1 ? "X" : "" }}
+                    </td>
+                    <td class="
+                    @if ($item->answered == $item->correct && $item->answered == 1)
+                    alert alert-success
+                    @elseif(($item->answered == 1 && $item->answered != $item->correct) || ($item->correct == 1 && $item->answered != $item->correct))
+                    alert alert-danger
+                    @endif
+                    ">
+                        {{ $item->answered == 1 ? "X" : "" }}
+                    </td>
+                </tr>
+
+                @endforeach
+            </tbody>
+            <tfoot>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tfoot>
+        </table>
+        @endforeach
+    </div>
+    <div class="card-footer">
     </div>
 </div>
 @endsection

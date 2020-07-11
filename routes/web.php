@@ -42,7 +42,7 @@ Route::group(['prefix' => 'question'], function () {
         Route::post('/store', 'QuestionController@store')->name('question.store');
         Route::get('/edit/{id}', 'QuestionController@edit')->name('question.edit');
         Route::post('/update/{id}', 'QuestionController@update')->name('question.update');
-        Route::get('/destroy', 'QuestionController@destroy')->name('question.destroy');
+        Route::get('/destroy/{id}', 'QuestionController@destroy')->name('question.destroy');
     });
     Route::group(['middleware' => 'manager.role'], function () {
         Route::get('/', 'QuestionController@index')->name('question.index');
@@ -80,6 +80,7 @@ Route::group(['middleware' => 'admin.role', 'prefix' => 'user'], function () {
 });
 
 Route::group(['prefix' => 'test'], function () {
-    Route::get('/{id}', 'UserQuizController@index')->name('quiz.doQuiz');
+    Route::get('/doExam/{id}', 'UserQuizController@index')->name('quiz.doQuiz');
     Route::post('/', 'UserQuizController@doQuiz')->name('quiz.submit');
+    Route::get('/result/{id}', 'QuizResultController@showResult')->name('quiz.result');
 });

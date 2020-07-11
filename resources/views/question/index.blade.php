@@ -5,6 +5,12 @@
     <div class="card">
         <div class="card-header">
             <h3 class="page-title">Question</h3>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{route("home")}}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{route("question.index")}}">Question</a></li>
+                </ol>
+            </nav>
         </div>
         <div class="card-body p-4">
             @if (Auth::user()->role == 2)
@@ -34,7 +40,8 @@
                         <tr data-entry-id="{{ $question->id }}">
                             <td scoope="row" class="text text-center">{{ $question->id }}</td>
                             <td>
-                                <p data-toggle="collapse" href="#_{{$question->id}}" aria-expanded="false" title="Click for answers">
+                                <p data-toggle="collapse" href="#_{{$question->id}}" aria-expanded="false"
+                                    title="Click for answers">
                                     {{ $question->question_content }} </p>
                                 <div class="collapse" id="_{{$question->id}}">
                                     <div class="card card-body">

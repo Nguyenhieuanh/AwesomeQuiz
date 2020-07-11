@@ -45,7 +45,6 @@
                             </div>
                         </div>
                         {{-- End of Select difficulty group --}}
-
                     </div>
                     <div class="col">
                         {{-- Start of Select Category group --}}
@@ -142,9 +141,9 @@
                     <button type="button" id="btn-submit" class="btn btn-success">
                         <span> <i class="fas fa-save"></i> Save </span>
                     </button>
-                    <button type="button" class="btn btn-secondary" onclick="window.history.back()">
+                    <a href="{{ route('question.index') }}" class="btn btn-secondary">
                         <span> <i class="fas fa-arrow-left"></i> Back</span>
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>

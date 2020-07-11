@@ -39,11 +39,17 @@
                                 <div class="collapse" id="_{{$question->id}}">
                                     <div class="card card-body">
                                         @foreach($question->answers as $key => $answer)
-                                        <p @if ($answer->correct == 1)
-                                            class="table-success" title='Right'
-                                            @else
-                                            class="table-light" title='Wrong'
-                                            @endif> Answer# {{$key+1}}: {{ $answer->answer_content }} </p>
+                                        <p><strong @switch($answer->correct)
+                                                @case(1)
+                                                title='Right'>
+                                                <span class="badge badge-success">
+                                                    @break
+                                                    @default
+                                                    title='Wrong' >
+                                                    <span class="badge badge-danger">
+                                                        @endswitch
+                                                        Answer# {{$key+1}}</span>
+                                            </strong> {{ $answer->answer_content }} </p>
                                         @endforeach
                                     </div>
                                 </div>
@@ -51,17 +57,17 @@
                             @switch($question->difficulty)
                             @case(1)
                             <td>
-                                <h3 class="badge badge-success">Easy</h3>
+                                <h5> <span class="badge badge-pill badge-success">Easy</span></h5>
                             </td>
                             @break
                             @case(2)
                             <td>
-                                <h3 class="badge badge-warning">Medium</h3>
+                                <h5> <span class="badge badge-pill badge-warning">Medium</span></h5>
                             </td>
                             @break
                             @case(3)
                             <td>
-                                <h3 class="badge badge-danger">Hard</h3>
+                                <h5> <span class="badge badge-pill badge-danger">Hard</span></h5>
                             </td>
                             @break
                             @endswitch

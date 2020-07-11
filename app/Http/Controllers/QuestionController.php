@@ -89,7 +89,7 @@ class QuestionController extends Controller
         ];
         $this->questionService->update($question_data, $id);
         $question = $this->questionService->findById($id);
-        $corrects = $questionsRequest->correct_option;
+        $corrects = $questionsRequest->corrects;
         $answers = $questionsRequest->answer_content;
         $answerId = $question->answers;
         for ($i = 0; $i < count($answerId); $i++) {

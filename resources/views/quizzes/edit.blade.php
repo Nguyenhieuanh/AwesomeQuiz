@@ -74,17 +74,18 @@
                     @csrf
                     <input type="hidden" name="quiz_id" value="{{ $quiz->id }}">
                     @foreach ($questions as $question)
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">
+                    <table class="table table-striped">
+                            <td>
                                 <input type="checkbox" name="question_id[ ]" value="{{ $question->id }}"
                                     aria-label="Checkbox for following text input">
-                            </div>
-                        </div>
-                        <textarea class="form-control" aria-label="Text input with checkbox" cols="5" readonly>
-                            {{ $question->question_content }}
-                        </textarea>
-                    </div>
+                            </td>
+                            <td>
+                                <p>
+                                    {{ $question->question_content }}
+                                </p>
+                            </td>
+                    </table>
+
                     @endforeach
                     <button class="btn btn-success" type="submit">Add</button>
                 </form>

@@ -77,7 +77,7 @@
                                                     title='Wrong' >
                                                     <span class="badge badge-danger">
                                                         @endswitch
-                                                        Answer# {{$key+1}}</span>
+                                                        Answer #{{$key+1}}</span>
                                             </strong> {{ $answer->answer_content }} </p>
                                         @endforeach
                                     </div>

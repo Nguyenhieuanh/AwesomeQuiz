@@ -7,39 +7,42 @@
             <h3 class="page-title">Category</h3>
         </div>
         <div class="card-body p-4">
-            <div class="float-left">@if (Auth::user()->role == 1)
+            @if (Auth::user()->role == 2)
+            <div class="float-left">
                 <a href="{{ route('categories.create') }}" class="btn btn-success">
                     <span><i class="fas fa-plus"></i> Create category</span>
-                </a>@endif
+                </a>
             </div>
+            @endif
             <table class="table table-bordered table-hover {{ count($categories) > 0 ? 'datatable' : '' }}">
                 <thead>
                     <tr class="table-primary">
                         <th>ID</th>
                         <th style="width: 15%">Category Title</th>
                         <th>Description</th>
-                        <th style="width: 15%">Actions</th>
+                        @if (Auth::user()->role == 2)<th style="width: 15%">Actions</th>@endif
                     </tr>
                 </thead>
                 <tbody>
                     @if (count($categories) > 0)
                     @foreach ($categories as $category)
-                    <tr data-entry-id="{{ $category->id }}" data-toggle="modal" data-target="#category-details" title="Click for more Details">
+                    <tr data-entry-id="{{ $category->id }}" data-toggle="modal" data-target="#category-details"
+                        title="Click for more Details">
                         <td> {{$category->id}}</td>
                         <td>
                             <p>{{ $category->category_name }}</p>
                         </td>
                         <td>{{$category->category_description}}</td>
+                        @if (Auth::user()->role == 2)
                         <td>
-                            @if (Auth::user()->role == 1)
                             <a href="{{ route('categories.edit',[$category->id]) }}" class="btn btn-sm btn-primary">
                                 <span><i class="far fa-edit"></i> Edit</a></span>
                             <button class="btn btn-sm btn-danger"
                                 onclick="confirmDelete('{{ route('categories.destroy',[$category->id]) }}')">
                                 <span><i class="fas fa-trash-alt"></i> Delete</span>
                             </button>
-                            @endif
                         </td>
+                        @endif
                     </tr>
                     @endforeach
                     @else
@@ -72,8 +75,10 @@
                 <p>{{$category->category_description}}</p>
             </div>
             <div class="modal-footer">
+                @if (Auth::user()->role == 2)
                 <a href="{{ route('categories.edit',[$category->id]) }}" class="btn btn-primary">
                     <span><i class="far fa-edit"></i> Edit</a></span>
+                @endif
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
                     <span><i class="fas fa-times"></i> Close </span>
                 </button>

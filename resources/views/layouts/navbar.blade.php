@@ -13,46 +13,26 @@
     <a href="{{route('home')}}" class="navbar-brand"><i class="material-icons">
             school</i> AwesomeQuiz</a>
 
-    <!-- Search -->
-    <form class="navbar-search-form d-none d-md-flex">
-        <input type="text" class="form-control" placeholder="Tìm kiếm">
-        <button class="btn" type="button"><i class="material-icons">
-                search</i></button>
-    </form>
-    <!-- // END Search -->
 
     <div class="navbar-spacer"></div>
 
     <!-- Menu -->
     <ul class="nav navbar-nav d-none d-md-flex">
         <li class="nav-item">
-            <a class="nav-link" href="student-forum.html">Diễn đàn</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="student-help-center.html">Trợ giúp</a>
+            <a class="nav-link" href="#">Help</a>
         </li>
     </ul>
 
     <!-- Menu -->
     <ul class="nav navbar-nav">
 
-        <li class="nav-item">
-            <a href="student-cart.html" class="nav-link">
-                <i class="material-icons">shopping_cart</i>
-            </a>
-        </li>
+
 
         <!-- User dropdown -->
         <li class="nav-item dropdown">
             <a class="nav-link active dropdown-toggle" data-toggle="dropdown" href="#" role="button"><img
                     src="assets/images/people/50/guy-6.jpg" alt="Avatar" class="rounded-circle" width="40"></a>
             <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item" href="#">
-                    <i class="material-icons">edit</i> Thay đổi tài khoản
-                </a>
-                <a class="dropdown-item" href="#">
-                    <i class="material-icons">person</i> Thông tin cá nhân
-                </a>
                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">
                     <i class="material-icons">lock</i> Logout
@@ -81,29 +61,31 @@
                         <li class="sidebar-menu-item active">
                             <a class="sidebar-menu-button" href="#">
                                 <i class="red sidebar-menu-icon sidebar-menu-icon--left material-icons">
-                                    account_box</i> Học sinh
+                                    account_box</i> QuizPlayer
                             </a>
                         </li>
-                        @else
+                        @elseif (Auth::user()->role == 1)
                         <li class="sidebar-menu-item">
                             <a class="sidebar-menu-button" href="#">
                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
-                                    school</i> Instructor
+                                    school</i> QuizManager
                             </a>
                         </li>
+                            @else
+                            <li class="sidebar-menu-item">
+                                <a class="sidebar-menu-button" href="#">
+                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                        engineering</i> OverLord
+                                </a>
+                            </li>
                         @endif
                     </ul>
 
                     @if (Auth::user()->role == 0)
                     {{-- Student --}}
-                    <div class="sidebar-heading">Student</div>
+                    <div class="sidebar-heading">QuizPlayer</div>
                     <ul class="sidebar-menu">
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button" href="#">
-                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
-                                    search</i> Đề kiểm tra
-                            </a>
-                        </li>
+
                         <li class="sidebar-menu-item">
                             <a class="sidebar-menu-button" href="{{route('categories.index')}}">
                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
@@ -113,26 +95,13 @@
                         <li class="sidebar-menu-item">
                             <a class="sidebar-menu-button" href="{{ route('quiz.list') }}">
                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
-                                    import_contacts</i> Xem đề
+                                    import_contacts</i> Quizzes
                             </a>
                         </li>
                         <li class="sidebar-menu-item">
                             <a class="sidebar-menu-button" href="#">
                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
-                                    class</i> Danh sách học sinh
-                                <span class="sidebar-menu-badge badge badge-default ml-auto">PRO</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button" href="#">
-                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
-                                    poll</i> Câu hỏi
-                            </a>
-                        </li>
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button" href="#">
-                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
-                                    school</i> Đề đã làm
+                                    school</i> History
                             </a>
                         </li>
 
@@ -147,39 +116,39 @@
                     </ul>
                     @else
                     {{-- instructor --}}
-                    <div class="sidebar-heading">Instructor</div>
+                    <div class="sidebar-heading">QuizManager</div>
                     <ul class="sidebar-menu">
-
                         <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button" href="{{route('categories.index')}}">
-                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
-                                    import_contacts</i> Quiz Category
+                            <a class="sidebar-menu-button" href="{{ route('quiz.list') }}">
+                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">sticky_note_2</i> Quiz
+                                Manager
                             </a>
                         </li>
                         <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button" href="{{ route('quiz.list') }}">
-                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">help</i> Quiz
-                                Manager
+                            <a class="sidebar-menu-button" href="{{route('categories.index')}}">
+                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                    import_contacts</i> Quiz Category List
                             </a>
                         </li>
                         <li class="sidebar-menu-item">
                             <a class="sidebar-menu-button" href="{{route('question.index')}}">
                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">help</i> Question
-                                Manager
+                                List
                             </a>
                         </li>
 
                         <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button" href="{{route('user.list')}}">
-                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">help</i> QuizPlayer Manager
-                            </a>
-                        </li>
-                        <li class="sidebar-menu-item">
                             <a class="sidebar-menu-button" href="#">
-                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">language</i> Public
-                                Profile
+                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">history</i> Submitted Quizzes
                             </a>
                         </li>
+                        @if (Auth::user()->role == 2)
+                            <li class="sidebar-menu-item">
+                                <a class="sidebar-menu-button" href="{{route('user.list')}}">
+                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">account_circle</i> User List
+                                </a>
+                            </li>
+                            @endif
                         <li class="sidebar-menu-item">
                             <a class="sidebar-menu-button" href="{{ route('logout') }}" onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
@@ -187,6 +156,7 @@
                             </a>
                         </li>
                     </ul>
+
                     @endif
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf

@@ -9,7 +9,7 @@
         <div class="card-body">
             <h5 class="card-title">Question #{{$question->id}} content:</h5>
             <p class="card-text">{{$question->question_content}}</p>
-            <table class="table table-striped table-bordered table-hover">
+            <table class="table table-bordered table-hover">
                 <thead>
                     <tr class="table-primary">
                         <th scope="col">#</th>
@@ -25,11 +25,12 @@
                         <td scope="row">{{ ++$key }}</td>
 
                         <td>{{ $answer->answer_content }}</td>
-                        <td>
-                            <button class="btn btn-sm btn-danger"
+                        <td> @if (Auth::user()->role == 2)
+                            {{-- <button class="btn btn-sm btn-danger"
                                 onclick="confirmDelete('{{ route('answer.destroy',[$answer->id]) }}')">
                                 <span><i class="fas fa-trash-alt"></i> Delete</span>
-                            </button>
+                            </button> --}}
+                            @endif
                         </td>
                     </tr>
                     @endforeach

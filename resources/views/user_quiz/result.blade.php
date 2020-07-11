@@ -31,12 +31,27 @@
                     ($first = true)
                     @endphp
                     @foreach ($question as $item)
+                    @if ($item->correct != $item->answered)
+                    @php
+                    ($checkCorrect = false)
+                    @endphp
+                    @else
+                    @php
+                    ($checkCorrect = true)
+                    @endphp
+                    @endif
                     <tr>
                         @if ($first == true)
                         <td rowspan="{{ $question->count() }}">{{ ++$i }}</td>
-                        <td rowspan="{{ $question->count() }}">
+                        <td rowspan="{{ $question->count() }}" class="{{ $checkCorrect ? "table-success" : "table-danger" }}">
                             @if ($item->correct != $item->answered)
-                            123
+                            @php
+                            ($checkCorrect = false)
+                            @endphp
+                            @else
+                            @php
+                            ($checkCorrect = false)
+                            @endphp
                             @endif
                         </td>
                         @php

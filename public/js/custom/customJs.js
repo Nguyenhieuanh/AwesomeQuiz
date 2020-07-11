@@ -31,29 +31,29 @@ function confirmDelete(
             }
         });
 }
-/* ----------------------------------- End ---------------------------------- */
-
-/* -------------------------------------------------------------------------- */
-/*                              Textarea autosize                             */
-/* -------------------------------------------------------------------------- */
-/**
- * TODO: Auto resize textarea method
- */
-$("#myForm textarea")
-    .each(function() {
-        this.setAttribute(
-            "style",
-            "height:" + this.scrollHeight + "px;overflow-y:hidden;"
-        );
-    })
-    .on("input", function() {
-        this.style.height = "auto";
-        this.style.height = this.scrollHeight + "px";
-    });
-
-/* ----------------------------------- End ---------------------------------- */
 
 $(document).ready(function() {
+    /* ----------------------------------- End ---------------------------------- */
+
+    /* -------------------------------------------------------------------------- */
+    /*                              Textarea autosize                             */
+    /* -------------------------------------------------------------------------- */
+    /**
+     * TODO: Auto resize textarea method
+     */
+    $("#myForm textarea")
+        .each(function() {
+            this.setAttribute(
+                "style",
+                "height:" + this.scrollHeight + "px;overflow-y:hidden;"
+            );
+        })
+        .on("input", function() {
+            this.style.height = "auto";
+            this.style.height = this.scrollHeight + "px";
+        });
+
+    /* ----------------------------------- End ---------------------------------- */
     var i = 2;
     // Add answer option
     $(document).on("click", "#add-answer", function() {

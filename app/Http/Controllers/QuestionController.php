@@ -35,7 +35,8 @@ class QuestionController extends Controller
     public function index()
     {
         $questions = Question::paginate(10);
-        return view('question.index', compact('questions'));
+        $categories = $this->categoryService->getAll();
+        return view('question.index', compact('questions','categories'));
     }
 
     public function create()

@@ -15,9 +15,14 @@
             </div>
             <div class="col-4 mb-3 float-right">
                 <div class="input-group-append">
+                    <select class="custom-select" id="category-select" name="category" required>
+                        @foreach ($categories as $category)
+                        <option value="{{$category->id}}">{{$category->category_name}}</option>
+                        @endforeach
+                    </select>
                     <input type="text" class="form-control" placeholder="Search"
                         aria-label="Recipient's username" aria-describedby="button-addon2">
-                    <button class="btn btn-outline-success" type="button" id="button-addon2">Search</button>
+                    <button class="btn btn-outline-success" type="button" id="button-addon2"><i class="fas fa-search"></i></button>
                 </div>
             </div>
         </div>

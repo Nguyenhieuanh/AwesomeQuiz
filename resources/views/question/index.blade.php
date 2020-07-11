@@ -13,16 +13,24 @@
                     </ol>
                 </nav>
             </div>
-            <div class="col-4 mb-3 float-right">
+            <div class="col-6 mb-3 float-right">
                 <div class="input-group-append">
-                    <select class="custom-select" id="category-select" name="category" required>
+                    <select class="custom-select" id="category-select" name="category">
+                        <option selected>All Category</option>
                         @foreach ($categories as $category)
-                        <option value="{{$category->id}}">{{$category->category_name}}</option>
+                        <option value="{{$category->category_name}}">{{$category->category_name}}</option>
                         @endforeach
                     </select>
-                    <input type="text" class="form-control" placeholder="Search"
-                        aria-label="Recipient's username" aria-describedby="button-addon2">
-                    <button class="btn btn-outline-success" type="button" id="button-addon2"><i class="fas fa-search"></i></button>
+                    <select class="custom-select" id="difficulty-select" name="difficulty">
+                        <option selected>All Difficulty</option>
+                        <option value="Easy">Easy</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Hard">Hard</option>
+                    </select>
+                    <input type="text" class="form-control" placeholder="Search" aria-label="Recipient's username"
+                        aria-describedby="button-addon2">
+                    <button class="btn btn-outline-success" type="button" id="button-addon2">
+                        <i class="fas fa-search"></i></button>
                 </div>
             </div>
         </div>

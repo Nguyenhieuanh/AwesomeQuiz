@@ -27,13 +27,15 @@
                 <tbody>
                     @if (count($categories) > 0)
                     @foreach ($categories as $category)
-                    <tr data-entry-id="{{ $category->id }}" data-toggle="modal" data-target="#category-details"
-                        title="Click for more Details">
-                        <td> {{$category->id}}</td>
-                        <td>
+                    <tr data-entry-id="{{ $category->id }}">
+                        <td data-toggle="modal" data-target="#category-details" title="Click for more Details">
+                            {{$category->id}}</td>
+                        <td data-toggle="modal" data-target="#category-details" title="Click for more Details">
                             <p>{{ $category->category_name }}</p>
                         </td>
-                        <td>{{$category->category_description}}</td>
+                        <td data-toggle="modal" data-target="#category-details" title="Click for more Details">
+                            {{$category->category_description}}
+                        </td>
                         @if (Auth::user()->role == 2)
                         <td>
                             <a href="{{ route('categories.edit',[$category->id]) }}" class="btn btn-sm btn-primary">

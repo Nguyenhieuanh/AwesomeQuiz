@@ -92,6 +92,11 @@ class QuestionController extends Controller
         $corrects = $questionsRequest->corrects;
         $answers = $questionsRequest->answer_content;
         $answerId = $question->answers;
+
+        if (count($answers) < count($answerId)) {
+            alert("Error", "The answers can only be added, not deleted", "error");
+            return redirect()->back();
+        }
         for ($i = 0; $i < count($answerId); $i++) {
             $data = [
                 "answer_content" => $answers[$i],

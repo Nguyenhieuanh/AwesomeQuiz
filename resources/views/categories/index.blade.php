@@ -14,6 +14,7 @@
                 </a>
             </div>
             @endif
+            <div class="float-right">{{$categories->links()}}</div>
             <table class="table table-bordered table-hover {{ count($categories) > 0 ? 'datatable' : '' }}">
                 <thead>
                     <tr class="table-primary">
@@ -52,7 +53,6 @@
                     @endif
                 </tbody>
             </table>
-            <div class="float-right">{{$categories->links()}}</div>
         </div>
 
     </div>

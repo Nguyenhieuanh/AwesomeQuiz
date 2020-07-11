@@ -22,7 +22,7 @@
                     <thead>
                         <tr class="table-primary">
                             <th scope="col">ID</th>
-                            <th scope="col">Question Content (Click for answers)</th>
+                            <th scope="col">Question Content</th>
                             <th scope="col">Difficulty</th>
                             <th scope="col">Category</th>
                             <th scope="col">Actions</th>
@@ -34,7 +34,7 @@
                         <tr data-entry-id="{{ $question->id }}">
                             <td scoope="row" class="text text-center">{{ $question->id }}</td>
                             <td>
-                                <p data-toggle="collapse" href="#_{{$question->id}}" aria-expanded="false">
+                                <p data-toggle="collapse" href="#_{{$question->id}}" aria-expanded="false" title="Click for answers">
                                     {{ $question->question_content }} </p>
                                 <div class="collapse" id="_{{$question->id}}">
                                     <div class="card card-body">
@@ -75,23 +75,19 @@
                                 {{$question->category->category_name}}
                             </td>
                             <td>
-                                {{-- <a href="{{ route('question.show',[$question->id]) }}" class="btn btn-sm btn-info">
-                                <span><i class="fas fa-info-circle"></i> Detail</span></a> --}}
-                                {{--                        <a href="{{ route('question.edit',[$question->id]) }}"
-                                class="btn
-                                btn-sm btn-primary">--}}
-                                {{--                            <span><i class="far fa-edit"></i></span> Edit</a>--}}
-                                <a href="{{ route('question.show',[$question->id]) }}"
-                                    class="btn btn-xs btn-primary">Detail</a>
+                                {{-- Button Group --}}
+                                <a href="{{ route('question.show',[$question->id]) }}" class="btn btn-sm btn-info">
+                                    <span><i class="fas fa-info-circle"></i> Detail</span></a>
                                 @if (Auth::user()->role == 2)
-                                <a href="{{ route('question.edit',[$question->id]) }}"
-                                    class="btn btn-xs btn-info">Edit</a>
+                                <a href="{{ route('question.edit',[$question->id]) }}" class="btn
+                                btn-sm btn-primary"> <span><i class="far fa-edit"></i></span> Edit</a>
                                 <button class="btn btn-sm btn-danger"
                                     onclick="confirmDelete('{{ route('question.destroy',[$question->id]) }}','You will delete all answers of this question!')">
                                     <span><i class="fas fa-trash-alt"></i> Delete</span>
                                 </button>
-                                @endif
+                                {{-- Button Group --}}
                             </td>
+                            @endif
                         </tr>
                         @endforeach
                         @else
@@ -104,9 +100,5 @@
             </div>
         </div>
     </div>
-</div>
-
-<div class="panel panel-default">
-
 </div>
 @endsection

@@ -36,7 +36,6 @@
                             <td>
                                 <p data-toggle="collapse" href="#_{{$question->id}}" aria-expanded="false">
                                     {{ $question->question_content }} </p>
-
                                 <div class="collapse" id="_{{$question->id}}">
                                     <div class="card card-body">
                                         @foreach($question->answers as $key => $answer)
@@ -52,17 +51,17 @@
                             @switch($question->difficulty)
                             @case(1)
                             <td>
-                                <p class="text-success">Easy</p>
+                                <h3 class="badge badge-success">Easy</h3>
                             </td>
                             @break
                             @case(2)
                             <td>
-                                <p class="text-warning">Medium</p>
+                                <h3 class="badge badge-warning">Medium</h3>
                             </td>
                             @break
                             @case(3)
                             <td>
-                                <p class="text-danger">Hard</p>
+                                <h3 class="badge badge-danger">Hard</h3>
                             </td>
                             @break
                             @endswitch
@@ -72,12 +71,15 @@
                             <td>
                                 {{-- <a href="{{ route('question.show',[$question->id]) }}" class="btn btn-sm btn-info">
                                 <span><i class="fas fa-info-circle"></i> Detail</span></a> --}}
-                                {{--                        <a href="{{ route('question.edit',[$question->id]) }}" class="btn
+                                {{--                        <a href="{{ route('question.edit',[$question->id]) }}"
+                                class="btn
                                 btn-sm btn-primary">--}}
                                 {{--                            <span><i class="far fa-edit"></i></span> Edit</a>--}}
-                                <a href="{{ route('question.show',[$question->id]) }}" class="btn btn-xs btn-primary">Detail</a>
+                                <a href="{{ route('question.show',[$question->id]) }}"
+                                    class="btn btn-xs btn-primary">Detail</a>
                                 @if (Auth::user()->role == 2)
-                                <a href="{{ route('question.edit',[$question->id]) }}" class="btn btn-xs btn-info">Edit</a>
+                                <a href="{{ route('question.edit',[$question->id]) }}"
+                                    class="btn btn-xs btn-info">Edit</a>
                                 <button class="btn btn-sm btn-danger"
                                     onclick="confirmDelete('{{ route('question.destroy',[$question->id]) }}','You will delete all answers of this question!')">
                                     <span><i class="fas fa-trash-alt"></i> Delete</span>

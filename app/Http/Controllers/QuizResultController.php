@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Services\UserQuizService;
 use App\Http\Services\QuizResultService;
@@ -26,7 +25,6 @@ class QuizResultController extends Controller
         if ($userId == Auth::id() || Auth::user()->role != 0) {
             $userQuiz = $this->userQuizService->findById($id);
             $questions = $userQuiz->quizResults->groupBy('question_id');
-            // dd($questions);
             $point = 0;
             $checkCorrect = false;
             foreach ($questions as $question) {
@@ -43,6 +41,10 @@ class QuizResultController extends Controller
                 }
             };
             $questions_count = $questions->count();
+
+            $userQuiz->point = $point;
+            $userQuiz->ratio = $point . '/' . $questions_count;
+            $userQuiz->save();
             return view('user_quiz.result', compact('point', 'questions_count', 'questions', 'userQuiz'));
         } else {
             abort(403);
@@ -53,9 +55,8 @@ class QuizResultController extends Controller
     {
         $user = User::find($userId);
         $userQuizzes = $user->userQuizzes;
-        return
-        (Auth::id() == $userId || Auth::user()->role != 0) ?
-        view('user_quiz.statistical', compact('user', 'userQuizzes')) :
-        abort(403);
+        return (Auth::id() == $userId || Auth::user()->role != 0) ?
+            view('user_quiz.statistical', compact('user', 'userQuizzes')) :
+            abort(403);
     }
 }

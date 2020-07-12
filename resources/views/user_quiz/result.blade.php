@@ -13,13 +13,13 @@
             </tr>
             <tr>
                 <th>Score:</th>
-                <td>{{ $point/$questions_count * 100 }}</td>
+                <td>{{ $userQuiz->point }}</td>
                 <th>Date:</th>
                 <td>{{ $userQuiz->created_at }}</td>
             </tr>
             <tr>
                 <th>Correct:</th>
-                <td>{{ $point .'/'. $questions_count }}</td>
+                <td>{{ $userQuiz->ratio }}</td>
                 <td></td>
                 <td></td>
             </tr>

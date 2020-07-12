@@ -53,7 +53,6 @@ class QuizResultController extends Controller
     {
         $user = User::find($userId);
         $userQuizzes = $user->userQuizzes;
-
         return
         (Auth::id() == $userId || Auth::user()->role != 0) ?
         view('user_quiz.statistical', compact('user', 'userQuizzes')) :

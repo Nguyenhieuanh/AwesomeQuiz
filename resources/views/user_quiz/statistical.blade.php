@@ -19,7 +19,11 @@
                     <td>{{ $userQuiz->quiz->name }}</td>
                     <td>{{ $userQuiz->quiz->created_at }}</td>
                     <td></td>
-                    <td><button class="btn-sm btn-info"><i class="fas fa-info-circle"></i> Detail</button></td>
+                    <td><a class="btn btn-sm btn-info"
+                            href="{{ route('quiz.result', ['quizId' => $userQuiz->id, 'userId' => $user->id]) }}">
+                            <span><i class="fas fa-info-circle"></i> Detail</span>
+                        </a>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>

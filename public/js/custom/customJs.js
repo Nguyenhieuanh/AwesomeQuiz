@@ -200,6 +200,8 @@ $(document).ready(function() {
     }, 1000);
 });
 
+
+// function search question
 $("#search-input").keyup(function() {
     var inputSearch = $(this)
         .val()

@@ -30,11 +30,11 @@ function confirmDelete(
                 window.location = url_link;
             }
         });
-};
+}
 /* ----------------------------------- End ---------------------------------- */
 
 $(document).ready(function() {
-/* -------------------------------------------------------------------------- */
+    /* -------------------------------------------------------------------------- */
     /*                              Textarea autosize                             */
     /* -------------------------------------------------------------------------- */
     /**
@@ -198,4 +198,18 @@ $(document).ready(function() {
         $(".countdown").html(minutes + ":" + seconds);
         timer2 = minutes + ":" + seconds;
     }, 1000);
+});
+
+$("#search-input").keyup(function() {
+    var inputSearch = $(this)
+        .val()
+        .toUpperCase();
+    $(".tbl-row .item").each(function() {
+        var children = ($(this).children()[0].textContent)
+        if(children.toUpperCase().indexOf(inputSearch) > -1) {
+            $(this).parent().show();
+        } else {
+            $(this).parent().hide();
+        }
+    });
 });

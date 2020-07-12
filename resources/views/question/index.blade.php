@@ -4,14 +4,14 @@
 <div class="col mt-3 mx-auto">
     <div class="card">
         <div class="card-header">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{route("home")}}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{route("question.index")}}">Question</a></li>
+                </ol>
+            </nav>
             <div class="float-left">
                 <h3 class="page-title">Question</h3>
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{route("home")}}">Home</a></li>
-                        <li class="breadcrumb-item"><a href="{{route("question.index")}}">Question</a></li>
-                    </ol>
-                </nav>
             </div>
             <div class="col-6 mb-3 float-right">
                 <div class="input-group-append">
@@ -27,8 +27,8 @@
                         <option value="Medium">Medium</option>
                         <option value="Hard">Hard</option>
                     </select>
-                    <input type="text" class="form-control" placeholder="Search" aria-label="Recipient's username"
-                        aria-describedby="button-addon2">
+                    <input type="text" class="form-control" id="search-input" placeholder="Search"
+                        aria-label="Recipient's username" aria-describedby="button-addon2">
                     <button class="btn btn-outline-success" type="button" id="button-addon2">
                         <i class="fas fa-search"></i></button>
                 </div>
@@ -46,7 +46,7 @@
                 {{$questions->links()}}
             </div>
             <div class="table-responsive">
-                <table class="table table-bordered table-hover {{ count($questions) > 0 ? 'datatable' : '' }}">
+                <table id="table" class="table table-bordered table-hover {{ count($questions) > 0 ? 'datatable' : '' }}">
                     <thead>
                         <tr class="table-primary">
                             <th scope="col">ID</th>
@@ -59,9 +59,9 @@
                     <tbody>
                         @if (count($questions) > 0)
                         @foreach ($questions as $question)
-                        <tr data-entry-id="{{ $question->id }}">
+                        <tr class="tbl-row" data-entry-id="{{ $question->id }}">
                             <td scoope="row" class="text text-center">{{ $question->id }}</td>
-                            <td>
+                            <td class="item">
                                 <p data-toggle="collapse" href="#_{{$question->id}}" aria-expanded="false"
                                     title="Click for answers">
                                     {{ $question->question_content }} </p>
@@ -86,7 +86,7 @@
                             @switch($question->difficulty)
                             @case(1)
                             <td>
-                                <h5> <span class="badge badge-pill badge-success">Easy</span></h5>
+                                <h5><span class="badge badge-pill badge-success">Easy</span></h5>
                             </td>
                             @break
                             @case(2)

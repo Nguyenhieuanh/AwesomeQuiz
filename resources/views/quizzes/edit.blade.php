@@ -58,6 +58,7 @@
     </div>
 </div>
 @endsection
+
 <!-- Modal add more question -->
 <div class="modal fade" id="addQuestion" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -70,12 +71,13 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('quizQuestion.store') }}" method="POST">
+                <form action="{{ route('quizQuestion.store') }}" method="POST" id="addForm">
                     @csrf
                     <input type="hidden" name="quiz_id" value="{{ $quiz->id }}">
                     @foreach ($questions as $question)
-                    <table class="table table-striped">
-                            <td>
+                    <table class="table table-hover table-bordered">
+                        <tr>
+                            <td class="item">
                                 <input type="checkbox" name="question_id[ ]" value="{{ $question->id }}"
                                     aria-label="Checkbox for following text input">
                             </td>
@@ -84,13 +86,18 @@
                                     {{ $question->question_content }}
                                 </p>
                             </td>
+                            <td style="width: 80px"
+                                class="{{ $question->difficulty == 1 ? "text-success" : $question->difficulty == 2 ? "text-warning" : "text-danger"}}">
+                                {{ $question->difficulty == 1 ? "Easy" : $question->difficulty == 2 ? "Medium" : "Hard"}}
+                            </td>
+                        </tr>
                     </table>
 
                     @endforeach
-                    <button class="btn btn-success" type="submit">Add</button>
                 </form>
             </div>
             <div class="modal-footer">
+                <button class="btn btn-success" onclick="document.getElementById('addForm').submit();">Add</button>
             </div>
         </div>
     </div>

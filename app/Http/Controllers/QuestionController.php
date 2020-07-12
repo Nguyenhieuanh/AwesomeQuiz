@@ -161,10 +161,22 @@ class QuestionController extends Controller
         $keyword = $request->keyword;
         $category_id = $request->category_id;
         $difficulty = $request->difficulty;
-        $categories = $this->categoryService->getAll();
 
         if (!$keyword && !$category_id && !$difficulty) {
-            return redirect()->route('question.index');
+            $questions = Question::all();
+            $data_response = [];
+            foreach ($questions as $question) {
+                $data = [
+                    'id' => $question->id,
+                    'content' => $question->question_content,
+                    'category' => $question->category->category_name,
+                    'difficulty' => $question->difficulty,
+                    'answers' => $question->answers,
+                    'userRole' => Auth::user()->role
+                ];
+                array_push($data_response, $data);
+            }
+            return response()->json($data_response);
         }
 
         if ($keyword && !$category_id && !$difficulty) {

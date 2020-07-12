@@ -239,11 +239,18 @@ $("#search-input").keyup(function() {
 
 $("#ajax-search").keyup(function() {
     var url = $("#searchForm").attr("action");
+    var keyword = $("#ajax-search").val();
+    var category_id = $("#category-select").val();
+    var difficulty = $("#difficulty-select").val();
     var data = {
-        keyword: $("#ajax-search").val(),
-        category_id: $("#category-select").val(),
-        difficulty: $("#difficulty-select").val()
+        keyword: keyword,
+        category_id: category_id,
+        difficulty: difficulty
     };
+    console.log(data);
+    if (!keyword && !difficulty && !category_id) {
+        $("#paginate").show();
+    }
     var html = "";
     $.ajaxSetup({
         headers: {
@@ -257,74 +264,95 @@ $("#ajax-search").keyup(function() {
         dataType: "json",
         success: function(response) {
             if (response) {
-                console.log(response);
                 for (i = 1; i <= response.length; i++) {
-                    html+=
-                    '<tr>'
-                    +'<td scoope="row" class="text text-center">'+ i +'</td>'
-                    +'<td class="item">'
-                        +'<p data-toggle="collapse" href="#_{{$question->id}}" aria-expanded="false" title="Click for answers">'
-                            + response[i-1].content +'</p>'
-                        +'<div class="collapse" id="_'+ response[i-1].id +'">'
-                            +'<div class="card card-body">'
-                                +'@foreach($question->answers as $key => $answer)'
-                                +'<p><strong @switch($answer->correct)'
-                                        +'@case(1)'
-                                        +'title=\'Right\'>'
-                                        +'<span class="badge badge-success">'
-                                            +'@break'
-                                            +'@default'
-                                            +'title=\'Wrong\' >'
-                                            +'<span class="badge badge-danger">'
-                                                +'@endswitch'
-                                                +'Answer #{{$key+1}}</span>'
-                                    +'</strong> {{ $answer->answer_content }} </p>'
-                                +'@endforeach'
-                            +'</div>'
-                        +'</div>'
-                    +'</td>';
-                    switch(response[i-1].difficulty) {
-                        case(1):
-                        html+=
-                        '<td>'
-                        +'<h5><span class="badge badge-pill badge-success">Easy</span></h5>'
-                        +'</td>';
-                        break;
-                        case(2):
-                        html+=
-                        '<td>'
-                        +'<h5> <span class="badge badge-pill badge-warning">Medium</span></h5>'
-                        +'</td>';
-                        break;
-                        case(3):
-                        html+=
-                        '<td>'
-                        +'<h5> <span class="badge badge-pill badge-danger">Hard</span></h5>'
-                        +'</td>';
-                        break;
-                    };
-                    html+=
-                    '<td>'
-                        + response[i-1].category
-                    +'</td>'
-                    +'<td>'
-                        +'<a href="#" class="btn btn-sm btn-info">'
-                            +'<span><i class="fas fa-info-circle"></i> Detail</span></a>'
-                            if(response[i-1].userRole == 2){
+                    html +=
+                        "<tr>" +
+                        '<td scoope="row" class="text text-center">' +
+                        i +
+                        "</td>" +
+                        '<td class="item">' +
+                        '<p data-toggle="collapse" href="#_' +
+                        response[i - 1].id +
+                        '" aria-expanded="false" title="Click for answers">' +
+                        response[i - 1].content +
+                        "</p>" +
+                        '<div class="collapse" id="_' +
+                        response[i - 1].id +
+                        '">' +
+                        '<div class="card card-body">';
+                    for (j = 0; j < response[i - 1].answers.length; j++) {
+                        html += "<p>";
+                        switch (response[i - 1].answers[j].correct) {
+                            case 1:
                                 html +=
-                                '<a href="'+route('question.edit',[response[i-1].id])+'" class="btn btn-sm btn-primary"> <span><i class="far fa-edit"></i></span> Edit'
-                                +'</a>'
-                                +'<button class="btn btn-sm btn-danger" onclick="confirmDelete(\'' + route('question.destroy',[response[i-1].id]) +'\')">'
-                                    +'<span><i class="fas fa-trash-alt"></i> Delete</span>'
-                                +'</button>'
-                            +'</td>'
-                            };
-                html +='</tr>'
-                };
+                                    '<strong><span class="badge badge-success">Answer #' +
+                                    (j + 1) +
+                                    "</span></strong>";
+                                break;
+                            default:
+                                html +=
+                                    '<strong><span class="badge badge-danger">Answer #' +
+                                    j +
+                                    1 +
+                                    "</span></strong>";
+                                break;
+                        }
+                        html +=
+                            response[i - 1].answers[j].answer_content + " </p>";
+                    }
+                    html += "</div>" + "</div>" + "</td>";
+                    switch (response[i - 1].difficulty) {
+                        case 1:
+                            html +=
+                                "<td>" +
+                                '<h5><span class="badge badge-pill badge-success">Easy</span></h5>' +
+                                "</td>";
+                            break;
+                        case 2:
+                            html +=
+                                "<td>" +
+                                '<h5> <span class="badge badge-pill badge-warning">Medium</span></h5>' +
+                                "</td>";
+                            break;
+                        case 3:
+                            html +=
+                                "<td>" +
+                                '<h5> <span class="badge badge-pill badge-danger">Hard</span></h5>' +
+                                "</td>";
+                            break;
+                    }
+                    html +=
+                        "<td>" +
+                        response[i - 1].category +
+                        "</td>" +
+                        "<td>" +
+                        '<a href="#" class="btn btn-sm btn-info">' +
+                        '<span><i class="fas fa-info-circle"></i> Detail</span></a>';
+                    if (response[i - 1].userRole == 2) {
+                        html +=
+                            '<a href="' +
+                            route("question.edit", [response[i - 1].id]) +
+                            '" class="btn btn-sm btn-primary"> <span><i class="far fa-edit"></i></span> Edit' +
+                            "</a>" +
+                            '<button class="btn btn-sm btn-danger" onclick="confirmDelete(\'' +
+                            route("question.destroy", [response[i - 1].id]) +
+                            "')\">" +
+                            '<span><i class="fas fa-trash-alt"></i> Delete</span>' +
+                            "</button>" +
+                            "</td>";
+                    }
+                    html += "</tr>";
+                }
             }
-            $("#paginate").hide();
-            $("tbody#list-question").children('tr').hide();
-            $("tbody#list-question").append(html);
+            if (keyword == "" && difficulty == "" && category_id == "") {
+                $("#paginate").show();
+            } else {
+                $("#paginate").hide();
+                $("tbody#list-question")
+                    .children("tr")
+                    .hide();
+                $("tbody#list-question").append(html);
+            }
         },
         error: function() {
             console.error;

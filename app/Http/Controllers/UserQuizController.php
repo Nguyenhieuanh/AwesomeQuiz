@@ -80,6 +80,6 @@ class UserQuizController extends Controller
 
         alert("Success", "Done", "success")->autoClose(2000);
 
-        return redirect()->route('quiz.result', ['id' => $userQuiz->id]);
+        return redirect()->route('quiz.result', ['userId' => Auth::id(), 'quizId' => $userQuiz->id]);
     }
 }

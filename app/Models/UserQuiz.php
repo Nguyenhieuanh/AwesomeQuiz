@@ -10,9 +10,9 @@ class UserQuiz extends Model
         'user_id', 'quiz_id', 'start_time', 'end_time',  'finished'
     ];
 
-    public function users()
+    public function user()
     {
-        return $this->belongsToMany('App\User');
+        return $this->belongsTo('App\User');
     }
 
     public function quiz()

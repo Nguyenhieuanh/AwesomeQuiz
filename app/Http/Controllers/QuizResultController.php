@@ -43,10 +43,13 @@ class QuizResultController extends Controller
             };
             $questions_count = $questions->count();
             return view('user_quiz.result', compact('point', 'questions_count', 'questions', 'userQuiz'));
-        }
-        else
-        {
+        } else {
             abort(403);
         }
+    }
+
+    public function showUserResults($userId)
+    {
+        return (Auth::id() == $userId) ? view('user_quiz.statistical') : abort(403);
     }
 }

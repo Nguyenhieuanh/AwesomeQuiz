@@ -136,7 +136,6 @@ class QuestionController extends Controller
                     $this->answerService->destroy($answerId[$i]->id);
                 }
             }
-
         }
 
 
@@ -154,5 +153,61 @@ class QuestionController extends Controller
             alert()->success('Delete completed', 'Successfully')->autoClose(1800);
         }
         return redirect()->route('question.index');
+    }
+
+    public function search(Request $request)
+    {
+        $keyword = $request->keyword;
+        $category_id = $request->category_id;
+        $difficulty = $request->difficulty;
+        $categories = $this->categoryService->getAll();
+
+        if (!$keyword && !$category_id && !$difficulty) {
+            return redirect()->route('question.index');
+        }
+
+        if ($keyword && !$category_id && !$difficulty) {
+            $questions = Question::where('question_content', 'LIKE', '%' . $keyword . '%')->paginate(10);
+            return view('question.index', compact('questions', 'categories'));
+        }
+
+        if (!$keyword && $category_id && !$difficulty) {
+            $questions = Question::where('category_id', 'LIKE', $category_id)->paginate(10);
+            return view('question.index', compact('questions', 'categories'));
+        }
+
+        if (!$keyword && !$category_id && $difficulty) {
+            $questions = Question::where('difficulty', 'LIKE', $difficulty)->paginate(10);
+            return view('question.index', compact('questions', 'categories'));
+        }
+
+        if ($keyword && $category_id && !$difficulty) {
+            $questions = Question::where('question_content', 'LIKE', '%' . $keyword . '%')
+                                 ->where('category_id', 'LIKE', $category_id)
+                                 ->paginate(10);
+            return view('question.index', compact('questions', 'categories'));
+        }
+
+        if ($keyword && !$category_id && $difficulty) {
+            $questions = Question::where('question_content', 'LIKE', '%' . $keyword . '%')
+                                 ->where('difficulty', 'LIKE', $difficulty)
+                                 ->paginate(10);
+            return view('question.index', compact('questions', 'categories'));
+        }
+
+        if (!$keyword && $category_id && $difficulty) {
+            $questions = Question::where('category_id', 'LIKE', $category_id)
+                                 ->where('difficulty', 'LIKE', $difficulty)
+                                 ->paginate(10);
+            return view('question.index', compact('questions', 'categories'));
+        }
+
+        if ($keyword && $category_id && $difficulty) {
+            $questions = Question::where('category_id', 'LIKE', $category_id)
+                                 ->where('difficulty', 'LIKE', $difficulty)
+                                 ->where('question_content', 'LIKE', '%' . $keyword . '%')
+                                 ->paginate(10);
+            return view('question.index', compact('questions', 'categories'));
+        }
     }
 }

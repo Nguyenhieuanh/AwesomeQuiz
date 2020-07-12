@@ -43,6 +43,7 @@ Route::group(['prefix' => 'question'], function () {
         Route::get('/edit/{id}', 'QuestionController@edit')->name('question.edit');
         Route::post('/update/{id}', 'QuestionController@update')->name('question.update');
         Route::get('/destroy/{id}', 'QuestionController@destroy')->name('question.destroy');
+        Route::get('/search','QuestionController@search')->name('question.search');
     });
     Route::group(['middleware' => 'manager.role'], function () {
         Route::get('/', 'QuestionController@index')->name('question.index');

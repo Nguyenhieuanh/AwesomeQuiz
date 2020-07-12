@@ -20,7 +20,7 @@
                         <select class="custom-select mr-1" id="category-select" name="category_id">
                             <option value="" selected>All Category</option>
                             @foreach ($categories as $category)
-                            <option value="{{$category->category_name}}">{{$category->category_name}}</option>
+                            <option value="{{$category->id}}">{{$category->category_name}}</option>
                             @endforeach
                         </select>
                         <select class="custom-select mr-1" id="difficulty-select" name="difficulty">
@@ -32,7 +32,6 @@
                         <div class="form-group has-search w-75">
                             <span class="fa fa-search form-control-feedback text-success" ></span>
                             <input type="text" id="search-input" class="form-control" name="keyword" placeholder="Search">
-                            <button class="btn btn-outline-success" type="submit">search</button>
                         </div>
                     </div>
                 </form>

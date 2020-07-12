@@ -200,7 +200,7 @@ $(document).ready(function() {
     }, 1000);
 });
 
-// function search question
+// function search dynamic question
 $("#search-input").keyup(function() {
     var inputSearch = $(this)
         .val()
@@ -208,7 +208,6 @@ $("#search-input").keyup(function() {
     var difficultySelect = $("#difficulty-select")
         .val()
         .toUpperCase();
-    console.log(difficultySelect);
     $(".filter-row").each(function() {
         var question = $(this)
             .children()

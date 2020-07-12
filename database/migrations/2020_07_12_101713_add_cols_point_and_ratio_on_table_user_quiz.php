@@ -14,7 +14,8 @@ class AddColsPointAndRatioOnTableUserQuiz extends Migration
     public function up()
     {
         Schema::table('user_quizzes', function (Blueprint $table) {
-            //
+            $table->string('ratio')->after('quiz_id')->nullable();
+            $table->string('point')->after('ratio')->nullable();
         });
     }
 

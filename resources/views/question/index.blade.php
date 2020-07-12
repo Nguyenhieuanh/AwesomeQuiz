@@ -13,25 +13,29 @@
             <div class="float-left">
                 <h3 class="page-title">Question</h3>
             </div>
-            <div class="col-6 mb-3 float-right">
-                <div class="input-group-append">
-                    <select class="custom-select" id="category-select" name="category">
-                        <option selected>All Category</option>
-                        @foreach ($categories as $category)
-                        <option value="{{$category->category_name}}">{{$category->category_name}}</option>
-                        @endforeach
-                    </select>
-                    <select class="custom-select" id="difficulty-select" name="difficulty">
-                        <option selected>All Difficulty</option>
-                        <option value="Easy">Easy</option>
-                        <option value="Medium">Medium</option>
-                        <option value="Hard">Hard</option>
-                    </select>
-                    <input type="text" class="form-control" id="search-input" placeholder="Search"
-                        aria-label="Recipient's username" aria-describedby="button-addon2">
-                    <button class="btn btn-outline-success" type="button" id="button-addon2">
-                        <i class="fas fa-search"></i></button>
-                </div>
+            <div class="col-8 mb-3 float-right">
+                <form action="{{ route('question.search') }}" method="get">
+                    @csrf
+                    <div class="row">
+                        <select class="custom-select mr-1" id="category-select" name="category_id">
+                            <option value="" selected>All Category</option>
+                            @foreach ($categories as $category)
+                            <option value="{{$category->category_name}}">{{$category->category_name}}</option>
+                            @endforeach
+                        </select>
+                        <select class="custom-select mr-1" id="difficulty-select" name="difficulty">
+                            <option value="" selected>All Difficulty</option>
+                            <option value="1">Easy</option>
+                            <option value="2">Medium</option>
+                            <option value="3">Hard</option>
+                        </select>
+                        <div class="form-group has-search w-75">
+                            <span class="fa fa-search form-control-feedback text-success" ></span>
+                            <input type="text" id="search-input" class="form-control" name="keyword" placeholder="Search">
+                            <button class="btn btn-outline-success" type="submit">search</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
         <div class="card-body p-4">
@@ -46,7 +50,8 @@
                 {{$questions->links()}}
             </div>
             <div class="table-responsive">
-                <table id="table" class="table table-bordered table-hover {{ count($questions) > 0 ? 'datatable' : '' }}">
+                <table id="table"
+                    class="table table-bordered table-hover {{ count($questions) > 0 ? 'datatable' : '' }}">
                     <thead>
                         <tr class="table-primary">
                             <th scope="col">ID</th>
@@ -58,9 +63,9 @@
                     </thead>
                     <tbody>
                         @if (count($questions) > 0)
-                        @foreach ($questions as $question)
+                        @foreach ($questions as $key => $question)
                         <tr class="tbl-row" data-entry-id="{{ $question->id }}">
-                            <td scoope="row" class="text text-center">{{ $question->id }}</td>
+                            <td scoope="row" class="text text-center">{{ ++$key }}</td>
                             <td class="item">
                                 <p data-toggle="collapse" href="#_{{$question->id}}" aria-expanded="false"
                                     title="Click for answers">

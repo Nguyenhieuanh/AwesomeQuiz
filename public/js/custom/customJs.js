@@ -30,11 +30,11 @@ function confirmDelete(
                 window.location = url_link;
             }
         });
-};
+}
 /* ----------------------------------- End ---------------------------------- */
 
 $(document).ready(function() {
-/* -------------------------------------------------------------------------- */
+    /* -------------------------------------------------------------------------- */
     /*                              Textarea autosize                             */
     /* -------------------------------------------------------------------------- */
     /**
@@ -198,4 +198,40 @@ $(document).ready(function() {
         $(".countdown").html(minutes + ":" + seconds);
         timer2 = minutes + ":" + seconds;
     }, 1000);
+});
+
+// function search dynamic question
+$("#search-input").keyup(function() {
+    var inputSearch = $(this)
+        .val()
+        .toUpperCase();
+    var difficultySelect = $("#difficulty-select")
+        .val()
+        .toUpperCase();
+    $(".filter-row").each(function() {
+        var question = $(this)
+            .children()
+            .children()[1].textContent;
+        if (!difficultySelect) {
+            if (question.toUpperCase().indexOf(inputSearch) > -1) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        } else {
+            var difficulty = $(this)
+                .children("td.item-difficulty")
+                .children("h5")
+                .children("span")
+                .text();
+            if (
+                question.toUpperCase().indexOf(inputSearch) > -1 &&
+                difficulty.toUpperCase().indexOf(difficultySelect) > -1
+            ) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        }
+    });
 });

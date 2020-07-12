@@ -4,8 +4,26 @@
 <div class="card">
     <div class="card-header">
         <h3>{{ $userQuiz->quiz->name }}</h3>
-        <p>Score: {{ $point/$questions_count * 100 }}</p>
-        <p>Correct: {{ $point .'/'. $questions_count }}</p>
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th style="width: 100px">User:</th>
+                <td>{{ $userQuiz->user->email }}</td>
+                <th style="width: 150px">Duration time:</th>
+                <td class="w-50">{{ $userQuiz->quiz->duration }} minutes</td>
+            </tr>
+            <tr>
+                <th>Score:</th>
+                <td>{{ $userQuiz->point }}</td>
+                <th>Date:</th>
+                <td>{{ $userQuiz->created_at }}</td>
+            </tr>
+            <tr>
+                <th>Correct:</th>
+                <td>{{ $userQuiz->ratio }}</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
     </div>
     <div class="card-body">
         @php
@@ -18,7 +36,7 @@
                     <th class="align-text-top text-center" style="width: 80px">Q{{ $i++ }}</th>
                     <th class="align-baseline">{{ $question->first()->question->question_content }}</th>
                     <th class="align-text-top text-center" style="width: 105px">Correct answer</th>
-                    <th class="align-text-top text-center" style="width: 90px">Your answer</th>
+                    <th class="align-text-top text-center" style="width: 90px">User answer</th>
                 </tr>
             </thead>
             <tbody>

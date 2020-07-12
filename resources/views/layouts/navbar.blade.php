@@ -71,13 +71,13 @@
                                     school</i> QuizManager
                             </a>
                         </li>
-                            @else
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="#">
-                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
-                                        engineering</i> OverLord
-                                </a>
-                            </li>
+                        @else
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button" href="#">
+                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                    engineering</i> OverLord
+                            </a>
+                        </li>
                         @endif
                     </ul>
 
@@ -99,7 +99,8 @@
                             </a>
                         </li>
                         <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button" href="#">
+                            <a class="sidebar-menu-button"
+                                href="{{ route('userQuiz.allResults', ['userId' => Auth::id()]) }}">
                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
                                     school</i> History
                             </a>
@@ -120,7 +121,8 @@
                     <ul class="sidebar-menu">
                         <li class="sidebar-menu-item">
                             <a class="sidebar-menu-button" href="{{ route('quiz.list') }}">
-                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">sticky_note_2</i> Quiz
+                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">sticky_note_2</i>
+                                Quiz
                                 Manager
                             </a>
                         </li>
@@ -139,16 +141,18 @@
 
                         <li class="sidebar-menu-item">
                             <a class="sidebar-menu-button" href="#">
-                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">history</i> Submitted Quizzes
+                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">history</i>
+                                Submitted Quizzes
                             </a>
                         </li>
                         @if (Auth::user()->role == 2)
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="{{route('user.list')}}">
-                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">account_circle</i> User List
-                                </a>
-                            </li>
-                            @endif
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button" href="{{route('user.list')}}">
+                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">account_circle</i>
+                                User List
+                            </a>
+                        </li>
+                        @endif
                         <li class="sidebar-menu-item">
                             <a class="sidebar-menu-button" href="{{ route('logout') }}" onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">

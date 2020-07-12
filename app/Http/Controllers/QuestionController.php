@@ -36,7 +36,7 @@ class QuestionController extends Controller
     {
         $questions = Question::paginate(10);
         $categories = $this->categoryService->getAll();
-        return view('question.index', compact('questions','categories'));
+        return view('question.index', compact('questions', 'categories'));
     }
 
     public function create()
@@ -50,8 +50,12 @@ class QuestionController extends Controller
         $answer_content = $request->answer_content;
         $correct_option = $request->corrects;
 
+        if (!in_array(1, $correct_option)) {
+            alert("Oops! Some thing wrong", "The question needs at least one correct answer", "error");
+            return redirect()->back();
+        }
         $question = $this->questionService->create($request->all());
-        $answers =[];
+        $answers = [];
         for ($i = 0; $i < count($answer_content); $i++) {
             $answerData = [
                 'question_id' => $question->id,
@@ -59,7 +63,7 @@ class QuestionController extends Controller
                 'correct' => $correct_option[$i],
             ];
             $answer = $this->answerService->create($answerData);
-            array_push($answers,$answer);
+            array_push($answers, $answer);
         };
         if (!$question && !$answers) {
             alert()->error('Create question error', 'Error')->showConfirmButton('OK');
@@ -99,17 +103,45 @@ class QuestionController extends Controller
         $answers = $questionsRequest->answer_content;
         $answerId = $question->answers;
 
-        if (count($answers) < count($answerId)) {
-            alert("Error", "The answers can only be added, not deleted", "error");
+        if (!$answers) {
+            alert("Error", "The question needs at least two answers.", "error");
             return redirect()->back();
         }
-        for ($i = 0; $i < count($answerId); $i++) {
-            $data = [
-                "answer_content" => $answers[$i],
-                "correct" => $corrects[$i]
-            ];
-            $this->answerService->update($data, $answerId[$i]->id);
+
+        if (count($answers) > count($answerId)) {
+            for ($i = 0; $i < count($answers); $i++) {
+                $data = [
+                    "answer_content" => $answers[$i],
+                    "correct" => $corrects[$i]
+                ];
+                $this->answerService->update($data, $answerId[$i]->id);
+                if ($i = count($answers) - 1) {
+                    $answerData = [
+                        'question_id' => $question->id,
+                        'answer_content' => $answers[$i],
+                        'correct' => $corrects[$i],
+                    ];
+                    $this->answerService->create($answerData);
+                }
+            }
+        } else {
+            for ($i = 0; $i < count($answerId); $i++) {
+                if ($i < count($answers)) {
+                    $data = [
+                        "answer_content" => $answers[$i],
+                        "correct" => $corrects[$i]
+                    ];
+                    $this->answerService->update($data, $answerId[$i]->id);
+                } else {
+                    $this->answerService->destroy($answerId[$i]->id);
+                }
+            }
+
         }
+
+
+        alert('Success', "Updated successfully", 'success');
+
         return redirect()->route('question.index');
     }
 

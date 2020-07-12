@@ -63,6 +63,7 @@ Route::group(['prefix' => 'quiz'], function () {
     Route::get('/', 'QuizController@index')->name('quiz.list');
     Route::get('/{id}/detail', 'QuizController@show')->name('quiz.show');
     Route::get('/{id}/statistics', 'QuizController@statisticsCalculate')->name('quiz.statistics');
+    Route::get('/user/{userId}/results', 'QuizResultController@showUserResults')->name('userQuiz.allResults');
 });
 
 
@@ -82,5 +83,5 @@ Route::group(['middleware' => 'admin.role', 'prefix' => 'user'], function () {
 Route::group(['prefix' => 'test'], function () {
     Route::get('/doExam/{id}', 'UserQuizController@index')->name('quiz.doQuiz');
     Route::post('/', 'UserQuizController@doQuiz')->name('quiz.submit');
-    Route::get('/result/{id}', 'QuizResultController@showResult')->name('quiz.result');
+    Route::get('/result/{quizId}/user/{userId}', 'QuizResultController@showResult')->name('quiz.result');
 });

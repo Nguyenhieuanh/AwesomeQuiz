@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Services\QuizResultService;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Services\UserQuizService;
+use App\Http\Services\QuizResultService;
+use App\Models\UserQuiz;
 
 class QuizResultController extends Controller
 {
@@ -19,27 +21,43 @@ class QuizResultController extends Controller
         $this->userQuizService = $userQuizService;
     }
 
-    public function showResult($id)
+    public function showResult($id, $userId)
     {
-        $userQuiz = $this->userQuizService->findById($id);
-        $questions = $userQuiz->quizResults->groupBy('question_id');
-        // dd($questions);
-        $point = 0;
-        $checkCorrect = false;
-        foreach ($questions as $question) {
-            foreach ($question as $item) {
-                if ($item->correct != $item->answered) {
-                    $checkCorrect = false;
-                    break;
-                } else {
-                    $checkCorrect = true;
+        if ($userId == Auth::id() || Auth::user()->role != 0) {
+            $userQuiz = $this->userQuizService->findById($id);
+            $questions = $userQuiz->quizResults->groupBy('question_id');
+            $point = 0;
+            $checkCorrect = false;
+            foreach ($questions as $question) {
+                foreach ($question as $item) {
+                    if ($item->correct != $item->answered) {
+                        $checkCorrect = false;
+                        break;
+                    } else {
+                        $checkCorrect = true;
+                    }
                 }
-            }
-            if ($checkCorrect) {
-                $point++;
-            }
-        };
-        $questions_count = $questions->count();
-        return view('user_quiz.result', compact('point', 'questions_count', 'questions', 'userQuiz'));
+                if ($checkCorrect) {
+                    $point++;
+                }
+            };
+            $questions_count = $questions->count();
+
+            $userQuiz->point = $point;
+            $userQuiz->ratio = $point . '/' . $questions_count;
+            $userQuiz->save();
+            return view('user_quiz.result', compact('point', 'questions_count', 'questions', 'userQuiz'));
+        } else {
+            abort(403);
+        }
+    }
+
+    public function showUserResults($userId)
+    {
+        $user = User::find($userId);
+        $userQuizzes = UserQuiz::where('user_id', $user->id)->paginate(10);
+        return (Auth::id() == $userId || Auth::user()->role != 0) ?
+            view('user_quiz.statistical', compact('user', 'userQuizzes')) :
+            abort(403);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Services\UserQuizService;
@@ -50,6 +51,12 @@ class QuizResultController extends Controller
 
     public function showUserResults($userId)
     {
-        return (Auth::id() == $userId) ? view('user_quiz.statistical') : abort(403);
+        $user = User::find($userId);
+        $userQuizzes = $user->userQuizzes;
+
+        return
+        (Auth::id() == $userId || Auth::user()->role != 0) ?
+        view('user_quiz.statistical', compact('user', 'userQuizzes')) :
+        abort(403);
     }
 }

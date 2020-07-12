@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\UpdateAnswersRequest;
-use App\Http\Requests\UpdateCategoriesRequest;
-use App\Http\Requests\UpdateQuestionsRequest;
-use App\Http\Requests\QuestionFormRequest;
-use App\Http\Services\AnswerService;
-use App\Http\Services\CategoryService;
-use App\Http\Services\QuestionService;
 use App\Models\Answer;
 use App\Models\Category;
 use App\Models\Question;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Services\AnswerService;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Services\CategoryService;
+use App\Http\Services\QuestionService;
+use App\Http\Requests\QuestionFormRequest;
+use App\Http\Requests\UpdateAnswersRequest;
+use App\Http\Requests\UpdateQuestionsRequest;
+use App\Http\Requests\UpdateCategoriesRequest;
 
 class QuestionController extends Controller
 {
@@ -167,47 +168,131 @@ class QuestionController extends Controller
         }
 
         if ($keyword && !$category_id && !$difficulty) {
-            $questions = Question::where('question_content', 'LIKE', '%' . $keyword . '%')->paginate(10);
-            return view('question.index', compact('questions', 'categories'));
+            $questions = Question::where('question_content', 'LIKE', '%' . $keyword . '%')->get();
+            $data_response = [];
+            foreach ($questions as $question) {
+                $data = [
+                    'id' => $question->id,
+                    'content' => $question->question_content,
+                    'category' => $question->category->category_name,
+                    'difficulty' => $question->difficulty,
+                    'answers' => $question->answers,
+                    'userRole' => Auth::user()->role
+                ];
+                array_push($data_response, $data);
+            }
+            return response()->json($data_response);
         }
 
         if (!$keyword && $category_id && !$difficulty) {
-            $questions = Question::where('category_id', 'LIKE', $category_id)->paginate(10);
-            return view('question.index', compact('questions', 'categories'));
+            $questions = Question::where('category_id', 'LIKE', $category_id)->get();
+            $data_response = [];
+            foreach ($questions as $question) {
+                $data = [
+                    'id' => $question->id,
+                    'content' => $question->question_content,
+                    'category' => $question->category->category_name,
+                    'difficulty' => $question->difficulty,
+                    'answers' => $question->answers,
+                    'userRole' => Auth::user()->role
+                ];
+                array_push($data_response, $data);
+            }
+            return response()->json($data_response);
         }
 
         if (!$keyword && !$category_id && $difficulty) {
-            $questions = Question::where('difficulty', 'LIKE', $difficulty)->paginate(10);
-            return view('question.index', compact('questions', 'categories'));
+            $questions = Question::where('difficulty', 'LIKE', $difficulty)->get();
+            $data_response = [];
+            foreach ($questions as $question) {
+                $data = [
+                    'id' => $question->id,
+                    'content' => $question->question_content,
+                    'category' => $question->category->category_name,
+                    'difficulty' => $question->difficulty,
+                    'answers' => $question->answers,
+                    'userRole' => Auth::user()->role
+                ];
+                array_push($data_response, $data);
+            }
+            return response()->json($data_response);
         }
 
         if ($keyword && $category_id && !$difficulty) {
             $questions = Question::where('question_content', 'LIKE', '%' . $keyword . '%')
-                                 ->where('category_id', 'LIKE', $category_id)
-                                 ->paginate(10);
-            return view('question.index', compact('questions', 'categories'));
+                ->where('category_id', 'LIKE', $category_id)
+                ->get();
+            $data_response = [];
+            foreach ($questions as $question) {
+                $data = [
+                    'id' => $question->id,
+                    'content' => $question->question_content,
+                    'category' => $question->category->category_name,
+                    'difficulty' => $question->difficulty,
+                    'answers' => $question->answers,
+                    'userRole' => Auth::user()->role
+                ];
+                array_push($data_response, $data);
+            }
+            return response()->json($data_response);
         }
 
         if ($keyword && !$category_id && $difficulty) {
             $questions = Question::where('question_content', 'LIKE', '%' . $keyword . '%')
-                                 ->where('difficulty', 'LIKE', $difficulty)
-                                 ->paginate(10);
-            return view('question.index', compact('questions', 'categories'));
+                ->where('difficulty', 'LIKE', $difficulty)
+                ->get();
+            $data_response = [];
+            foreach ($questions as $question) {
+                $data = [
+                    'id' => $question->id,
+                    'content' => $question->question_content,
+                    'category' => $question->category->category_name,
+                    'difficulty' => $question->difficulty,
+                    'answers' => $question->answers,
+                    'userRole' => Auth::user()->role
+                ];
+                array_push($data_response, $data);
+            }
+            return response()->json($data_response);
         }
 
         if (!$keyword && $category_id && $difficulty) {
             $questions = Question::where('category_id', 'LIKE', $category_id)
-                                 ->where('difficulty', 'LIKE', $difficulty)
-                                 ->paginate(10);
-            return view('question.index', compact('questions', 'categories'));
+                ->where('difficulty', 'LIKE', $difficulty)
+                ->get();
+            $data_response = [];
+            foreach ($questions as $question) {
+                $data = [
+                    'id' => $question->id,
+                    'content' => $question->question_content,
+                    'category' => $question->category->category_name,
+                    'difficulty' => $question->difficulty,
+                    'answers' => $question->answers,
+                    'userRole' => Auth::user()->role
+                ];
+                array_push($data_response, $data);
+            }
+            return response()->json($data_response);
         }
 
         if ($keyword && $category_id && $difficulty) {
             $questions = Question::where('category_id', 'LIKE', $category_id)
-                                 ->where('difficulty', 'LIKE', $difficulty)
-                                 ->where('question_content', 'LIKE', '%' . $keyword . '%')
-                                 ->paginate(10);
-            return view('question.index', compact('questions', 'categories'));
+                ->where('difficulty', 'LIKE', $difficulty)
+                ->where('question_content', 'LIKE', '%' . $keyword . '%')
+                ->get();
+            $data_response = [];
+            foreach ($questions as $question) {
+                $data = [
+                    'id' => $question->id,
+                    'content' => $question->question_content,
+                    'category' => $question->category->category_name,
+                    'difficulty' => $question->difficulty,
+                    'answers' => $question->answers,
+                    'userRole' => Auth::user()->role
+                ];
+                array_push($data_response, $data);
+            }
+            return response()->json($data_response);
         }
     }
 }

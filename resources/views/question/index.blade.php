@@ -14,7 +14,7 @@
                 <h3 class="page-title">Question</h3>
             </div>
             <div class="col-8 mb-3 float-right">
-                <form action="{{ route('question.search') }}" method="get">
+                <form action="{{ route('question.search') }}" id="searchForm" method="get">
                     @csrf
                     <div class="row">
                         <select class="custom-select mr-1" id="category-select" name="category_id">
@@ -31,7 +31,7 @@
                         </select>
                         <div class="form-group has-search w-75">
                             <span class="fa fa-search form-control-feedback text-success" ></span>
-                            <input type="text" id="search-input" class="form-control" name="keyword" placeholder="Search">
+                            <input type="text" id="ajax-search" class="form-control" name="keyword" placeholder="Search">
                         </div>
                     </div>
                 </form>
@@ -45,7 +45,7 @@
                 </a>
             </div>
             @endif
-            <div class="float-right">
+            <div id="paginate" class="float-right">
                 {{$questions->links()}}
             </div>
             <div class="table-responsive">
@@ -60,7 +60,7 @@
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="list-question">
                         @if (count($questions) > 0)
                         @foreach ($questions as $key => $question)
                         <tr class="tbl-row" data-entry-id="{{ $question->id }}">

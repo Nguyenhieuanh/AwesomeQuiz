@@ -200,18 +200,39 @@ $(document).ready(function() {
     }, 1000);
 });
 
-
 // function search question
 $("#search-input").keyup(function() {
     var inputSearch = $(this)
         .val()
         .toUpperCase();
-    $(".tbl-row .item").each(function() {
-        var children = ($(this).children()[0].textContent)
-        if(children.toUpperCase().indexOf(inputSearch) > -1) {
-            $(this).parent().show();
+    var difficultySelect = $("#difficulty-select")
+        .val()
+        .toUpperCase();
+    console.log(difficultySelect);
+    $(".filter-row").each(function() {
+        var question = $(this)
+            .children()
+            .children()[1].textContent;
+        if (!difficultySelect) {
+            if (question.toUpperCase().indexOf(inputSearch) > -1) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
         } else {
-            $(this).parent().hide();
+            var difficulty = $(this)
+                .children("td.item-difficulty")
+                .children("h5")
+                .children("span")
+                .text();
+            if (
+                question.toUpperCase().indexOf(inputSearch) > -1 &&
+                difficulty.toUpperCase().indexOf(difficultySelect) > -1
+            ) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
         }
     });
 });

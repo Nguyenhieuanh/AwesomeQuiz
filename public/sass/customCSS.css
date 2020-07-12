@@ -18,7 +18,7 @@
     border-radius: 3px;
     transform: scale(1);
     vertical-align: middle;
-    border: 1px solid #9098A9;
+    border: 1px solid #9098a9;
     transition: all 0.2s ease;
 }
 
@@ -27,7 +27,7 @@
     top: 3px;
     left: 2px;
     fill: none;
-    stroke: #FFFFFF;
+    stroke: #ffffff;
     stroke-width: 2;
     stroke-linecap: round;
     stroke-linejoin: round;
@@ -57,17 +57,17 @@
     border-color: #06842c;
 }
 
-.inp-cbx:checked+.cbx span:first-child {
+.inp-cbx:checked + .cbx span:first-child {
     background: #06842c;
     border-color: #06842c;
     animation: wave 0.4s ease;
 }
 
-.inp-cbx:checked+.cbx span:first-child svg {
+.inp-cbx:checked + .cbx span:first-child svg {
     stroke-dashoffset: 0;
 }
 
-.inp-cbx:checked+.cbx span:first-child:before {
+.inp-cbx:checked + .cbx span:first-child:before {
     transform: scale(3.5);
     opacity: 0;
     transition: all 0.6s ease;
@@ -77,4 +77,20 @@
     50% {
         transform: scale(0.9);
     }
+}
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
 }

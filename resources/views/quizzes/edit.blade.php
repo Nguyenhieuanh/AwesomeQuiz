@@ -65,35 +65,81 @@
     <div class="modal-dialog modal-lg modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Add question</h5>
+                <h4>Add question</h4>
+
+            </div>
+            <div class="modal-body">
+                <div class="row p-2">
+                    <select class="custom-select mx-1" id="difficulty-select" name="difficulty">
+                        <option value="" selected>All Difficulty</option>
+                        <option value="Easy">Easy</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Hard">Hard</option>
+                    </select>
+                    {{-- <div class="input-group w-75">
+                        <input type="text" class="form-control has-search" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <div class="input-group-append">
+                          <button class="btn btn-outline-success" type="button" id="button-addon2">Button</button>
+                        </div>
+                      </div> --}}
+                    <div class="form-group has-search w-75">
+                        <span class="fa fa-search form-control-feedback text-success" ></span>
+                        <input type="text" id="search-input" class="form-control" placeholder="Search">
+                    </div>
+                </div>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-            </div>
-            <div class="modal-body">
                 <form action="{{ route('quizQuestion.store') }}" method="POST" id="addForm">
                     @csrf
                     <input type="hidden" name="quiz_id" value="{{ $quiz->id }}">
-                    @foreach ($questions as $question)
-                    <table class="table table-hover table-bordered">
-                        <tr>
-                            <td class="item">
-                                <input type="checkbox" name="question_id[ ]" value="{{ $question->id }}"
-                                    aria-label="Checkbox for following text input">
-                            </td>
-                            <td>
-                                <p>
-                                    {{ $question->question_content }}
-                                </p>
-                            </td>
-                            <td style="width: 80px"
-                                class="{{ $question->difficulty == 1 ? "text-success" : $question->difficulty == 2 ? "text-warning" : "text-danger"}}">
-                                {{ $question->difficulty == 1 ? "Easy" : $question->difficulty == 2 ? "Medium" : "Hard"}}
-                            </td>
-                        </tr>
+                    <table class="table table-hover table-bordered table-striped">
+                        <thead class="thead-dark">
+                            <th></th>
+                            <th>Question</th>
+                            <th>Difficulty</th>
+                        </thead>
+                        <tbody>
+                            @foreach ($questions as $question)
+                            <tr class="filter-row">
+                                <td>
+                                    <input type="checkbox" name="question_id[]" value="{{ $question->id }}"
+                                        aria-label="Checkbox for following text input">
+                                </td>
+                                <td class="item">
+                                    <p data-toggle="collapse" href="#_{{$question->id}}" aria-expanded="false"
+                                        title="Click for answers">
+                                        {{ $question->question_content }} </p>
+                                    <div class="collapse" id="_{{$question->id}}">
+                                        <div class="card card-body">
+                                            @foreach($question->answers as $key => $answer)
+                                            <p><strong @switch($answer->correct)
+                                                    @case(1)
+                                                    title='Right'>
+                                                    <span class="badge badge-success">
+                                                        @break
+                                                        @default
+                                                        title='Wrong' >
+                                                        <span class="badge badge-danger">
+                                                            @endswitch
+                                                            Answer #{{$key+1}}</span>
+                                                </strong> {{ $answer->answer_content }} </p>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </td>
+                                <td style="width: 100px" class="item-difficulty">
+                                    <h5><span
+                                            class="badge {{ $question->difficulty == 1 ? "badge-success" : $question->difficulty == 2 ? "badge-warning" : "badge-danger"}}">
+                                            {{ $question->difficulty == 1 ? "Easy" : $question->difficulty == 2 ? "Medium" : "Hard"}}
+                                        </span>
+                                    </h5>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
                     </table>
 
-                    @endforeach
                 </form>
             </div>
             <div class="modal-footer">

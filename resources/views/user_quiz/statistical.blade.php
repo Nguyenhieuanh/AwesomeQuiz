@@ -30,6 +30,7 @@
                 @endforeach
             </tbody>
         </table>
+        {{ $userQuizzes->links() }}
     </div>
 </div>
 @endsection

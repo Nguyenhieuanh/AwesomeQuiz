@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Services\UserQuizService;
 use App\Http\Services\QuizResultService;
+use App\Models\UserQuiz;
 
 class QuizResultController extends Controller
 {
@@ -54,7 +55,7 @@ class QuizResultController extends Controller
     public function showUserResults($userId)
     {
         $user = User::find($userId);
-        $userQuizzes = $user->userQuizzes;
+        $userQuizzes = UserQuiz::where('user_id', $user->id)->paginate(10);
         return (Auth::id() == $userId || Auth::user()->role != 0) ?
             view('user_quiz.statistical', compact('user', 'userQuizzes')) :
             abort(403);

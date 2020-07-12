@@ -50,7 +50,7 @@ class QuestionController extends Controller
         $answer_content = $request->answer_content;
         $correct_option = $request->corrects;
 
-        if(!in_array(1,$correct_option)) {
+        if (!in_array(1, $correct_option)) {
             alert("Oops! Some thing wrong", "The question needs at least one correct answer", "error");
             return redirect()->back();
         }
@@ -108,17 +108,40 @@ class QuestionController extends Controller
             return redirect()->back();
         }
 
-        if (count($answers) < count($answerId)) {
-            alert("Error", "The answers can only be added, not deleted", "error");
-            return redirect()->back();
+        if (count($answers) > count($answerId)) {
+            for ($i = 0; $i < count($answers); $i++) {
+                $data = [
+                    "answer_content" => $answers[$i],
+                    "correct" => $corrects[$i]
+                ];
+                $this->answerService->update($data, $answerId[$i]->id);
+                if ($i = count($answers) - 1) {
+                    $answerData = [
+                        'question_id' => $question->id,
+                        'answer_content' => $answers[$i],
+                        'correct' => $corrects[$i],
+                    ];
+                    $this->answerService->create($answerData);
+                }
+            }
+        } else {
+            for ($i = 0; $i < count($answerId); $i++) {
+                if ($i < count($answers)) {
+                    $data = [
+                        "answer_content" => $answers[$i],
+                        "correct" => $corrects[$i]
+                    ];
+                    $this->answerService->update($data, $answerId[$i]->id);
+                } else {
+                    $this->answerService->destroy($answerId[$i]->id);
+                }
+            }
+
         }
-        for ($i = 0; $i < count($answerId); $i++) {
-            $data = [
-                "answer_content" => $answers[$i],
-                "correct" => $corrects[$i]
-            ];
-            $this->answerService->update($data, $answerId[$i]->id);
-        }
+
+
+        alert('Success', "Updated successfully", 'success');
+
         return redirect()->route('question.index');
     }
 

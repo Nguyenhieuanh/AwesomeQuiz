@@ -66,7 +66,9 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4>Add question</h4>
-
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
                 <div class="row p-2">
@@ -76,20 +78,12 @@
                         <option value="Medium">Medium</option>
                         <option value="Hard">Hard</option>
                     </select>
-                    {{-- <div class="input-group w-75">
-                        <input type="text" class="form-control has-search" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
-                        <div class="input-group-append">
-                          <button class="btn btn-outline-success" type="button" id="button-addon2">Button</button>
-                        </div>
-                      </div> --}}
+
                     <div class="form-group has-search w-75">
-                        <span class="fa fa-search form-control-feedback text-success" ></span>
+                        <span class="fa fa-search form-control-feedback text-success"></span>
                         <input type="text" id="search-input" class="form-control" placeholder="Search">
                     </div>
                 </div>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
                 <form action="{{ route('quizQuestion.store') }}" method="POST" id="addForm">
                     @csrf
                     <input type="hidden" name="quiz_id" value="{{ $quiz->id }}">

@@ -48,6 +48,8 @@ Route::group(['prefix' => 'question'], function () {
     Route::group(['middleware' => 'manager.role'], function () {
         Route::get('/', 'QuestionController@index')->name('question.index');
         Route::get('/show/{id}', 'QuestionController@show')->name('question.show');
+        Route::get('/search','QuestionController@search')->name('question.search');
+
     });
 
 });

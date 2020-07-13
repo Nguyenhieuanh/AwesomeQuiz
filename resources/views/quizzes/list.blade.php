@@ -26,10 +26,20 @@
                                 Duration: {{ $quiz->duration }} minutes
                             </p>
                             <p>
-                                @foreach ($quiz->quizQuestions as $q_question)
-                                    {{ ($q_question->question->difficulty == 1) }}
+                                @php
+                                    $easy=0;
+                                    $medium=0;
+                                    $hard=0;
+                                @endphp
+                                @foreach ($quiz->quizQuestions as $key =>$q_question)
+                                @if($q_question->question->difficulty ==1 )@php $easy++; @endphp
+                                @elseif($q_question->question->difficulty ==2) @php $medium++; @endphp
+                                @elseif($q_question->question->difficulty ==3) @php $hard++; @endphp
+                                @endif
                                 @endforeach
-                            </p>
+                            <p>Easy questions: {{$easy}}</p>
+                            <p>Medium questions: {{$medium}}</p>
+                            <p>Hard questions:{{$hard}}</p>
                             {{-- <a class="btn btn-info" href="{{route('quiz.statistics',['id'=>$quiz->id])}}">Show
                                 statistics</a> --}}
                         </div>

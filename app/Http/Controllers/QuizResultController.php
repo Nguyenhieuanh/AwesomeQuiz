@@ -6,19 +6,25 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Services\UserQuizService;
 use App\Http\Services\QuizResultService;
+use App\Http\Services\QuizService;
+use App\Models\Quiz;
+use App\Models\QuizResult;
 use App\Models\UserQuiz;
 
 class QuizResultController extends Controller
 {
     protected $quizResultService;
     protected $userQuizService;
+    protected $quizService;
 
     public function __construct(
         QuizResultService $quizResultService,
-        UserQuizService $userQuizService
+        UserQuizService $userQuizService,
+        QuizService $quizService
     ) {
         $this->quizResultService = $quizResultService;
         $this->userQuizService = $userQuizService;
+        $this->quizService = $quizService;
     }
 
     public function showResult($id, $userId)
@@ -43,7 +49,7 @@ class QuizResultController extends Controller
             };
             $questions_count = $questions->count();
 
-            $userQuiz->point = $point;
+            $userQuiz->point = round($point * 100 / $questions_count,2) ;
             $userQuiz->ratio = $point . '/' . $questions_count;
             $userQuiz->save();
             return view('user_quiz.result', compact('point', 'questions_count', 'questions', 'userQuiz'));
@@ -59,5 +65,11 @@ class QuizResultController extends Controller
         return (Auth::id() == $userId || Auth::user()->role != 0) ?
             view('user_quiz.statistical', compact('user', 'userQuizzes')) :
             abort(403);
+    }
+
+    public function showAllResults($quiz_id)
+    {
+        $quizResults = $this->quizService->findById($quiz_id)->userQuizzes;
+        return view('quizzes.general-statistical',compact("quizResults"));
     }
 }

@@ -9,7 +9,7 @@
     @routes()
     {{ Html::style('/css/app.css') }}
     {{ Html::script('/js/app.js') }}
-    <title>Document</title>
+    <title>AwesomeQuiz</title>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 

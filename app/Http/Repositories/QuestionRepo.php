@@ -5,6 +5,7 @@ use App\Models\Question;
 
 use App\Http\Repositories\CRUDInterfaceRepo;
 use App\Http\Repositories\Eloquent\EloquentRepo;
+use Illuminate\Support\Facades\DB;
 
 class QuestionRepo extends EloquentRepo implements CRUDInterfaceRepo
 {
@@ -21,5 +22,8 @@ class QuestionRepo extends EloquentRepo implements CRUDInterfaceRepo
     {
         return Question::where('category_id',$category_id)->get();
     }
-
+    public function latest()
+    {
+        return DB::table('questions')->latest('id')->first();
+    }
 }

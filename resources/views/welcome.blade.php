@@ -48,7 +48,7 @@
                 font-size: 84px;
             }
 
-            .links > a {
+            .links >table >tr >td >a {
                 color: #636b6f;
                 padding: 0 25px;
                 font-size: 13px;
@@ -60,6 +60,15 @@
 
             .m-b-md {
                 margin-bottom: 30px;
+            }
+            a{
+                color: #636b6f;
+                padding: 0 25px;
+                font-size: 13px;
+                font-weight: 600;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
             }
         </style>
     </head>
@@ -85,10 +94,22 @@
                 </div>
 
                 <div class="links">
-                    <a href="{{route('home')}}">Homepage</a>
-                    <a href="{{route('categories.index')}}">Category</a>
-                    <a href="{{route('quiz.list')}}">Quiz</a>
-                    <a href="{{route('question.index')}}">Questions</a>
+                    <table style="margin: auto"><tr>
+                    <td><a href="{{route('home')}}">___Homepage___</a></td>
+                    <td><a href="{{route('categories.index')}}">___Category___</a></td>
+                    <td><a href="{{route('quiz.list')}}">___Quiz___</a></td>
+                    <td><a href="{{route('question.index')}}">___Questions___</a></td>
+                        </tr>
+                        <tr>
+                            <td>Visit us!</td>
+                            <td>{{$categories->id}} created.</td>
+                            <td>
+                                {{$latestQuiz->id}} created.</td>
+                            <td>
+                                {{$questions->id}} created.
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>

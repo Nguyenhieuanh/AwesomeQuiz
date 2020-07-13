@@ -64,7 +64,7 @@ Route::group(['prefix' => 'quiz'], function () {
         Route::post('/store', 'QuizController@store')->name('quiz.store');
     });
     Route::get('/', 'QuizController@index')->name('quiz.list');
-    Route::get('/{id}/detail', 'QuizController@show')->name('quiz.show');
+    // Route::get('/{id}/detail', 'QuizController@show')->name('quiz.show');
     Route::get('/{id}/statistics', 'QuizController@statisticsCalculate')->name('quiz.statistics');
     Route::get('/user/{userId}/results', 'QuizResultController@showUserResults')->name('userQuiz.allResults');
     Route::get('/general-statistical/{id}', 'QuizResultController@showAllResults')->name('quiz.allStatistical');

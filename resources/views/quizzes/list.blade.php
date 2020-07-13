@@ -66,7 +66,7 @@
                         <td scope="row"> {{$key+1}}</td>
                         <td scope="row">
                             <a href="{{route("quiz.allStatistical", $quiz->id)}}">
-                                <p  title="Click for Statistical"> {{$quiz->name}} </p>
+                                <p title="Click for Statistical"> {{$quiz->name}} </p>
                             </a>
                         </td>
                         <td scope="row">
@@ -75,11 +75,30 @@
                         <td scope="row">
                             {{$quiz->duration}}
                         </td>
-                        <td scope="row">{{ $quiz->question_count }}</td>
+                        <td scope="row">
+                            <p>
+
+                                <h6><span class="badge badge-primary"> All {{ $quiz->question_count }}</span></h6>
+                                @php
+                                $easy=0;
+                                $medium=0;
+                                $hard=0;
+                                @endphp
+                                @foreach ($quiz->quizQuestions as $key =>$q_question)
+                                @if($q_question->question->difficulty ==1)@php $easy++; @endphp
+                                @elseif($q_question->question->difficulty ==2) @php $medium++; @endphp
+                                @elseif($q_question->question->difficulty ==3) @php $hard++; @endphp
+                                @endif
+                                @endforeach
+                                <span class="badge badge-success">Easy {{$easy}}</span>
+                                <span class="badge badge-warning">Medium {{$medium}}</span>
+                                <span class="badge badge-danger">Hard {{$hard}}</span>
+                            </p>
+                        </td>
                         <td scope="row">
                             {{-- Button Group --}}
-                            <a href="{{ route('quiz.show',[$quiz->id]) }}" class="btn btn-sm btn-info">
-                                <span><i class="fas fa-info-circle"></i> Detail</span></a>
+                            {{-- <a href="{{ route('quiz.show',[$quiz->id]) }}" class="btn btn-sm btn-info">
+                                <span><i class="fas fa-info-circle"></i> Detail</span></a> --}}
                             @if (Auth::user()->role == 2)
                             <a href="{{ route('quiz.edit',[$quiz->id]) }}" class="btn
                         btn-sm btn-primary"> <span><i class="far fa-edit"></i></span> Edit</a>

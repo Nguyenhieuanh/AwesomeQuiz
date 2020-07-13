@@ -43,9 +43,9 @@
                         @foreach ($quizResults as $key => $quizResult)
                         <tr>
                             <td scope="row"> {{$key+1}}</td>
-                            <td scope="row"> {{$quizResult->user_id}}</td>
+                            <td scope="row"> {{$quizResult->user->name}}</td>
                             <td scope="row">
-                                {{$quizResult->start_time}}
+                                {{date("d-m-Y H:i",strtotime($quizResult->start_time))}}
                             </td>
                             <td scope="row">
                                 {{$quizResult->point}}
@@ -54,20 +54,11 @@
                                 {{$quizResult->ratio}}
                             </td>
                             <td scope="row">
-                                @if ($quizResult->point < 50)
-                                    <span class="badge badge-danger">Fail</span>
-                                @else
+                                @if ($quizResult->point < 50) <span class="badge badge-danger">Fail</span>
+                                    @else
                                     <span class="badge badge-success">Pass</span>
-                                @endif
+                                    @endif
                             </td>
-                            {{-- <td scope="row">
-                                <a href="{{ route('quiz.show',[$quiz->id]) }}" class="btn btn-sm btn-info">
-                            <span><i class="fas fa-info-circle"></i> Detail</span></a>
-                            @if (Auth::user()->role == 2)
-                            <a href="{{ route('quiz.edit',[$quiz->id]) }}" class="btn
-                        btn-sm btn-primary"> <span><i class="far fa-edit"></i></span> Edit</a>
-                            @endif
-                            </td> --}}
                         </tr>
                         @endforeach
                         @else

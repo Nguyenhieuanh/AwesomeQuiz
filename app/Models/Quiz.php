@@ -26,4 +26,9 @@ class Quiz extends Model
         return $this->hasMany('App\Models\QuizResult');
     }
 
+    public function category()
+    {
+        return $this->belongsTo('App\Models\Category');
+    }
+
 }

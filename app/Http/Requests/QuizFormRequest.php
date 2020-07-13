@@ -27,7 +27,8 @@ class QuizFormRequest extends FormRequest
             'name' => 'required | unique:quizzes',
             'duration' => 'required',
             'question_count' => 'required',
-            'category_id' => 'required'
+            'category_id' => 'required',
+            'description' => 'required'
         ];
     }
 }

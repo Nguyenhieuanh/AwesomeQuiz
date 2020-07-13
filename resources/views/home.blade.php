@@ -4,8 +4,28 @@
     <!-- Content -->
     <div class="container">
         <div class="p-t-2 p-b-2 center">
-            <p class="lead">AwesomeQuiz is a beautifully crafted Quiz application. <input type="text" name="keyword" placeholder="What're you looking for?">
-                <a href="#" class="btn btn-primary">Search for it!</a>
+            <p class="lead">AwesomeQuiz is a beautifully crafted Quiz application.</p>
+            <form action="{{ route('question.search') }}" id="searchForm" method="get">
+                @csrf
+                <div class="row">
+                    <select class="custom-select mr-1" id="category-select" name="category_id">
+                        <option value="" selected>All Category</option>
+                        @foreach ($categories as $category)
+                            <option value="{{$category->id}}">{{$category->category_name}}</option>
+                        @endforeach
+                    </select>
+                    <select class="custom-select mr-1" id="difficulty-select" name="difficulty">
+                        <option value="" selected>All Difficulty</option>
+                        <option value="1">Easy</option>
+                        <option value="2">Medium</option>
+                        <option value="3">Hard</option>
+                    </select>
+                    <div class="form-group has-search w-75">
+                        <span class="fa fa-search form-control-feedback text-success" ></span>
+                        <input type="text" id="ajax-search" class="form-control" name="keyword" placeholder="Search">
+                    </div>
+                </div>
+            </form>
         </div>
         <div class="card">
             <div class="card-header">{{ __('Dashboard') }}</div>
@@ -17,7 +37,7 @@
                     </div>
                 @endif
 
-                @if (Auth::user()->role == 0) {{__('You are logged in as QuizPlayer!')}} @elseif (Auth::user()->role == 1) {{__('You are logged in as QuizMaker!')}} @elseif (Auth::user()->role == 2)<h1> {{__("You're God!")}}</h1> @else {{__("You're not logged in yet, please consider Login or Register")}} @endif
+                @if (Auth::user()->role == 0) {{__('You are logged in as QuizPlayer!')}} @elseif (Auth::user()->role == 1) {{__('You are logged in as QuizMaker!')}} @elseif (Auth::user()->role == 2)<h1> {{__("You're God - Be responsible!")}}</h1> @else {{__("You're not logged in yet, please consider Login or Register")}} @endif
             </div>
         </div>
         <div class="row">

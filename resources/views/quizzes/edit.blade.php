@@ -4,6 +4,13 @@
 <div class="col-12 p-4">
     <div class="card">
         <div class="card-header">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{route("home")}}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{route("quiz.list")}}">Quiz</a></li>
+                    <li class="breadcrumb-item"><a href="{{route("quiz.edit",['id' => $quiz->id])}}">Edit</a></li>
+                </ol>
+            </nav>
             <h4>{{ $quiz->name }}</h4>
         </div>
         <div class="card-body">

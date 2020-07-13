@@ -4,6 +4,14 @@
 <div class="col-8 mt-3 mx-auto">
     <div class="card">
         <div class="card-header">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{route("home")}}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{route("categories.index")}}">Category</a></li>
+                    <li class="breadcrumb-item"><a href="{{route("categories.edit",['id'=> $category->id])}}">Edit</a>
+                    </li>
+                </ol>
+            </nav>
             <h3>Edit Category</h3>
         </div>
         <div class="card-body p-4">

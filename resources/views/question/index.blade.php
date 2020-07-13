@@ -14,8 +14,7 @@
                 <h3 class="page-title">Question</h3>
             </div>
             <div class="col-8 mb-3 float-right">
-                <form action="{{ route('question.search') }}" id="searchForm" method="get">
-                    @csrf
+                <form data-entry-id="{{ route('question.search') }}" id="searchForm">
                     <div class="row">
                         <select class="custom-select mr-1" id="category-select" name="category_id">
                             <option value="" selected>All Category</option>
@@ -109,8 +108,8 @@
                             </td>
                             <td>
                                 {{-- Button Group --}}
-                                <a href="{{ route('question.show',[$question->id]) }}" class="btn btn-sm btn-info">
-                                    <span><i class="fas fa-info-circle"></i> Detail</span></a>
+                                {{-- <a href="{{ route('question.show',[$question->id]) }}" class="btn btn-sm btn-info">
+                                    <span><i class="fas fa-info-circle"></i> Detail</span></a> --}}
                                 @if (Auth::user()->role == 2)
                                 <a href="{{ route('question.edit',[$question->id]) }}" class="btn
                                 btn-sm btn-primary"> <span><i class="far fa-edit"></i></span> Edit</a>

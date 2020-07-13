@@ -61,7 +61,6 @@ class QuizController extends Controller
     public function store(QuizFormRequest $request)
     {
         $quiz = $this->quizService->create($request->all());
-//        dd($request->all());
         $msg = $this->quizQuestionService->generate($quiz, $request->question_count);
 
         if ($msg) {

@@ -4,6 +4,13 @@
 <div class="col-8 mt-3 mx-auto">
     <div class="card">
         <div class="card-header">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{route("home")}}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{route("question.index")}}">Question</a></li>
+                    <li class="breadcrumb-item"><a href="{{route("question.create")}}">Create</a>
+                </ol>
+            </nav>
             <h3>Create New Question</h3>
         </div>
         <div class="card-body p-4">
@@ -11,7 +18,7 @@
                 @csrf
                 <div class="form-group">
                     <div class="input-group-prepend">
-                        <label class="input-group-text" for="question_content"> <strong> Question Content
+                        <label class="input-group-text" for="question_content"><strong> Question Content
                             </strong>
                         </label>
                         <textarea class="form-control @error('question_content') is-invalid @enderror"
@@ -36,7 +43,7 @@
                                             </strong>
                                         </label>
                                     </div>
-                                    <select class="custom-select" id="difficulty-select" name="difficulty" required>
+                                    <select class="form-control" id="difficulty-select" name="difficulty" required>
                                         <option value="1">Easy</option>
                                         <option value="2">Medium</option>
                                         <option value="3">Hard</option>
@@ -56,7 +63,7 @@
                                             </strong>
                                         </label>
                                     </div>
-                                    <select class="custom-select" id="category-select" name="category" required>
+                                    <select class="form-control" id="category-select" name="category" required>
                                         @foreach ($categories as $category)
                                         <option value="{{$category->id}}">{{$category->category_name}}</option>
                                         @endforeach

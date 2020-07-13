@@ -32,7 +32,11 @@
         <li class="nav-item dropdown">
             <a class="nav-link active dropdown-toggle" data-toggle="dropdown" href="#" role="button"><img
                     src="assets/images/people/50/guy-6.jpg" alt="Avatar" class="rounded-circle" width="40"></a>
+
             <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="{{ route('changePassword') }}">
+                    <i class="material-icons">lock</i> Change password
+                </a>
                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">
                     <i class="material-icons">lock</i> Logout

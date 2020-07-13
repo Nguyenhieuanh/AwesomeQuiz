@@ -30,11 +30,10 @@
                     <thead>
                         <tr class="table-primary">
                             <th scope="col">ID</th>
-                            <th scope="col">Qizz name</th>
-                            <th scope="col">Category</th>
-                            <th scope="col">Duration</th>
-                            <th scope="col">Number of Questions</th>
-                            <th scope="col">Actions</th>
+                            <th scope="col">User name</th>
+                            <th scope="col">Test day</th>
+                            <th scope="col">Result</th>
+                            <th scope="col">Number of tests</th>
                         </tr>
                     </thead>
                     @if (count($quizzes) > 0)

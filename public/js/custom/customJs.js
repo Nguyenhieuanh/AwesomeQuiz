@@ -31,10 +31,10 @@ function confirmDelete(
             }
         });
 }
+/* ----------------------------------- End ---------------------------------- */
 
 $(document).ready(function() {
-    /* ----------------------------------- End ---------------------------------- */
-
+    "use strict";
     /* -------------------------------------------------------------------------- */
     /*                              Textarea autosize                             */
     /* -------------------------------------------------------------------------- */
@@ -57,7 +57,6 @@ $(document).ready(function() {
     var i = $("#myForm textarea").size() - 1;
     // Add answer option
     $(document).on("click", "#add-answer", function() {
-        console.log($("#add-answer"));
         i++;
         $("#dynamic-field").append(
             '<div class="form-group">' +
@@ -144,7 +143,6 @@ $(document).ready(function() {
         if (count == 0) {
             $("#myForm").submit();
         }
-        console.log(count);
     });
 
     $("#checkAll").click(function() {
@@ -199,4 +197,165 @@ $(document).ready(function() {
         $(".countdown").html(minutes + ":" + seconds);
         timer2 = minutes + ":" + seconds;
     }, 1000);
+});
+
+// function search dynamic question
+$("#search-input").keyup(function() {
+    var inputSearch = $(this)
+        .val()
+        .toUpperCase();
+    var difficultySelect = $("#difficulty-select")
+        .val()
+        .toUpperCase();
+    $(".filter-row").each(function() {
+        var question = $(this)
+            .children()
+            .children()[1].textContent;
+        if (!difficultySelect) {
+            if (question.toUpperCase().indexOf(inputSearch) > -1) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        } else {
+            var difficulty = $(this)
+                .children("td.item-difficulty")
+                .children("h5")
+                .children("span")
+                .text();
+            if (
+                question.toUpperCase().indexOf(inputSearch) > -1 &&
+                difficulty.toUpperCase().indexOf(difficultySelect) > -1
+            ) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        }
+    });
+});
+
+// search question user ajax
+
+$("#ajax-search").keyup(function() {
+    var url = $("#searchForm").attr("action");
+    var keyword = $("#ajax-search").val();
+    var category_id = $("#category-select").val();
+    var difficulty = $("#difficulty-select").val();
+    var data = {
+        keyword: keyword,
+        category_id: category_id,
+        difficulty: difficulty
+    };
+    console.log(data);
+    if (!keyword && !difficulty && !category_id) {
+        $("#paginate").show();
+    }
+    var html = "";
+    $.ajaxSetup({
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+        }
+    });
+    $.ajax({
+        type: "get",
+        url: url,
+        data: data,
+        dataType: "json",
+        success: function(response) {
+            if (response) {
+                for (i = 1; i <= response.length; i++) {
+                    html +=
+                        "<tr>" +
+                        '<td scoope="row" class="text text-center">' +
+                        i +
+                        "</td>" +
+                        '<td class="item">' +
+                        '<p data-toggle="collapse" href="#_' +
+                        response[i - 1].id +
+                        '" aria-expanded="false" title="Click for answers">' +
+                        response[i - 1].content +
+                        "</p>" +
+                        '<div class="collapse" id="_' +
+                        response[i - 1].id +
+                        '">' +
+                        '<div class="card card-body">';
+                    for (j = 0; j < response[i - 1].answers.length; j++) {
+                        html += "<p>";
+                        switch (response[i - 1].answers[j].correct) {
+                            case 1:
+                                html +=
+                                    '<strong><span class="badge badge-success">Answer #' +
+                                    (j + 1) +
+                                    "</span></strong>";
+                                break;
+                            default:
+                                html +=
+                                    '<strong><span class="badge badge-danger">Answer #' +
+                                    j +
+                                    1 +
+                                    "</span></strong>";
+                                break;
+                        }
+                        html +=
+                            response[i - 1].answers[j].answer_content + " </p>";
+                    }
+                    html += "</div>" + "</div>" + "</td>";
+                    switch (response[i - 1].difficulty) {
+                        case 1:
+                            html +=
+                                "<td>" +
+                                '<h5><span class="badge badge-pill badge-success">Easy</span></h5>' +
+                                "</td>";
+                            break;
+                        case 2:
+                            html +=
+                                "<td>" +
+                                '<h5> <span class="badge badge-pill badge-warning">Medium</span></h5>' +
+                                "</td>";
+                            break;
+                        case 3:
+                            html +=
+                                "<td>" +
+                                '<h5> <span class="badge badge-pill badge-danger">Hard</span></h5>' +
+                                "</td>";
+                            break;
+                    }
+                    html +=
+                        "<td>" +
+                        response[i - 1].category +
+                        "</td>" +
+                        "<td>" +
+                        '<a href="#" class="btn btn-sm btn-info">' +
+                        '<span><i class="fas fa-info-circle"></i> Detail</span></a>';
+                    if (response[i - 1].userRole == 2) {
+                        html +=
+                            '<a href="' +
+                            route("question.edit", [response[i - 1].id]) +
+                            '" class="btn btn-sm btn-primary"> <span><i class="far fa-edit"></i></span> Edit' +
+                            "</a>" +
+                            '<button class="btn btn-sm btn-danger" onclick="confirmDelete(\'' +
+                            route("question.destroy", [response[i - 1].id]) +
+                            "')\">" +
+                            '<span><i class="fas fa-trash-alt"></i> Delete</span>' +
+                            "</button>" +
+                            "</td>";
+                    }
+                    html += "</tr>";
+                }
+            }
+            if (keyword == "" && difficulty == "" && category_id == "") {
+                $("#paginate").show();
+            } else {
+                $("#paginate").hide();
+                $("tbody#list-question")
+                    .children("tr")
+                    .hide();
+                $("tbody#list-question").append(html);
+            }
+        },
+        error: function() {
+            console.error;
+        }
+    });
 });

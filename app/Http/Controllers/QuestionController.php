@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\UpdateAnswersRequest;
-use App\Http\Requests\UpdateCategoriesRequest;
-use App\Http\Requests\UpdateQuestionsRequest;
-use App\Http\Requests\QuestionFormRequest;
-use App\Http\Services\AnswerService;
-use App\Http\Services\CategoryService;
-use App\Http\Services\QuestionService;
 use App\Models\Answer;
 use App\Models\Category;
 use App\Models\Question;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Services\AnswerService;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Services\CategoryService;
+use App\Http\Services\QuestionService;
+use App\Http\Requests\QuestionFormRequest;
+use App\Http\Requests\UpdateAnswersRequest;
+use App\Http\Requests\UpdateQuestionsRequest;
+use App\Http\Requests\UpdateCategoriesRequest;
 
 class QuestionController extends Controller
 {
@@ -35,7 +36,8 @@ class QuestionController extends Controller
     public function index()
     {
         $questions = Question::paginate(10);
-        return view('question.index', compact('questions'));
+        $categories = $this->categoryService->getAll();
+        return view('question.index', compact('questions', 'categories'));
     }
 
     public function create()
@@ -49,19 +51,28 @@ class QuestionController extends Controller
         $answer_content = $request->answer_content;
         $correct_option = $request->corrects;
 
+        if (!in_array(1, $correct_option)) {
+            alert("Oops! Some thing wrong", "The question needs at least one correct answer", "error");
+            return redirect()->back();
+        }
         $question = $this->questionService->create($request->all());
-
+        $answers = [];
         for ($i = 0; $i < count($answer_content); $i++) {
             $answerData = [
                 'question_id' => $question->id,
                 'answer_content' => $answer_content[$i],
                 'correct' => $correct_option[$i],
             ];
-            $this->answerService->create($answerData);
+            $answer = $this->answerService->create($answerData);
+            array_push($answers, $answer);
         };
+        if (!$question && !$answers) {
+            alert()->error('Create question error', 'Error')->showConfirmButton('OK');
+            return redirect()->route('question.create');
+        }
         alert()->success('Created new question', 'Successfully')->autoClose(1800);
 
-        return redirect()->route('question.index');
+        return redirect()->route('question.create');
     }
 
     public function show($id)
@@ -93,17 +104,44 @@ class QuestionController extends Controller
         $answers = $questionsRequest->answer_content;
         $answerId = $question->answers;
 
-        if (count($answers) < count($answerId)) {
-            alert("Error", "The answers can only be added, not deleted", "error");
+        if (!$answers) {
+            alert("Error", "The question needs at least two answers.", "error");
             return redirect()->back();
         }
-        for ($i = 0; $i < count($answerId); $i++) {
-            $data = [
-                "answer_content" => $answers[$i],
-                "correct" => $corrects[$i]
-            ];
-            $this->answerService->update($data, $answerId[$i]->id);
+
+        if (count($answers) > count($answerId)) {
+            for ($i = 0; $i < count($answers); $i++) {
+                $data = [
+                    "answer_content" => $answers[$i],
+                    "correct" => $corrects[$i]
+                ];
+                $this->answerService->update($data, $answerId[$i]->id);
+                if ($i = count($answers) - 1) {
+                    $answerData = [
+                        'question_id' => $question->id,
+                        'answer_content' => $answers[$i],
+                        'correct' => $corrects[$i],
+                    ];
+                    $this->answerService->create($answerData);
+                }
+            }
+        } else {
+            for ($i = 0; $i < count($answerId); $i++) {
+                if ($i < count($answers)) {
+                    $data = [
+                        "answer_content" => $answers[$i],
+                        "correct" => $corrects[$i]
+                    ];
+                    $this->answerService->update($data, $answerId[$i]->id);
+                } else {
+                    $this->answerService->destroy($answerId[$i]->id);
+                }
+            }
         }
+
+
+        alert('Success', "Updated successfully", 'success');
+
         return redirect()->route('question.index');
     }
 
@@ -116,5 +154,157 @@ class QuestionController extends Controller
             alert()->success('Delete completed', 'Successfully')->autoClose(1800);
         }
         return redirect()->route('question.index');
+    }
+
+    public function search(Request $request)
+    {
+        $keyword = $request->keyword;
+        $category_id = $request->category_id;
+        $difficulty = $request->difficulty;
+
+        if (!$keyword && !$category_id && !$difficulty) {
+            $questions = Question::all();
+            $data_response = [];
+            foreach ($questions as $question) {
+                $data = [
+                    'id' => $question->id,
+                    'content' => $question->question_content,
+                    'category' => $question->category->category_name,
+                    'difficulty' => $question->difficulty,
+                    'answers' => $question->answers,
+                    'userRole' => Auth::user()->role
+                ];
+                array_push($data_response, $data);
+            }
+            return response()->json($data_response);
+        }
+
+        if ($keyword && !$category_id && !$difficulty) {
+            $questions = Question::where('question_content', 'LIKE', '%' . $keyword . '%')->get();
+            $data_response = [];
+            foreach ($questions as $question) {
+                $data = [
+                    'id' => $question->id,
+                    'content' => $question->question_content,
+                    'category' => $question->category->category_name,
+                    'difficulty' => $question->difficulty,
+                    'answers' => $question->answers,
+                    'userRole' => Auth::user()->role
+                ];
+                array_push($data_response, $data);
+            }
+            return response()->json($data_response);
+        }
+
+        if (!$keyword && $category_id && !$difficulty) {
+            $questions = Question::where('category_id', 'LIKE', $category_id)->get();
+            $data_response = [];
+            foreach ($questions as $question) {
+                $data = [
+                    'id' => $question->id,
+                    'content' => $question->question_content,
+                    'category' => $question->category->category_name,
+                    'difficulty' => $question->difficulty,
+                    'answers' => $question->answers,
+                    'userRole' => Auth::user()->role
+                ];
+                array_push($data_response, $data);
+            }
+            return response()->json($data_response);
+        }
+
+        if (!$keyword && !$category_id && $difficulty) {
+            $questions = Question::where('difficulty', 'LIKE', $difficulty)->get();
+            $data_response = [];
+            foreach ($questions as $question) {
+                $data = [
+                    'id' => $question->id,
+                    'content' => $question->question_content,
+                    'category' => $question->category->category_name,
+                    'difficulty' => $question->difficulty,
+                    'answers' => $question->answers,
+                    'userRole' => Auth::user()->role
+                ];
+                array_push($data_response, $data);
+            }
+            return response()->json($data_response);
+        }
+
+        if ($keyword && $category_id && !$difficulty) {
+            $questions = Question::where('question_content', 'LIKE', '%' . $keyword . '%')
+                ->where('category_id', 'LIKE', $category_id)
+                ->get();
+            $data_response = [];
+            foreach ($questions as $question) {
+                $data = [
+                    'id' => $question->id,
+                    'content' => $question->question_content,
+                    'category' => $question->category->category_name,
+                    'difficulty' => $question->difficulty,
+                    'answers' => $question->answers,
+                    'userRole' => Auth::user()->role
+                ];
+                array_push($data_response, $data);
+            }
+            return response()->json($data_response);
+        }
+
+        if ($keyword && !$category_id && $difficulty) {
+            $questions = Question::where('question_content', 'LIKE', '%' . $keyword . '%')
+                ->where('difficulty', 'LIKE', $difficulty)
+                ->get();
+            $data_response = [];
+            foreach ($questions as $question) {
+                $data = [
+                    'id' => $question->id,
+                    'content' => $question->question_content,
+                    'category' => $question->category->category_name,
+                    'difficulty' => $question->difficulty,
+                    'answers' => $question->answers,
+                    'userRole' => Auth::user()->role
+                ];
+                array_push($data_response, $data);
+            }
+            return response()->json($data_response);
+        }
+
+        if (!$keyword && $category_id && $difficulty) {
+            $questions = Question::where('category_id', 'LIKE', $category_id)
+                ->where('difficulty', 'LIKE', $difficulty)
+                ->get();
+            $data_response = [];
+            foreach ($questions as $question) {
+                $data = [
+                    'id' => $question->id,
+                    'content' => $question->question_content,
+                    'category' => $question->category->category_name,
+                    'difficulty' => $question->difficulty,
+                    'answers' => $question->answers,
+                    'userRole' => Auth::user()->role
+                ];
+                array_push($data_response, $data);
+            }
+            return response()->json($data_response);
+        }
+
+        if ($keyword && $category_id && $difficulty) {
+            $questions = Question::where('category_id', 'LIKE', $category_id)
+                ->where('difficulty', 'LIKE', $difficulty)
+                ->where('question_content', 'LIKE', '%' . $keyword . '%')
+                ->get();
+            $data_response = [];
+            foreach ($questions as $question) {
+                $data = [
+                    'id' => $question->id,
+                    'content' => $question->question_content,
+                    'category' => $question->category->category_name,
+                    'difficulty' => $question->difficulty,
+                    'answers' => $question->answers,
+                    'userRole' => Auth::user()->role
+                ];
+                array_push($data_response, $data);
+            }
+            return response()->json($data_response);
+        }
     }
 }

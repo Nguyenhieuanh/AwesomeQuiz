@@ -23,40 +23,51 @@
             </div>
             @endif
             <div id="paginate" class="float-right">
-                {{-- {{$quizzes->links()}} --}}
+                {{-- {{$quizResults->links()}} --}}
             </div>
             <div class="table-responsive">
-                <table id="table" class="table table-bordered table-hover {{ count($quizzes) > 0 ? 'datatable' : '' }}">
+                <table id="table"
+                    class="table table-bordered table-hover {{ count($quizResults) > 0 ? 'datatable' : '' }}">
                     <thead>
                         <tr class="table-primary">
                             <th scope="col">ID</th>
                             <th scope="col">User name</th>
                             <th scope="col">Test day</th>
+                            <th scope="col">Point</th>
+                            <th scope="col">Number of corrects</th>
                             <th scope="col">Result</th>
-                            <th scope="col">Number of tests</th>
                         </tr>
                     </thead>
-                    @if (count($quizzes) > 0)
-                    <tbody id="list-quizz">
-                        @foreach ($quizzes as $key => $quiz)
+                    @if (count($quizResults) > 0)
+                    <tbody>
+                        @foreach ($quizResults as $key => $quizResult)
                         <tr>
                             <td scope="row"> {{$key+1}}</td>
-                            <td scope="row"> {{$quiz->name}}</td>
+                            <td scope="row"> {{$quizResult->user_id}}</td>
                             <td scope="row">
-                                {{$quiz->category->category_name}}
+                                {{$quizResult->start_time}}
                             </td>
                             <td scope="row">
-                                {{$quiz->duration}}
+                                {{$quizResult->point}}
                             </td>
-                            <td scope="row">{{ $quiz->question_count }}</td>
                             <td scope="row">
-                                <a href="{{ route('quiz.show',[$quiz->id]) }}" class="btn btn-sm btn-info">
-                                    <span><i class="fas fa-info-circle"></i> Detail</span></a>
-                                @if (Auth::user()->role == 2)
-                                <a href="{{ route('quiz.edit',[$quiz->id]) }}" class="btn
-                        btn-sm btn-primary"> <span><i class="far fa-edit"></i></span> Edit</a>
+                                {{$quizResult->ratio}}
+                            </td>
+                            <td scope="row">
+                                @if ($quizResult->point < 50)
+                                    <span class="badge badge-danger">Fail</span>
+                                @else
+                                    <span class="badge badge-success">Pass</span>
                                 @endif
                             </td>
+                            {{-- <td scope="row">
+                                <a href="{{ route('quiz.show',[$quiz->id]) }}" class="btn btn-sm btn-info">
+                            <span><i class="fas fa-info-circle"></i> Detail</span></a>
+                            @if (Auth::user()->role == 2)
+                            <a href="{{ route('quiz.edit',[$quiz->id]) }}" class="btn
+                        btn-sm btn-primary"> <span><i class="far fa-edit"></i></span> Edit</a>
+                            @endif
+                            </td> --}}
                         </tr>
                         @endforeach
                         @else
@@ -70,3 +81,4 @@
         </div>
     </div>
 </div>
+@endsection

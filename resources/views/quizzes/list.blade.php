@@ -67,7 +67,7 @@
                         <td scope="row">
                             <a href="{{route("quiz.allStatistical", $quiz->id)}}">
                                 <p  title="Click for Statistical"> {{$quiz->name}} </p>
-                            </a> 
+                            </a>
                         </td>
                         <td scope="row">
                             {{$quiz->category->category_name}}

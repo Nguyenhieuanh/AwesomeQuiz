@@ -60,4 +60,9 @@ class QuizResultController extends Controller
             view('user_quiz.statistical', compact('user', 'userQuizzes')) :
             abort(403);
     }
+
+    public function showAllResults($quiz_id)
+    {
+        return view('quizzes.general-statistical');
+    }
 }

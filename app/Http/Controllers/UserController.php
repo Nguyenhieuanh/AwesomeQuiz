@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -47,8 +49,8 @@ class UserController extends Controller
         } else {
             $user->where('id', $id)->update(['role' => 0]);
             alert("Action completed", "User has been demoted", "success");
-
         }
         return redirect()->route('user.list');
     }
+
 }

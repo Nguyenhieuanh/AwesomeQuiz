@@ -21,6 +21,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/change-password', 'ChangePasswordController@index')->name('changePassword');
+Route::post('/change-password', 'ChangePasswordController@store')->name('change.password');
+
 Route::group(['prefix' => 'category'], function () {
     Route::group(['middleware' => 'admin.role'], function () {
         Route::get('/create', 'CategoryController@create')->name('categories.create');

@@ -64,7 +64,11 @@
                     @foreach ($quizzes as $key => $quiz)
                     <tr>
                         <td scope="row"> {{$key+1}}</td>
-                        <td scope="row"> {{$quiz->name}}</td>
+                        <td scope="row">
+                            <a href="{{route("quiz.allStatistical", $quiz->id)}}">
+                                <p  title="Click for Statistical"> {{$quiz->name}} </p>
+                            </a> 
+                        </td>
                         <td scope="row">
                             {{$quiz->category->category_name}}
                         </td>

@@ -13,136 +13,88 @@
             <div class="float-left">
                 <h3 class="page-title">Quizzes</h3>
             </div>
-            {{-- <div class="col-8 mb-3 float-right">
-                <form action="{{ route('question.search') }}" id="searchForm" method="get">
-            @csrf
-            <div class="row">
-                <select class="custom-select mr-1" id="category-select" name="category_id">
-                    <option value="" selected>All Category</option>
-                    @foreach ($categories as $category)
-                    <option value="{{$category->id}}">{{$category->category_name}}</option>
-                    @endforeach
-                </select>
-                <select class="custom-select mr-1" id="difficulty-select" name="difficulty">
-                    <option value="" selected>All Difficulty</option>
-                    <option value="1">Easy</option>
-                    <option value="2">Medium</option>
-                    <option value="3">Hard</option>
-                </select>
-                <div class="form-group has-search w-75">
-                    <span class="fa fa-search form-control-feedback text-success"></span>
-                    <input type="text" id="ajax-search" class="form-control" name="keyword" placeholder="Search">
-                </div>
+        </div>
+        <div class="card-body p-4">
+            @if (Auth::user()->role == 2 || Auth::user()->role ==1)
+            <div class="float-left">
+                <a href="{{ route('quiz.create') }}" class="btn btn-success mb-4">
+                    <span><i class="fas fa-plus"></i> Create new Quiz</span></a>
             </div>
-            </form>
-        </div> --}}
-    </div>
-    <div class="card-body p-4">
-        @if (Auth::user()->role == 2 || Auth::user()->role ==1)
-        <div class="float-left">
-            <a href="{{ route('quiz.create') }}" class="btn btn-success mb-4">
-                <span><i class="fas fa-plus"></i> Create new Quiz</span></a>
-        </div>
-        @endif
-        <div id="paginate" class="float-right">
-            {{$quizzes->links()}}
-        </div>
-        <div class="table-responsive">
-            <table id="table" class="table table-bordered table-hover {{ count($quizzes) > 0 ? 'datatable' : '' }}">
-                <thead>
-                    <tr class="table-primary">
-                        <th scope="col">ID</th>
-                        <th scope="col">Qizz name</th>
-                        <th scope="col">Category</th>
-                        <th scope="col">Duration</th>
-                        <th scope="col">Number of Questions</th>
-                        <th scope="col">Actions</th>
-                    </tr>
-                </thead>
-                @if (count($quizzes) > 0)
-                <tbody id="list-quizz">
-                    @foreach ($quizzes as $key => $quiz)
-                    <tr>
-                        <td scope="row"> {{$key+1}}</td>
-                        <td scope="row">
-                            <a href="{{route("quiz.allStatistical", $quiz->id)}}">
-                                <p  title="Click for Statistical"> {{$quiz->name}} </p>
-                            </a>
-                        </td>
-                        <td scope="row">
-                            {{$quiz->category->category_name}}
-                        </td>
-                        <td scope="row">
-                            {{$quiz->duration}}
-                        </td>
-                        <td scope="row">{{ $quiz->question_count }}</td>
-                        <td scope="row">
-                            {{-- Button Group --}}
-                            <a href="{{ route('quiz.show',[$quiz->id]) }}" class="btn btn-sm btn-info">
-                                <span><i class="fas fa-info-circle"></i> Detail</span></a>
-                            @if (Auth::user()->role == 2)
-                            <a href="{{ route('quiz.edit',[$quiz->id]) }}" class="btn
+            @endif
+            <div id="paginate" class="float-right">
+                {{$quizzes->links()}}
+            </div>
+            <div class="table-responsive">
+                <table id="table" class="table table-bordered table-hover {{ count($quizzes) > 0 ? 'datatable' : '' }}">
+                    <thead>
+                        <tr class="table-primary">
+                            <th scope="col">ID</th>
+                            <th scope="col">Qizz name</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Duration</th>
+                            <th scope="col">Number of Questions</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    @if (count($quizzes) > 0)
+                    <tbody id="list-quizz">
+                        @foreach ($quizzes as $key => $quiz)
+                        <tr>
+                            <td scope="row"> {{$key+1}}</td>
+                            <td scope="row">
+                                <a href="{{route("quiz.allStatistical", $quiz->id)}}">
+                                    <p title="Click for Statistical"> {{$quiz->name}} </p>
+                                </a>
+                            </td>
+                            <td scope="row">
+                                {{$quiz->category->category_name}}
+                            </td>
+                            <td scope="row">
+                                {{$quiz->duration}}
+                            </td>
+                            <td scope="row">
+                                <p>
+
+                                    <h6><span class="badge badge-primary"> All {{ $quiz->question_count }}</span></h6>
+                                    @php
+                                    $easy=0;
+                                    $medium=0;
+                                    $hard=0;
+                                    @endphp
+                                    @foreach ($quiz->quizQuestions as $key =>$q_question)
+                                    @if($q_question->question->difficulty ==1)@php $easy++; @endphp
+                                    @elseif($q_question->question->difficulty ==2) @php $medium++; @endphp
+                                    @elseif($q_question->question->difficulty ==3) @php $hard++; @endphp
+                                    @endif
+                                    @endforeach
+                                    <span class="badge badge-success">Easy {{$easy}}</span>
+                                    <span class="badge badge-warning">Medium {{$medium}}</span>
+                                    <span class="badge badge-danger">Hard {{$hard}}</span>
+                                </p>
+                            </td>
+                            <td scope="row">
+                                {{-- Button Group --}}
+                                {{-- <a href="{{ route('quiz.show',[$quiz->id]) }}" class="btn btn-sm btn-info">
+                                <span><i class="fas fa-info-circle"></i> Detail</span></a> --}}
+                                @if (Auth::user()->role == 2)
+                                <a href="{{ route('quiz.edit',[$quiz->id]) }}" class="btn
                         btn-sm btn-primary"> <span><i class="far fa-edit"></i></span> Edit</a>
-                            @endif
-                            <a href="{{ route("quiz.doQuiz",[$quiz->id]) }}" class="btn btn-sm btn-primary">
-                                <span><i class="far fa-calendar-check"></i> Do Quiz</span></a>
-                            {{-- Button Group --}}
-                        </td>
-                    </tr>
-                    @endforeach
-                    @else
-                    <tr>
-                        <td colspan="7">'no_entries_in_table'</td>
-                    </tr>
-                    @endif
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-</div>
-{{-- Old --}}
-{{-- <div class="col-12 p-4">
-        @if (Auth::user()->role == 2 || Auth::user()->role ==1)
-            <a href="{{ route('quiz.create') }}" class="btn btn-success mb-4">Create new Quiz</a>
-@endif
-<div class="card-group">
-    @foreach ($quizzes as $quiz)
-    <div class="col-4">
-        <div class="card mb-3">
-            <div class="card-header">
-                <h3>
-                    <a href="{{ route('quiz.show', ['id' => $quiz->id]) }}">{{ $quiz->name }}</a>
-                    - @if (Auth::user()->role == 1 ||Auth::user()->role == 2)
-                    <a class="btn-warning btn" href="{{ route('quiz.edit', ['id' => $quiz->id]) }}">Edit</a>
-                    @endif
-                </h3>
-            </div>
-            <div class="card-body">
-                <p>
-                    Number of quizzes: {{ $quiz->quizz_count }}
-                </p>
-                <p>
-                    Duration: {{ $quiz->duration }} minutes
-                </p>
-                <p>
-                    @foreach ($quiz->quizquizzes as $q_quizz)
-                    {{ ($q_quizz->question->difficulty == 1) }}
-                    @endforeach
-                </p>
-                <a class="btn btn-info" href="{{route('quiz.statistics',['id'=>$quiz->id])}}">Show
-                    statistics</a>
-            </div>
-            <div class="card-footer">
-                @if (Auth::user()->role == 0)
-                <a href="{{ route('quiz.doQuiz', ['id' => $quiz->id]) }}" class="btn btn-success">Do
-                    Quiz</a>
-                @endif
+                                @endif
+                                <a href="{{ route("quiz.doQuiz",[$quiz->id]) }}" class="btn btn-sm btn-danger">
+                                    <span><i class="far fa-calendar-check"></i> Do Quiz</span></a>
+                                {{-- Button Group --}}
+                            </td>
+                        </tr>
+                        @endforeach
+                        @else
+                        <tr>
+                            <td colspan="7">'no_entries_in_table'</td>
+                        </tr>
+                        @endif
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
-    @endforeach
 </div>
-{{ $quizzes->links() }}
-</div> --}}
 @endsection

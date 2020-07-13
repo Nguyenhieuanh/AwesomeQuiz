@@ -81,4 +81,7 @@ class QuestionService implements CRUDInterfaceService
         $question = $this->findById($id);
         return $question->quizQuestion->first();
     }
+    public function latest (){
+        return $this->questionRepo->latest();
+    }
 }

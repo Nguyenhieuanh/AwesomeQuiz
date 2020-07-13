@@ -69,4 +69,7 @@ class CategoryService implements CRUDInterfaceService
         $category = $this->categoryRepo->findById($id);
         return ($category->quizzes->first());
     }
+    public function latest(){
+        return $this->categoryRepo->latest();
+    }
 }

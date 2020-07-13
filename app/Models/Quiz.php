@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Services\QuizService;
 use Illuminate\Database\Eloquent\Model;
 
 class Quiz extends Model
@@ -29,4 +30,5 @@ class Quiz extends Model
     {
         return $this->belongsTo('App\Models\Category');
     }
+
 }

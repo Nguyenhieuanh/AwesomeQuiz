@@ -50,4 +50,10 @@ class QuizService implements CRUDInterfaceService
 
         return ($quiz ? $this->quizRepo->destroy($quiz) : abort(404));
     }
+
+
+    public function latest()
+    {
+        return $this->quizRepo->latest();
+    }
 }

@@ -62,7 +62,7 @@ class QuizController extends Controller
     {
         $quiz = $this->quizService->create($request->all());
         $msg = $this->quizQuestionService->generate($quiz, $request->question_count);
-
+        $lastInsertedId= $quiz->id;
         if ($msg) {
             alert()->success('Quiz Created', 'Successfully')->autoClose(1600);
         } else {

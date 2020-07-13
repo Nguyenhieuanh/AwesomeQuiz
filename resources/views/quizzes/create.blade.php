@@ -62,6 +62,7 @@
                             <label for="duration">Duration</label>
                             <select class="form-control @error('duration') is-invalid @enderror" name="duration">
                                 <option value="" selected>Choose...</option>
+                                <option value="1">1 minute</option>
                                 <option value="15">15 minutes</option>
                                 <option value="30">30 minutes</option>
                                 <option value="45">45 minutes</option>

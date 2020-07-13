@@ -85,19 +85,19 @@
                     {{-- Student --}}
                     <div class="sidebar-heading">QuizPlayer</div>
                     <ul class="sidebar-menu">
-
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button" href="{{route('categories.index')}}">
-                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
-                                    import_contacts</i> Quiz Category
-                            </a>
-                        </li>
                         <li class="sidebar-menu-item">
                             <a class="sidebar-menu-button" href="{{ route('quiz.list') }}">
                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
                                     import_contacts</i> Quizzes
                             </a>
                         </li>
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button" href="{{route('categories.index')}}">
+                                <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                    import_contacts</i> Quiz Category
+                            </a>
+                        </li>
+
                         <li class="sidebar-menu-item">
                             <a class="sidebar-menu-button"
                                 href="{{ route('userQuiz.allResults', ['userId' => Auth::id()]) }}">

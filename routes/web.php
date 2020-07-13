@@ -65,6 +65,7 @@ Route::group(['prefix' => 'quiz'], function () {
     Route::get('/{id}/detail', 'QuizController@show')->name('quiz.show');
     Route::get('/{id}/statistics', 'QuizController@statisticsCalculate')->name('quiz.statistics');
     Route::get('/user/{userId}/results', 'QuizResultController@showUserResults')->name('userQuiz.allResults');
+    Route::get('/general-statistical/{id}', 'QuizResultController@showAllResults')->name('quiz.allStatistical');
 });
 
 

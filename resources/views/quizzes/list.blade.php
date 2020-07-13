@@ -84,6 +84,8 @@
                             <a href="{{ route('quiz.edit',[$quiz->id]) }}" class="btn
                         btn-sm btn-primary"> <span><i class="far fa-edit"></i></span> Edit</a>
                             @endif
+                            <a href="{{ route("quiz.doQuiz",[$quiz->id]) }}" class="btn btn-sm btn-primary">
+                                <span><i class="far fa-calendar-check"></i> Do Quiz</span></a>
                             {{-- Button Group --}}
                         </td>
                     </tr>

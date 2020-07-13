@@ -25,7 +25,7 @@
                         <tr data-entry-id="{{ $user->id }}">
                             <td></td>
                             <td>{{ $user->id }}</td>
-                            <td>{!! $user->name !!}</td>
+                            <td><a href="{{route('userQuiz.allResults',$user->id)}}"> {!! $user->name !!}</a></td>
                             <td>{!! $user->email !!}</td>
                             <td>
                             @switch($user->role)

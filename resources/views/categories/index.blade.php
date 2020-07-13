@@ -4,6 +4,12 @@
 <div class="col mt-3 mx-auto">
     <div class="card">
         <div class="card-header">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{route("home")}}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{route("categories.index")}}">Category</a></li>
+                </ol>
+            </nav>
             <h3 class="page-title">Category</h3>
         </div>
         <div class="card-body p-4">

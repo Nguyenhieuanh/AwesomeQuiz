@@ -45,7 +45,7 @@
                         @if (Auth::user()->role == 2)
                         <td>
                             <a href="{{ route('categories.edit',[$category->id]) }}" class="btn btn-sm btn-primary">
-                                <span><i class="far fa-edit"></i> Edit</a></span>
+                                <span><i class="far fa-edit"></i></span> Edit</a>
                             <button class="btn btn-sm btn-danger"
                                 onclick="confirmDelete('{{ route('categories.destroy',[$category->id]) }}')">
                                 <span><i class="fas fa-trash-alt"></i> Delete</span>
@@ -85,7 +85,7 @@
             <div class="modal-footer">
                 @if (Auth::user()->role == 2)
                 <a href="{{ route('categories.edit',[$category->id]) }}" class="btn btn-primary">
-                    <span><i class="far fa-edit"></i> Edit</a></span>
+                    <span><i class="far fa-edit"></i></span> Edit</a>
                 @endif
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
                     <span><i class="fas fa-times"></i> Close </span>

@@ -59,19 +59,31 @@
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
+                @if (count($quizzes) > 0)
                 <tbody id="list-quizz">
-                    @if (count($quizzes) > 0)
                     @foreach ($quizzes as $key => $quiz)
-                    <td scope="row"> {{$key+1}}</td>
-                    <td scope="row"> {{$quiz->name}}</td>
-                    <td scope="row">
-                        {{dd($quiz->category)}}
-                    </td>
-                    <td scope="row">Duration</td>
-                    <td scope="row">{{ $quiz->quizz_count }}</td>
-                    <td scope="row"></td>
+                    <tr>
+                        <td scope="row"> {{$key+1}}</td>
+                        <td scope="row"> {{$quiz->name}}</td>
+                        <td scope="row">
+                            {{$quiz->category->category_name}}
+                        </td>
+                        <td scope="row">
+                            {{$quiz->duration}}
+                        </td>
+                        <td scope="row">{{ $quiz->question_count }}</td>
+                        <td scope="row">
+                            {{-- Button Group --}}
+                            <a href="{{ route('quiz.show',[$quiz->id]) }}" class="btn btn-sm btn-info">
+                                <span><i class="fas fa-info-circle"></i> Detail</span></a>
+                            @if (Auth::user()->role == 2)
+                            <a href="{{ route('quiz.edit',[$quiz->id]) }}" class="btn
+                        btn-sm btn-primary"> <span><i class="far fa-edit"></i></span> Edit</a>
+                            @endif
+                            {{-- Button Group --}}
+                        </td>
+                    </tr>
                     @endforeach
-
                     @else
                     <tr>
                         <td colspan="7">'no_entries_in_table'</td>

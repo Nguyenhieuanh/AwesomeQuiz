@@ -18,7 +18,7 @@
                 @csrf
                 <div class="form-group">
                     <div class="input-group-prepend">
-                        <label class="input-group-text" for="question_content"> <strong> Question Content
+                        <label class="input-group-text" for="question_content"><strong> Question Content
                             </strong>
                         </label>
                         <textarea class="form-control @error('question_content') is-invalid @enderror"
@@ -43,7 +43,7 @@
                                             </strong>
                                         </label>
                                     </div>
-                                    <select class="custom-select" id="difficulty-select" name="difficulty" required>
+                                    <select class="form-control" id="difficulty-select" name="difficulty" required>
                                         <option value="1">Easy</option>
                                         <option value="2">Medium</option>
                                         <option value="3">Hard</option>
@@ -63,7 +63,7 @@
                                             </strong>
                                         </label>
                                     </div>
-                                    <select class="custom-select" id="category-select" name="category" required>
+                                    <select class="form-control" id="category-select" name="category" required>
                                         @foreach ($categories as $category)
                                         <option value="{{$category->id}}">{{$category->category_name}}</option>
                                         @endforeach
